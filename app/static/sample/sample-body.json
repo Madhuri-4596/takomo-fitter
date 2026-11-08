@@ -1,0 +1,41 @@
+{
+  "height_cm": 177.2,
+  "wrist_to_floor_cm": 79.8,
+  "image_size": [
+    1848,
+    2158
+  ],
+  "points": {
+    "head_top": [
+      1190.4000244140625,
+      245.60000610351562
+    ],
+    "wrist": [
+      1326.300048828125,
+      1214.0999755859375
+    ],
+    "floor": [
+      1215.0,
+      2014.4000244140625
+    ],
+    "paper": [
+      [
+        266.1000061035156,
+        714.9000244140625
+      ],
+      [
+        473.3999938964844,
+        714.5
+      ],
+      [
+        472.20001220703125,
+        1009.2000122070312
+      ],
+      [
+        264.5,
+        1009.2999877929688
+      ]
+    ]
+  },
+  "note": "Composite of a public-domain Library of Congress portrait (LCCN 2015649998) and the measurement sheet. Points are the true measuring points in image pixels, located by eye on the source (+-5 px)."
+}

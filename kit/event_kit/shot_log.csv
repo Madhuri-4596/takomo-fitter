@@ -1,0 +1,3 @@
+shot_id,group,hitter,club_head,shaft,club_length_in,club_lie_deg,intent,video_faceon_file,video_dtl_file,club_speed_mph,ball_speed_mph,launch_angle_deg,spin_rate_rpm,carry_yd,total_yd,side_yd,attack_angle_deg,club_path_deg,face_angle_deg,dynamic_loft_deg,impact_offset_mm,impact_height_mm,trackman_screenshot_file,notes
+S01,A,Takomo fitter 1,201-mkii,kbs-tour-regular,0,0,normal,,,,,,,,,,,,,,,,,
+S02,A,Takomo fitter 1,201-mkii,kbs-tour-regular,0,0,toe strike,,,,,,,,,,,,,,,,,

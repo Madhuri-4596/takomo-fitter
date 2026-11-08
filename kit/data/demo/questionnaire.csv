@@ -1,0 +1,17 @@
+golfer_id,age,sex,handedness,rounds_per_year,score_bucket,score_label,speed_or_carry,reported_7i_speed_mph,reported_7i_carry_yd,characteristics,flight,tempo,height_unit,height_cm,wrist_to_floor_unit,wrist_to_floor_cm,glove,glove_was_guessed,swing_bucket
+DEMO-01,46,male,right,31-50,3,78-84,carry,,160.0,distance control|more offset,mid,moderate,ft_in,177.8,in,92.7,M/L,False,4
+DEMO-02,29,female,right,Under 10,5,Over 92,carry,,100.0,forgiveness|distance,high,quick,cm,166.0,cm,84.0,XS,False,1
+DEMO-03,74,male,right,31-50,5,Over 92,speed,64.0,,distance|more offset|distance control,high,moderate,cm,183.0,cm,93.5,XL,False,2
+DEMO-04,38,male,right,Over 50,2,71-77,speed,84.0,,forged feel|workability|distance control,mid,moderate,cm,187.0,cm,98.5,M/L,False,4
+DEMO-05,41,female,left,31-50,4,85-92,carry,,110.0,distance control|forgiveness,high,smooth,ft_in,160.0,in,82.6,M,False,1
+DEMO-06,52,male,right,31-50,4,85-92,carry,,135.0,forgiveness|more offset,mid,moderate,cm,184.0,cm,91.5,XL,False,2
+DEMO-07,33,female,right,31-50,5,Over 92,speed,82.0,,forgiveness|distance|distance control,low,smooth,cm,166.0,cm,82.5,S,False,4
+DEMO-08,27,male,right,31-50,3,78-84,carry,,135.0,more offset|forgiveness,low,moderate,cm,197.0,cm,102.5,XL,False,2
+DEMO-09,60,male,right,10-30,3,78-84,carry,,125.0,distance|forgiveness,mid,quick,cm,177.0,cm,86.5,S,False,2
+DEMO-10,48,female,right,Under 10,4,85-92,carry,,110.0,distance|more offset,low,moderate,ft_in,170.2,in,81.3,S,True,1
+DEMO-11,35,male,right,31-50,3,78-84,speed,83.0,,distance|workability,mid,quick,cm,179.0,cm,90.0,M/L,False,4
+DEMO-12,66,female,right,Under 10,5,Over 92,carry,,95.0,forgiveness|distance control|distance,mid,quick,ft_in,160.0,in,82.6,S,False,1
+DEMO-13,44,male,right,31-50,4,85-92,speed,78.0,,workability|forgiveness|distance control,mid,smooth,ft_in,177.8,in,88.9,M,False,3
+DEMO-14,57,male,right,Under 10,5,Over 92,carry,,105.0,distance|more offset,mid,quick,ft_in,188.0,in,96.5,L,False,1
+DEMO-15,24,female,right,Over 50,1,Under 71,speed,79.0,,workability|distance control|forged feel,low,moderate,cm,159.0,cm,74.0,S,False,3
+DEMO-16,31,male,right,Over 50,3,78-84,carry,,185.0,distance|forgiveness|workability,low,moderate,cm,188.0,cm,94.5,L,False,5

@@ -1,0 +1,17 @@
+golfer_id,body_photo,body_photo_quality,height_photo_cm,wrist_to_floor_photo_cm,hand_photo,hand_length_photo_cm,finger_length_photo_cm,swing_video,swing_video_fps,backswing_video_s,downswing_video_s,clubhead_speed_video_mph
+DEMO-01,False,,,,True,19.16,7.64,True,240.0,0.9583,0.3375,74.2
+DEMO-02,True,poor,164.2,87.9,True,16.77,7.61,True,30.0,1.0333,0.3,
+DEMO-03,True,poor,180.8,95.0,True,20.72,8.8,True,30.0,0.8667,0.2333,
+DEMO-04,True,good,188.1,,True,19.71,8.45,True,240.0,0.8833,0.3083,87.7
+DEMO-05,True,good,161.3,,False,,,False,,,,
+DEMO-06,True,good,183.4,87.1,False,,,True,30.0,1.1,0.2667,
+DEMO-07,True,good,166.0,82.8,False,,,True,240.0,0.8417,0.225,78.6
+DEMO-08,True,poor,192.9,103.8,True,21.51,9.32,True,30.0,1.0333,0.2667,
+DEMO-09,True,good,173.6,90.7,True,18.37,7.94,True,30.0,0.7,0.2,
+DEMO-10,False,,,,True,19.98,8.74,True,240.0,0.9417,0.3042,65.3
+DEMO-11,False,,,,False,,,True,240.0,0.9083,0.3083,86.3
+DEMO-12,True,good,156.7,79.0,True,16.77,7.9,True,240.0,1.1125,0.325,50.1
+DEMO-13,True,good,177.2,84.9,True,18.73,8.67,True,240.0,1.0417,0.3083,80.5
+DEMO-14,True,good,185.5,90.1,False,,,True,30.0,1.0,0.3,
+DEMO-15,True,poor,161.5,,True,17.94,7.56,True,240.0,0.9208,0.2625,73.1
+DEMO-16,True,good,187.6,94.2,True,20.33,9.07,True,240.0,0.7583,0.2375,97.8

@@ -1,0 +1,2 @@
+MediaPipe Tasks Vision 1.1.1 (@mediapipe/tasks-vision), Apache License 2.0, (c) Google LLC.
+Files: vision_bundle.mjs, wasm/vision_wasm_internal.{js,wasm}. Model: ../../models/pose_landmarker_lite.task (Apache 2.0).

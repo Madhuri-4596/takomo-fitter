@@ -1,0 +1,14 @@
+# not needed by the website: local data, tests, tools, prototypes, the venv
+.venv/
+data/sessions/
+data/tts/
+tests/
+tools/
+screenshots/
+voice_samples/
+prototypes/
+docs/*.pdf
+__pycache__/
+*.pyc
+.pytest_cache/
+.env

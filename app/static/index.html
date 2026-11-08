@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0a">
+  <title>The Fitter in Your Pocket</title>
+  <meta name="description" content="Find your Takomo irons: talk about your game, check your measurements, record your swing, and see the evidence behind every part of your fit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- fonts load in the background: a slow or missing connection never blocks the page (fallback fonts until then) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- icon sprites: simple line icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8 21h8"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><path d="M4 16 16 4l4 4L8 20z"/><path d="M8 12l2 2M11 9l2 2M14 6l2 2"/></symbol>
+  <symbol id="i-swing" viewBox="0 0 24 24"><circle cx="9" cy="4" r="2"/><path d="M9 6v7l-3 7M9 13l4 7M9 9l6-4 5 1"/><circle cx="20" cy="20" r="1.3"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 21V3l11 4-11 4"/><path d="M3 21h8"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 16v4h16v-4"/></symbol>
+</svg>
+<div class="app">
+
+  <!-- ============================== HOME -->
+  <section id="home" class="screen" aria-labelledby="h-home">
+    <header class="topbar">
+      <span class="brand">TAKOMO</span>
+      <div class="units" role="radiogroup" aria-label="Units">
+        <label><input type="radio" name="dist-units" value="imperial" checked><span>yd · mph</span></label>
+        <label><input type="radio" name="dist-units" value="metric"><span>m · km/h</span></label>
+      </div>
+    </header>
+    <p class="kicker">Iron fitting</p>
+    <h1 id="h-home" class="display" tabindex="-1">We will find your fit.</h1>
+    <p class="sub">Talk about your game, check your measurements, record your swing. Every part of your fit shows the evidence behind it.</p>
+    <ol class="journey-list" aria-label="How it works">
+      <li><svg class="ic"><use href="#i-mic"/></svg><span>Conversation</span></li>
+      <li><svg class="ic"><use href="#i-ruler"/></svg><span>Body measurement</span></li>
+      <li><svg class="ic"><use href="#i-swing"/></svg><span>Swing analysis</span></li>
+      <li><svg class="ic"><use href="#i-flag"/></svg><span>Your fit</span></li>
+    </ol>
+    <button type="button" class="path primary" id="go-fitter">
+      <span class="path-top"><b>Talk to the fitter</b><span class="time">~10 min</span></span>
+      <span class="path-text">Voice or typing. All four steps, hands-free where it can be.</span>
+    </button>
+    <button type="button" class="path" id="go-quiz">
+      <span class="path-top"><b>Quick quiz</b><span class="time">~3 min</span></span>
+      <span class="path-text">Eight questions, each one says why it's asked. Measure and film later if you like.</span>
+    </button>
+    <details class="demo">
+      <summary>Try a demo golfer (sample data)</summary>
+      <div class="row">
+        <select id="demo-select" aria-label="Demo golfer"><option value="">Loading…</option></select>
+        <button type="button" class="btn quiet" id="demo-load">Use</button>
+      </div>
+      <p id="demo-story" class="note" hidden></p>
+    </details>
+    <p class="fine">No account needed. Your answers are kept on our server for 3 hours after your last change, then deleted.</p>
+  </section>
+
+  <!-- ============================== 1 · CONVERSATION -->
+  <section id="chat" class="screen chat" aria-labelledby="voice-title" hidden>
+    <header class="head">
+      <button type="button" class="icon back" id="voice-hide" aria-label="Back">←</button>
+      <ol class="journey" aria-label="Your progress"></ol>
+    </header>
+
+    <!-- before we start -->
+    <div class="consent" id="consent">
+      <p class="kicker">Before we start</p>
+      <h1 class="display" tabindex="-1">Let's find your fit.</h1>
+      <div class="info-card"><svg class="ic"><use href="#i-mic"/></svg>
+        <div><b>Microphone</b><p>Tell us about your game. Review what we hear and correct it anytime. Typing works too.</p></div></div>
+      <div class="info-card"><svg class="ic"><use href="#i-cam"/></svg>
+        <div><b>Camera</b><p>Check your body measurements, then record a few swings. You can review each capture before using it.</p></div></div>
+      <button type="button" class="btn big" id="start-voice"><svg class="ic"><use href="#i-mic"/></svg>Start conversation</button>
+      <button type="button" class="btn quiet big" id="start-text">Type instead</button>
+      <details class="privacy">
+        <summary><svg class="ic sm"><use href="#i-lock"/></svg>How your voice and camera are handled</summary>
+        <ul id="consent-list"></ul>
+        <ul>
+          <li>The browser asks for the microphone when the conversation starts, and for the camera only when you begin measuring.</li>
+          <li><b>Height method:</b> your photo stays on this phone. Only three marker positions are sent.</li>
+          <li><b>Paper or printed-sheet method:</b> the photo is sent to our server, measured in memory and not stored.</li>
+          <li><b>Swing videos</b> stay on this phone. Only the hand-height track is sent.</li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- the conversation -->
+    <div id="talk">
+      <p class="kicker" id="voice-title">Step 1 / Your game</p>
+      <h1 class="display sm" tabindex="-1">Tell us about your game.</h1>
+      <p class="pill" id="voice-status" aria-live="polite">Not connected</p>
+      <div class="voice-alert" id="voice-alert" role="alert" hidden>
+        <p id="voice-alert-text"></p>
+        <div class="row" id="voice-alert-actions"></div>
+      </div>
+      <ol class="transcript" id="transcript" aria-live="polite" aria-label="Conversation"></ol>
+      <form class="composer" id="composer" hidden>
+        <label class="sr-only" for="composer-input">Type a message</label>
+        <input id="composer-input" autocomplete="off" placeholder="Type a message…">
+        <button type="submit" class="btn">Send</button>
+      </form>
+      <footer class="chat-bar">
+        <button type="button" class="link" id="switch-mode">Type instead</button>
+        <button type="button" class="mic" id="mic" aria-label="Start talking"><svg class="ic"><use href="#i-mic"/></svg></button>
+        <button type="button" class="link" id="chat-next">Measure →</button>
+      </footer>
+      <div class="mic-row">
+        <label class="sr-only" for="mic-select">Microphone</label>
+        <select id="mic-select" aria-label="Microphone"><option value="">Default microphone</option></select>
+        <span class="level" aria-hidden="true"><i id="mic-level"></i></span>
+      </div>
+      <p class="note mic-info" id="mic-info" aria-live="polite"></p>
+      <div class="voice-controls" id="voice-controls" hidden>
+        <button type="button" class="link" id="mute" aria-pressed="false">Mute</button>
+        <button type="button" class="link danger" id="end">End conversation</button>
+      </div>
+
+      <section class="game-cards" id="game-cards" aria-label="What we've heard"></section>
+      <div class="confirm-box" id="game-check" hidden>
+        <h2 class="display xs">Have we got this right?</h2>
+        <p class="note">These are the answers your fit will use. Tap a card to change it.</p>
+        <button type="button" class="btn big" id="confirm-game">Confirm &amp; measure</button>
+        <button type="button" class="btn quiet" id="edit-answers">Edit my answers</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== QUICK QUIZ (also the editable profile) -->
+  <section id="step-1" class="screen" aria-labelledby="h-step1" hidden>
+    <header class="topbar">
+      <button type="button" class="icon back" data-screen="home" aria-label="Back">←</button>
+      <span class="brand">TAKOMO</span>
+      <span class="stepno" id="quiz-count">Quick quiz · 1 of 8</span>
+    </header>
+    <div class="progress" id="quiz-progress" aria-hidden="true"></div>
+    <h1 id="h-step1" tabindex="-1" class="sr-only">Quick quiz</h1>
+
+    <form id="game-form" novalidate>
+      <!-- 1 score -->
+      <div class="q-step" data-q="1">
+        <h2 class="qh">What do you usually shoot on 18?</h2>
+        <p class="qsub">A normal day, not your best.</p>
+        <div class="big-input"><input type="number" name="score_value" inputmode="numeric" min="55" max="150" placeholder="88"><span>strokes</span></div>
+        <div class="seg five" role="radiogroup" aria-label="Score group">
+          <label><input type="radio" name="score_bucket" value="1"><span>&lt;71</span></label>
+          <label><input type="radio" name="score_bucket" value="2"><span>71–77</span></label>
+          <label><input type="radio" name="score_bucket" value="3"><span>78–84</span></label>
+          <label><input type="radio" name="score_bucket" value="4"><span>85–92</span></label>
+          <label><input type="radio" name="score_bucket" value="5"><span>92+</span></label>
+        </div>
+        <label>That score is
+          <select name="score_representative"><option value="">Choose…</option><option value="several">my usual over several recent rounds</option>
+            <option value="one">from one round</option><option value="guess">a rough guess</option></select>
+        </label>
+        <div class="why"><b>Why we ask</b>Your usual score is the main thing that picks the head: more forgiveness for higher scores, more control for lower ones.</div>
+      </div>
+
+      <!-- 2 seven iron -->
+      <div class="q-step" data-q="2" hidden>
+        <h2 class="qh">How far does your 7-iron carry on a <u>normal</u> shot?</h2>
+        <p class="qsub">Not your best one. The one you'd bet on.</p>
+        <div class="seg small" role="radiogroup" aria-label="Carry or club speed">
+          <label><input type="radio" name="speed_or_carry" value="carry" checked><span>Carry</span></label>
+          <label><input type="radio" name="speed_or_carry" value="speed"><span>I know my swing speed</span></label>
+        </div>
+        <div data-for="carry">
+          <div class="slider-card"><output id="carry-out">150 <small>yd</small></output>
+            <input type="range" id="carry-range" min="80" max="230" step="1" value="150" aria-label="7-iron carry">
+            <p class="note">drag, or type a number</p>
+            <input type="number" name="carry_yd" inputmode="decimal" min="40" max="250" placeholder="150" aria-label="Carry in yards">
+          </div>
+        </div>
+        <div data-for="speed" hidden>
+          <div class="slider-card"><output id="speed-out">75 <small>mph</small></output>
+            <input type="range" id="speed-range" min="45" max="110" step="0.5" value="75" aria-label="7-iron club speed">
+            <input type="number" name="speed_mph" inputmode="decimal" min="30" max="130" step="0.1" placeholder="75" aria-label="Club speed in mph">
+          </div>
+        </div>
+        <div class="why"><b>Why we ask</b>This is our best proxy for swing speed, which decides shaft flex. Overstating it by 15 yards moves you one flex too stiff. If you know your speed from a simulator, give us that instead.</div>
+      </div>
+
+      <!-- 3 ball flight -->
+      <div class="q-step" data-q="3" hidden>
+        <h2 class="qh">How do your irons fly, and how would you like them to?</h2>
+        <div class="flight-now">
+          <svg id="flight-svg" viewBox="0 0 120 150" aria-hidden="true">
+            <line x1="60" y1="140" x2="60" y2="10" class="target"/>
+            <path id="flight-path" d="M60 140 L60 20"/>
+            <circle cx="60" cy="140" r="5"/>
+          </svg>
+          <div>
+            <div class="seg small" role="radiogroup" aria-label="Start direction">
+              <label><input type="radio" name="ball_start" value="left"><span>Starts left</span></label>
+              <label><input type="radio" name="ball_start" value="straight"><span>Straight</span></label>
+              <label><input type="radio" name="ball_start" value="right"><span>Starts right</span></label>
+            </div>
+            <div class="seg small" role="radiogroup" aria-label="Curve">
+              <label><input type="radio" name="ball_curve" value="left"><span>Curves left</span></label>
+              <label><input type="radio" name="ball_curve" value="none"><span>No curve</span></label>
+              <label><input type="radio" name="ball_curve" value="right"><span>Curves right</span></label>
+            </div>
+            <div class="seg small" role="radiogroup" aria-label="Height now">
+              <label><input type="radio" name="ball_height" value="lower"><span>Lower than I want</span></label>
+              <label><input type="radio" name="ball_height" value="as_wanted"><span>About right</span></label>
+              <label><input type="radio" name="ball_height" value="higher"><span>Higher</span></label>
+            </div>
+          </div>
+        </div>
+        <p class="note" id="flight-words">Seen from behind you, looking at the target.</p>
+        <p class="ql">The flight you want</p>
+        <div class="seg" role="radiogroup" aria-label="Ball flight you want">
+          <label><input type="radio" name="flight" value="low"><span>Lower</span></label>
+          <label><input type="radio" name="flight" value="mid"><span>Medium</span></label>
+          <label><input type="radio" name="flight" value="high"><span>Higher</span></label>
+        </div>
+        <div class="why"><b>Why we ask</b>The flight you want picks the shaft model. Your flight now just describes your game: more height won't fix a slice on its own.</div>
+      </div>
+
+      <!-- 4 tempo -->
+      <div class="q-step" data-q="4" hidden>
+        <h2 class="qh">Smooth and rhythmic, or quick and aggressive?</h2>
+        <p class="qsub">If a friend watched you, would they say you rush it?</p>
+        <div class="seg" role="radiogroup" aria-label="Tempo">
+          <label><input type="radio" name="tempo" value="smooth"><span>Smooth</span></label>
+          <label><input type="radio" name="tempo" value="moderate"><span>Moderate</span></label>
+          <label><input type="radio" name="tempo" value="quick"><span>Quick</span></label>
+        </div>
+        <div class="why"><b>Why we ask</b>Tempo helps pick the shaft model and its weight. Recording your swing measures it instead of guessing.</div>
+        <button type="button" class="link" data-screen="swing-screen">Measure it from your swing</button>
+      </div>
+
+      <!-- 5 priorities -->
+      <div class="q-step" data-q="5" hidden>
+        <h2 class="qh">What should these irons do for you?</h2>
+        <p class="qsub">Pick up to three.</p>
+        <div class="chips">
+          <label><input type="checkbox" name="characteristics" value="forgiveness"><span>Forgiveness</span></label>
+          <label><input type="checkbox" name="characteristics" value="distance"><span>Distance</span></label>
+          <label><input type="checkbox" name="characteristics" value="forged feel"><span>Forged feel</span></label>
+          <label><input type="checkbox" name="characteristics" value="distance control"><span>Distance control</span></label>
+          <label><input type="checkbox" name="characteristics" value="workability"><span>Shaping shots</span></label>
+          <label><input type="checkbox" name="characteristics" value="less offset"><span>Less offset</span></label>
+          <label><input type="checkbox" name="characteristics" value="more offset"><span>More offset</span></label>
+        </div>
+        <p class="ql">Where do you lose most shots?</p>
+        <div class="seg small" role="radiogroup" aria-label="Where you lose shots">
+          <label><input type="radio" name="lose_shots" value="irons"><span>Irons</span></label>
+          <label><input type="radio" name="lose_shots" value="driving"><span>Driving</span></label>
+          <label><input type="radio" name="lose_shots" value="short_game"><span>Short game</span></label>
+          <label><input type="radio" name="lose_shots" value="putting"><span>Putting</span></label>
+          <label><input type="radio" name="lose_shots" value="not_sure"><span>Not sure</span></label>
+        </div>
+        <label>Your current irons <span class="unit-free">(optional)</span>
+          <input name="current_clubs" maxlength="120" placeholder="e.g. 10-year-old cavity backs"></label>
+        <div class="why"><b>Why we ask</b>Your priorities tip the head choice between forgiveness, distance and control. Your current irons are context for a human fitter; the engine doesn't use them.</div>
+      </div>
+
+      <!-- 6 body -->
+      <div class="q-step" data-q="6" hidden>
+        <h2 class="qh">How tall are you, and how far is your wrist from the floor?</h2>
+        <p class="qsub">In golf shoes, standing straight, arms relaxed.</p>
+        <div class="seg small" role="radiogroup" aria-label="Units">
+          <label><input type="radio" name="units" value="cm" checked><span>cm</span></label>
+          <label><input type="radio" name="units" value="in"><span>inches</span></label>
+        </div>
+        <div class="grid2">
+          <label>Height <span class="unit">(cm)</span><input type="number" name="height" inputmode="decimal" step="0.1"></label>
+          <label>Wrist-to-floor <span class="unit">(cm)</span><input type="number" name="wtf" inputmode="decimal" step="0.1"></label>
+        </div>
+        <div class="why"><b>Why we ask</b>Height sets the length; height and wrist-to-floor together set the lie. Measured at home, wrist-to-floor is often 3 cm off.</div>
+        <button type="button" class="link" data-go="3">Measure it with your phone instead</button>
+      </div>
+
+      <!-- 7 glove -->
+      <div class="q-step" data-q="7" hidden>
+        <h2 class="qh">What glove size do you buy?</h2>
+        <div class="seg" role="radiogroup" aria-label="Glove size">
+          <select name="glove" aria-label="Glove size"><option value="">Choose…</option><option>XS</option><option>S</option><option>M</option><option>M/L</option><option>L</option><option>XL</option></select>
+        </div>
+        <div class="why"><b>Why we ask</b>Glove size picks the grip: XS to M standard, M/L and L midsize, XL oversize. Midsize still comes on a stock set.</div>
+      </div>
+
+      <!-- 8 about you -->
+      <div class="q-step" data-q="8" hidden>
+        <h2 class="qh">Last few: about you</h2>
+        <div class="seg" role="radiogroup" aria-label="Handedness">
+          <label><input type="radio" name="handedness" value="right"><span>Right-handed</span></label>
+          <label><input type="radio" name="handedness" value="left"><span>Left-handed</span></label>
+        </div>
+        <div class="grid2">
+          <label>Age<input type="number" name="age" inputmode="numeric" min="8" max="100"></label>
+          <label>Rounds a year
+            <select name="rounds_per_year"><option>Under 10</option><option>10-30</option><option selected>31-50</option><option>Over 50</option></select>
+          </label>
+        </div>
+        <p class="ql">Fitting rules</p>
+        <div class="seg" role="radiogroup" aria-label="Fitting rules">
+          <label><input type="radio" name="sex" value="male"><span>Men's</span></label>
+          <label><input type="radio" name="sex" value="female"><span>Women's</span></label>
+        </div>
+        <div class="why"><b>Why we ask</b>Steel or graphite: the rules give graphite to ladies and senior flexes, all women and golfers 70 and over.</div>
+      </div>
+
+      <p id="form-error" class="error" role="alert" hidden></p>
+      <div class="rail" id="rail" aria-label="Where your fit stands"></div>
+      <button type="button" class="btn quiet" id="quiz-return" hidden>Done: back to the conversation</button>
+      <div class="quiz-nav">
+        <button type="button" class="btn quiet" id="quiz-back">Back</button>
+        <button type="button" class="btn" id="quiz-next">Next</button>
+        <button type="submit" class="btn" id="quiz-submit" hidden>See my fit</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ============================== 2 · BODY MEASUREMENT -->
+  <section id="step-3" class="screen" aria-labelledby="h-step3" hidden>
+    <header class="head">
+      <button type="button" class="icon back" data-back aria-label="Back">←</button>
+      <ol class="journey" aria-label="Your progress"></ol>
+    </header>
+
+    <div id="ms-intro">
+      <p class="kicker">Step 2 / Body measurement</p>
+      <h1 class="display sm" id="h-step3" tabindex="-1">Let's check your measurements.</h1>
+      <p class="sub">These measurements help choose club length and lie.</p>
+      <p class="ql">How does the camera get the scale?</p>
+      <div class="methods" role="radiogroup" aria-label="How the camera gets the scale">
+        <label class="method"><input type="radio" name="ms-method" value="height" checked>
+          <span><b>I know my height</b> The camera measures your wrist-to-floor. The photo stays on this phone.</span></label>
+        <label class="method"><input type="radio" name="ms-method" value="paper">
+          <span><b>Measure my height too</b> Tape any blank A4 sheet to the wall: the camera measures your height and wrist-to-floor.</span></label>
+        <label class="method"><input type="radio" name="ms-method" value="sheet">
+          <span><b>Printed calibration sheet</b> The kit's marker sheet: the most reliable scale. Needs a printer.</span></label>
+      </div>
+      <div data-method="height">
+        <div class="grid2">
+          <label>Your height (cm)<input type="number" id="ms-height" inputmode="decimal" step="0.1" min="120" max="220"></label>
+          <label>That height is
+            <select id="ms-footwear"><option value="golf_shoes">in golf shoes</option><option value="barefoot">barefoot</option></select>
+          </label>
+        </div>
+        <p class="note">We'll use your entered height to estimate wrist-to-floor.</p>
+        <p class="note">Stand straight, arms hanging relaxed. Prop the phone at waist height, 3–4 m away, with your head, a wrist and your feet in view.</p>
+      </div>
+      <div data-method="paper" hidden>
+        <p class="note">Tape a blank A4 sheet upright on the wall beside you and stand with your back flat against the same wall. Phone at waist height, 3–4 m away, sheet and floor in view. After the capture you tap the paper's four corners; that gives the scale.</p>
+        <p class="note">Your photo is sent to our server, measured in memory and not stored.</p>
+      </div>
+      <div data-method="sheet" hidden>
+        <p class="note">Print the <a href="/measurement-sheet.pdf" target="_blank" rel="noopener">measurement sheet</a> at 100 % (the bar must measure 100 mm), tape it on the wall beside you and stand flat against the wall. Phone at waist height, 3–4 m away.</p>
+        <p class="note">Camera frames and your photo are sent to our server, measured in memory and not stored.</p>
+      </div>
+      <div class="options">
+        <button type="button" class="btn big" id="cam-open"><svg class="ic"><use href="#i-cam"/></svg>Open camera</button>
+        <label class="btn quiet file"><svg class="ic"><use href="#i-upload"/></svg>Upload photo<input type="file" id="photo-input" accept="image/*"></label>
+        <button type="button" class="btn quiet" id="open-tape-intro"><svg class="ic"><use href="#i-ruler"/></svg>Use a tape measure</button>
+      </div>
+      <p id="ms-intro-error" class="error" role="alert" hidden></p>
+      <div class="sample-row">
+        <button type="button" class="link" id="use-sample">Try the sample photo (sample data)</button>
+        <button type="button" class="link" id="use-simulated" hidden></button>
+      </div>
+    </div>
+
+    <!-- live camera -->
+    <div class="cam" id="cam" hidden>
+      <p class="kicker">Step 2 / Body measurement</p>
+      <p class="note" id="pose-status" aria-live="polite"></p>
+      <div class="cam-view" id="cam-view">
+        <video id="cam-video" playsinline muted></video>
+        <canvas id="cam-overlay" aria-hidden="true"></canvas>
+        <p class="cam-instruction" id="cam-instruction" aria-live="polite"></p>
+        <div class="countdown" id="countdown" aria-live="assertive" hidden></div>
+      </div>
+      <ul class="checks" id="cam-checks" aria-label="Capture checks">
+        <li data-check="sheet">Sheet</li><li data-check="head">Head</li><li data-check="wrist">Wrist</li>
+        <li data-check="feet">Feet</li><li data-check="still">Still</li>
+      </ul>
+      <div class="row">
+        <button type="button" class="btn quiet" id="wrist-switch" hidden></button>
+        <button type="button" class="btn quiet" id="cam-switch" hidden>Switch camera</button>
+      </div>
+      <div class="row">
+        <button type="button" class="btn big" id="cam-shoot" hidden>Capture</button>
+        <button type="button" class="btn quiet" id="cam-close">Cancel</button>
+      </div>
+    </div>
+    <p id="cam-error" class="error" role="alert" hidden></p>
+
+    <!-- frozen photo: markers -->
+    <div id="tap-card" hidden>
+      <p class="kicker">Step 2 / Body measurement</p>
+      <h2 class="display xs">Check what we measured.</h2>
+      <p id="sheet-status" class="status" role="status" aria-live="polite"></p>
+      <p id="tap-prompt" class="tap-prompt" aria-live="polite"></p>
+      <div class="photo-wrap">
+        <canvas id="photo-canvas" aria-label="Your photo. Tap to place the markers; drag a marker to move it."></canvas>
+        <canvas id="loupe" width="150" height="150" aria-hidden="true" hidden></canvas>
+      </div>
+      <div class="row tap-tools">
+        <button type="button" class="btn quiet" id="zoom-out" aria-label="Zoom out">−</button>
+        <button type="button" class="btn quiet" id="zoom-in" aria-label="Zoom in">+</button>
+        <button type="button" class="btn quiet" id="tap-undo">Undo</button>
+        <button type="button" class="btn quiet" id="tap-reset">Reset</button>
+        <button type="button" class="btn quiet" id="retake">Retake</button>
+      </div>
+      <p id="measure-error" class="error" role="alert" hidden></p>
+    </div>
+
+    <div id="measure-result" hidden></div>
+
+    <details class="tape" id="tape">
+      <summary>Use a tape measure instead</summary>
+      <p class="note">In golf shoes. Wrist-to-floor: stand straight, arms hanging, from the crease of your wrist to the floor.</p>
+      <div class="grid2">
+        <label>Height (cm)<input type="number" id="manual-height" inputmode="decimal" step="0.1"></label>
+        <label>Wrist-to-floor (cm)<input type="number" id="manual-wtf" inputmode="decimal" step="0.1"></label>
+      </div>
+      <button type="button" class="btn quiet" id="manual-use">Use these numbers</button>
+    </details>
+    <footer class="screen-foot">
+      <button type="button" class="link" data-screen="swing-screen">Skip for now →</button>
+    </footer>
+  </section>
+
+  <!-- ============================== 3 · SWING -->
+  <section id="swing-screen" class="screen" aria-labelledby="h-swing" hidden>
+    <header class="head">
+      <button type="button" class="icon back" data-back aria-label="Back">←</button>
+      <ol class="journey" aria-label="Your progress"></ol>
+    </header>
+    <p class="kicker">Step 3 / Swing check</p>
+    <h1 class="display sm" id="h-swing" tabindex="-1">Let's see your rhythm.</h1>
+    <p class="sub">Record three normal swings to help us compare shaft options.</p>
+
+    <section class="swing" id="swing" aria-label="Swing tempo">
+      <div class="guide">
+        <svg viewBox="0 0 120 70" aria-hidden="true" class="guide-art">
+          <rect x="2" y="2" width="116" height="66" rx="4" class="frame"/>
+          <circle cx="60" cy="18" r="5"/><path d="M60 23v20l-7 18M60 43l7 18M60 30l-14 8M60 30l14 8"/>
+          <path d="M14 64h92" class="floor"/>
+        </svg>
+        <ul>
+          <li>Phone face-on, at chest height, about 3 m away.</li>
+          <li>Your whole body and the club in view, top to finish.</li>
+          <li>Plenty of room to swing safely; nobody nearby.</li>
+        </ul>
+      </div>
+      <div class="swing-progress" id="swing-progress" aria-live="polite"></div>
+      <label>Video speed
+        <select id="swing-speed"><option value="1">Normal speed</option>
+          <option value="0.25">Slow motion, 120 fps</option>
+          <option value="0.125">Slow motion, 240 fps</option></select>
+      </label>
+      <div class="cam-view swing-view" id="swing-view" hidden>
+        <video id="swing-video" playsinline muted></video>
+        <div class="countdown" id="swing-countdown" aria-live="assertive" hidden></div>
+      </div>
+      <p class="note" id="swing-status" aria-live="polite"></p>
+      <div id="swing-result" hidden></div>
+      <div class="row" id="swing-actions">
+        <button type="button" class="btn big" id="swing-record"><svg class="ic"><use href="#i-cam"/></svg>Record swing</button>
+        <label class="btn quiet file"><svg class="ic"><use href="#i-upload"/></svg>Upload<input type="file" id="swing-input" accept="video/*"></label>
+      </div>
+      <div id="swing-summary" hidden></div>
+      <button type="button" class="link" id="swing-open" hidden>Swing</button>
+    </section>
+
+    <section class="speed-card" id="speed-card" aria-labelledby="h-speed">
+      <p class="kicker">Separate from tempo</p>
+      <h2 class="display xs" id="h-speed">7-iron clubhead speed</h2>
+      <div id="speed-now"></div>
+      <p class="note">Tempo is how long your swing takes; it doesn't tell us how fast the club moves. Speed decides the shaft flex, so it comes from a simulator or launch monitor, or from your carry as the kit's fallback.</p>
+      <div class="grid2">
+        <label>Club speed (mph)<input type="number" id="sim-speed" inputmode="decimal" min="40" max="130" step="0.1"></label>
+        <label>Measured on
+          <select id="sim-source"><option value="simulator">a simulator</option><option value="launch_monitor">a launch monitor</option></select></label>
+      </div>
+      <label class="btn quiet file"><svg class="ic"><use href="#i-upload"/></svg>Add a screenshot to read it from<input type="file" id="sim-shot" accept="image/*"></label>
+      <img id="sim-shot-img" alt="Your simulator screenshot" hidden>
+      <p class="note" id="sim-shot-note" hidden>The screenshot stays on this phone. Read the 7-iron club speed (not ball speed) and type it above.</p>
+      <button type="button" class="btn quiet" id="sim-save">Use this speed</button>
+      <p class="note" id="sim-status" aria-live="polite"></p>
+    </section>
+
+    <footer class="screen-foot column">
+      <button type="button" class="btn big" id="swing-done">See my fit</button>
+      <button type="button" class="link" id="swing-skip">You can continue with questions. I'll show which parts of your fit still need checking.</button>
+    </footer>
+  </section>
+
+  <!-- ============================== 4 · YOUR FIT -->
+  <section id="verdict" class="screen" aria-labelledby="h-verdict" hidden>
+    <header class="head">
+      <button type="button" class="icon back" data-back aria-label="Back">←</button>
+      <ol class="journey" aria-label="Your progress"></ol>
+    </header>
+    <p class="kicker">Your recommended fit</p>
+    <h1 class="display sm" id="h-verdict" tabindex="-1">Your fit. Explained.</h1>
+    <div class="fit-slot"></div>
+    <div id="changes"></div>
+    <div id="close-call"></div>
+    <div id="decision" class="decision"></div>
+    <div class="evidence-slot"></div>
+    <div class="callout" id="callout"></div>
+    <section class="strike" id="strike" hidden aria-labelledby="h-strike">
+      <h2 id="h-strike" class="display xs">Strike test</h2>
+      <p class="note">Impact tape or foot powder on your 7-iron face, five normal shots, then one photo of the face, grooves level.</p>
+      <label class="btn quiet file">Choose or take the photo<input type="file" id="strike-input" accept="image/*" capture="environment"></label>
+      <div id="strike-edit" hidden>
+        <p class="tap-prompt" id="strike-prompt" aria-live="polite"></p>
+        <div class="photo-wrap"><canvas id="strike-canvas" aria-label="Clubface photo: tap the ends of the grooves, then confirm the marks."></canvas></div>
+        <div class="row">
+          <button type="button" class="btn quiet" id="strike-reset">Start over</button>
+          <button type="button" class="btn" id="strike-save" disabled>Save strike test</button>
+        </div>
+        <p class="note" id="strike-result"></p>
+        <p class="error" id="strike-error" role="alert" hidden></p>
+      </div>
+    </section>
+    <div class="returns" id="returns">
+      <b>Returns</b>
+      <p>Stock sets: 30 days from delivery to return unused products. You may try the 7-iron of a standard set; if any other club has been used, the set can't be returned. Custom builds are made for you and can't be returned.</p>
+      <a href="https://takomogolf.com/policies/refund-policy" target="_blank" rel="noopener">Takomo refund policy</a>
+    </div>
+    <div class="verdict-actions">
+      <button type="button" class="btn quiet big" id="ask-anything"><svg class="ic"><use href="#i-mic"/></svg>Ask why</button>
+      <button type="button" class="btn big" id="save-fit">Save my fit</button>
+    </div>
+    <button type="button" class="link" id="review-order">Order, demo or talk to a human fitter →</button>
+  </section>
+
+  <!-- ============================== REVIEW & HANDOFF -->
+  <section id="review-screen" class="screen" aria-labelledby="h-review" hidden>
+    <header class="head">
+      <button type="button" class="icon back" data-screen="verdict" aria-label="Back">←</button>
+      <span class="brand">TAKOMO</span>
+    </header>
+    <p class="kicker">Next steps</p>
+    <h1 class="display sm" id="h-review" tabindex="-1">Your fit summary.</h1>
+    <div class="summary-card" id="summary"></div>
+    <a class="exit" href="https://takomogolf.com" target="_blank" rel="noopener"><b>Order with these specs</b><span>on takomogolf.com</span></a>
+    <a class="exit" href="https://takomogolf.com" target="_blank" rel="noopener"><b>Hit both heads at a demo bay</b><span>find a demo location on takomogolf.com</span></a>
+    <a class="exit" href="https://takomogolf.com" target="_blank" rel="noopener"><b>Talk to a human fitter</b><span>share this summary so you don't repeat yourself</span></a>
+    <button type="button" class="btn quiet" id="restart">Start a new fitting</button>
+  </section>
+
+  <!-- the assistant, reachable from every step -->
+  <button type="button" class="voice-dock" id="voice-dock" hidden aria-label="Open the conversation">
+    <span class="dot"></span><span id="dock-status">Listening</span>
+    <span class="dock-mute" id="dock-mute" role="button" tabindex="0" aria-label="Mute">Mute</span>
+  </button>
+
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@elevenlabs/client@1.30.0/dist/lib.iife.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="pose.js" defer></script>
+  <script src="measure.js" defer></script>
+  <script src="strike.js" defer></script>
+  <script src="swing.js" defer></script>
+  <script src="voice.js" defer></script>
+</body>
+</html>

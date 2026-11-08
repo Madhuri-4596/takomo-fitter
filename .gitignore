@@ -1,0 +1,19 @@
+# from feature/ai-fitter-prototype
+.DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# secrets: the ElevenLabs key lives only here
+.env
+
+# local runtime data (golfers' sessions, generated voice lines) and test output
+data/sessions/
+data/tts/
+screenshots/
+voice_samples/
+
+.vercel

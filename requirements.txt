@@ -1,0 +1,6 @@
+# what the website needs (also what Vercel installs)
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9
+numpy>=1.22
+opencv-contrib-python-headless>=4.8

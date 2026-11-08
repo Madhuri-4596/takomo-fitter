@@ -1,0 +1,2 @@
+golfer_id,consent_signed,age,sex,handedness,shoes,height_cm_tape,wrist_to_floor_cm_tape,hand_length_cm_tape,glove_tried,q_score_bucket,q_speed_or_carry,q_reported_7i_speed_mph,q_reported_7i_carry_yd,q_characteristics,q_flight,q_tempo,q_height_cm,q_wrist_to_floor_cm,q_glove,test_club_head,test_club_shaft,test_club_length_in,test_club_lie_deg,trackman_file,n_shots,body_photo,hand_photo,videos,ballline_photos,notes
+EVT-01,yes,,,,golf shoes,,,,,,,,,,,,,,,201-mkii,kbs-tour-regular,0,0,,,,,,,

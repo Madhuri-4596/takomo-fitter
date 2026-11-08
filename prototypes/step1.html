@@ -1,0 +1,341 @@
+<title>Takomo Fitter Prototype</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap">
+<style>
+/* Layout: a mobile-first website. One column, full-bleed on a phone; on wider screens the same column sits centred (max 480px) on the brand ground. Single dark look by choice — it is the brand. */
+:root{
+  --ground:#1C1C1C;
+  --bg:#0B0B0B;
+  --surface:#161616;
+  --line:#2A2A2A;
+  --line-strong:#3A3A3A;
+  --fg:#F8F8F8;
+  --fg-2:#C8C8C8;
+  --fg-3:#8E8E8E;
+  --fg-4:#5A5A5A;
+  --accent:#FF6E01;
+  --accent-ink:#0B0B0B;
+  --accent-soft:rgba(255,110,1,.14);
+  --display:'Barlow Condensed','Arial Narrow',Impact,sans-serif;
+  --body:Barlow,'Helvetica Neue',Arial,sans-serif;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);-webkit-font-smoothing:antialiased;padding:0;box-sizing:border-box}
+.stage{min-height:100%;display:flex;flex-direction:column;align-items:stretch}
+.phone{position:relative;width:100%;flex:1 1 auto;min-height:100%;background:var(--bg);display:flex;flex-direction:column;box-sizing:border-box}
+.screen{flex:1 1 auto;min-height:100%;display:flex;flex-direction:column;gap:14px;box-sizing:border-box;padding-block:28px 24px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));position:relative}
+.screen[hidden]{display:none}
+.demo{position:fixed;left:0;right:0;bottom:0;z-index:5;border-radius:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+.screen{padding-bottom:88px}
+/* wider screens: the same column, centred on the brand ground, like the site */
+@media (min-width:700px){
+  body{background:var(--ground)}
+  .stage{align-items:center;padding-block:32px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .phone{max-width:480px;min-height:calc(100vh - 64px);border-left:1px solid var(--line);border-right:1px solid var(--line)}
+  .screen{padding-left:28px;padding-right:28px;padding-block:36px 24px;padding-bottom:88px}
+  .demo{left:auto;right:16px;bottom:16px;border-radius:8px;max-width:420px}
+}
+.sheet,.scrim{position:fixed}
+@media (min-width:700px){.sheet{left:50%;right:auto;width:480px;transform:translate(-50%,105%)}.sheet.show{transform:translate(-50%,0)}}
+
+.top{display:flex;justify-content:space-between;align-items:center}
+.wordmark{font-family:var(--display);font-weight:700;letter-spacing:.3em;font-size:15px}
+.units{display:flex;gap:2px;background:var(--surface);border-radius:3px;padding:2px}
+.units button{font:600 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border:0;border-radius:2px;background:transparent;color:var(--fg-3);cursor:pointer;transition:background .25s,color .25s}
+.units button[aria-pressed="true"]{background:var(--line);color:var(--fg)}
+.rule{height:1px;background:var(--line)}
+
+/* The caption strip: the fitter is always saying something, and it is always readable. */
+.cap{position:relative;border-left:3px solid var(--accent);padding-left:14px;display:flex;flex-direction:column;gap:6px;min-height:118px}
+.cap-label{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.4s ease-in-out infinite}
+.cap.idle .dot{animation:pulse 1.4s ease-in-out infinite}
+.cap.done .dot{animation:none;opacity:.5}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.55);opacity:.45}}
+.cap-text{font-size:18px;line-height:25px;font-weight:500;min-height:75px}
+.cap-text .w{transition:color .12s}
+.cap-text .w.on{color:var(--accent)}
+.cap-text .w.todo{color:var(--fg-4)}
+.hear{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-top:2px;padding:6px 10px;border:1px solid var(--line-strong);border-radius:3px;background:transparent;color:var(--fg-2);font:600 12px/1 var(--body);letter-spacing:.04em;cursor:pointer}
+.hear[hidden]{display:none}
+.hear svg{width:14px;height:14px}
+
+.doors{flex:1 1 auto;display:flex;flex-direction:column;gap:10px;justify-content:flex-end}
+h1{margin:0 0 6px;font-family:var(--display);font-size:52px;line-height:48px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;text-wrap:balance}
+.door{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-radius:4px;text-decoration:none;color:var(--fg);background:var(--surface);border:1px solid var(--line);cursor:pointer;text-align:left;font-family:var(--body);transition:transform .15s,border-color .2s}
+.door:active{transform:scale(.985)}
+.door:focus-visible,.hear:focus-visible,.units button:focus-visible,.sheet button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.door .t{font-family:var(--display);font-size:22px;line-height:22px;font-weight:700;text-transform:uppercase}
+.door .s{font-size:13px;color:var(--fg-3);margin-top:3px}
+.door.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);padding:18px}
+.door.primary .t{font-size:24px;line-height:24px}
+.door.primary .s{color:var(--accent-ink);opacity:.85;font-weight:500}
+.door svg{flex:none;width:26px;height:26px}
+.door .arrow{font-size:20px;color:var(--fg-3)}
+.fine{font-size:12px;line-height:16px;color:var(--fg-4);text-align:center;margin-top:4px}
+
+/* entrance: from a visible resting state, short */
+.rise{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}.rise.d4{animation-delay:.32s}
+@keyframes rise{from{transform:translateY(10px);opacity:.001}to{transform:none;opacity:1}}
+
+/* permission sheet */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s;z-index:8}
+.scrim.show{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:9;background:var(--surface);border-top:1px solid var(--line-strong);border-radius:16px 16px 0 0;padding:18px 20px calc(22px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .32s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:12px}
+.sheet.show{transform:none}
+.sheet .h{font-family:var(--display);font-size:26px;line-height:26px;font-weight:700;text-transform:uppercase}
+.sheet p{margin:0;font-size:14px;line-height:20px;color:var(--fg-2)}
+.sheet .row{display:flex;gap:8px;margin-top:4px}
+.btn{flex:1 1 0;height:48px;border-radius:4px;border:1px solid var(--line-strong);background:transparent;color:var(--fg);font:700 19px/1 var(--display);text-transform:uppercase;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+/* step 2 placeholder */
+.listen{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;text-align:center}
+.mic{width:96px;height:96px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 14px var(--accent-soft);animation:breathe 1.6s ease-in-out infinite}
+.mic.typing{background:var(--surface);border:1px solid var(--line-strong);box-shadow:none;animation:none}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 12px var(--accent-soft)}50%{box-shadow:0 0 0 24px rgba(255,110,1,.06)}}
+.listen .big{font-family:var(--display);font-size:30px;line-height:30px;font-weight:700;text-transform:uppercase}
+.listen .sub{font-size:14px;line-height:20px;color:var(--fg-3);max-width:280px}
+.back{align-self:center;background:none;border:0;color:var(--fg-3);font:500 13px/1 var(--body);letter-spacing:.04em;cursor:pointer;padding:12px}
+.tag{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:2px;padding:3px 7px}
+
+/* demo controls, outside the phone */
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;padding:10px 14px;background:#111;border-top:1px solid var(--line);font-size:12px;color:var(--fg-3);max-width:100%;box-sizing:border-box}
+.demo b{color:var(--fg-2);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:11px}
+.demo button{font:600 12px/1 var(--body);padding:8px 10px;border-radius:3px;border:1px solid var(--line-strong);background:transparent;color:var(--fg-2);cursor:pointer}
+.demo button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+@media (prefers-reduced-motion:reduce){.rise,.dot,.mic{animation:none!important}.sheet,.scrim{transition:none}}
+</style>
+
+<div class="stage">
+<div class="phone" id="phone">
+
+  <section class="screen" id="s1">
+    <div class="top rise">
+      <span class="wordmark">TAKOMO</span>
+      <div class="units" role="group" aria-label="Units">
+        <button type="button" id="u-imp" aria-pressed="true">yd · mph</button>
+        <button type="button" id="u-met" aria-pressed="false">m · km/h</button>
+      </div>
+    </div>
+    <div class="rule rise"></div>
+
+    <div class="cap idle rise d1" id="cap">
+      <div class="cap-label"><span class="dot"></span><span id="cap-label">Fitter</span></div>
+      <div class="cap-text" id="cap-text" aria-live="polite"></div>
+      <button type="button" class="hear" id="hear" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10H4zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+        Tap to hear him
+      </button>
+    </div>
+
+    <div class="doors">
+      <h1 class="rise d2" id="h1">Find<br>your fit.</h1>
+      <button type="button" class="door primary rise d2" id="d-talk">
+        <span><span class="t" id="d-talk-t">Talk to the fitter</span><span class="s" id="d-talk-s">~10 min · he measures with you and watches you swing</span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      </button>
+      <button type="button" class="door rise d3" id="d-type">
+        <span><span class="t">Same thing, typing</span><span class="s">on a train, in a meeting, whatever</span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M8 14h8"/></svg>
+      </button>
+      <button type="button" class="door rise d4" id="d-quiz">
+        <span><span class="t">Quick quiz</span><span class="s">~3 min · eight questions, each says why it’s asked</span></span>
+        <span class="arrow">→</span>
+      </button>
+      <p class="fine rise d4">No email to see your fit · it’s saved so you can come back · same engine either way</p>
+    </div>
+
+    <div class="scrim" id="scrim"></div>
+    <div class="sheet" id="sheet" role="dialog" aria-labelledby="sheet-h" aria-modal="true">
+      <span class="tag">Microphone</span>
+      <div class="h" id="sheet-h">He needs to hear you.</div>
+      <p>Your voice is turned into text on the spot. Nothing is recorded or kept. You can switch to typing any time.</p>
+      <div class="row">
+        <button type="button" class="btn" id="sheet-no">Not now</button>
+        <button type="button" class="btn primary" id="sheet-yes">Allow</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" id="s2" hidden>
+    <div class="top">
+      <span class="wordmark">TAKOMO</span>
+      <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3)">AI fitter · irons</span>
+    </div>
+    <div class="rule"></div>
+    <div class="cap" id="cap2">
+      <div class="cap-label"><span class="dot"></span><span>Fitter</span></div>
+      <div class="cap-text" id="cap2-text"></div>
+    </div>
+    <div class="listen">
+      <div class="mic" id="mic">
+        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#0B0B0B" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      </div>
+      <div class="big" id="s2-big">Listening</div>
+      <div class="sub" id="s2-sub">Step 2 starts here. This prototype stops at the door — the chat is the next build.</div>
+      <span class="tag">Step 2 · next</span>
+    </div>
+    <button type="button" class="back" id="back">← Back to the start</button>
+  </section>
+
+</div>
+
+<div class="demo" id="demo">
+  <b>Demo</b>
+  <button type="button" id="dm-reset">Replay</button>
+  <button type="button" id="dm-return" aria-pressed="false">Returning golfer</button>
+  <button type="button" id="dm-mute" aria-pressed="false">Mute voice</button>
+  <span id="dm-note"></span>
+</div>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const cap = $('cap'), capText = $('cap-text'), hear = $('hear');
+  const s1 = $('s1'), s2 = $('s2');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const LINES = {
+    fresh: "Hey. I’m Takomo’s AI fitter — not a person, but I know these irons better than most people do. Ten minutes, I explain every spec, and I tell you when I’m guessing. Talk or type?",
+    back:  "You’re back. Last time we left 201 versus 201T open. Got sim numbers, or want to pick up where we were?",
+    talk:  "Right. Tell me about your game — how long you’ve played, how often, and what you’d like these irons to fix.",
+    type:  "No problem, type away. Same questions, same fit. Tell me about your game.",
+    quiz:  "Eight questions. I’ll say why I’m asking each one.",
+    cont:  "Good. Where were we — you were going to hit both at a demo bay. Did you?"
+  };
+
+  let state = { returning:false, muted:false, audioOK:false, speaking:false, typer:null, utter:null };
+
+  // ---- caption: types out, or highlights words in sync with the voice
+  function setWords(text){
+    capText.innerHTML = '';
+    text.split(' ').forEach((w,i)=>{
+      const s = document.createElement('span'); s.className='w todo'; s.textContent = w + ' '; s.dataset.i=i; capText.appendChild(s);
+    });
+    return capText.querySelectorAll('.w');
+  }
+  function stopCaption(){
+    if(state.typer){ clearInterval(state.typer); state.typer=null; }
+    if(window.speechSynthesis){ speechSynthesis.cancel(); }
+    state.speaking=false;
+    capText.querySelectorAll('.w').forEach(w=>{ w.classList.remove('on','todo'); });
+    cap.classList.remove('idle'); cap.classList.add('done');
+  }
+  function typeLine(text, done){
+    const words = setWords(text);
+    let i=0; cap.classList.add('idle'); cap.classList.remove('done');
+    const step = reduce ? 0 : 150;
+    if(!step){ words.forEach(w=>w.classList.remove('todo')); cap.classList.remove('idle'); cap.classList.add('done'); done&&done(); return; }
+    state.typer = setInterval(()=>{
+      if(i>0) words[i-1].classList.remove('on');
+      if(i<words.length){ words[i].classList.remove('todo'); words[i].classList.add('on'); i++; }
+      else { clearInterval(state.typer); state.typer=null; cap.classList.remove('idle'); cap.classList.add('done'); done&&done(); }
+    }, step);
+  }
+  function pickVoice(){
+    const vs = speechSynthesis.getVoices();
+    const pref = ['Daniel','Google UK English Male','Microsoft Ryan','Alex','Google US English','Samantha'];
+    for(const p of pref){ const v = vs.find(v=>v.name.includes(p)); if(v) return v; }
+    return vs.find(v=>/^en/i.test(v.lang)) || vs[0] || null;
+  }
+  function speakLine(text, done){
+    if(!window.speechSynthesis || state.muted || !state.audioOK){ typeLine(text, done); return; }
+    speechSynthesis.cancel();
+    const words = setWords(text);
+    cap.classList.add('idle'); cap.classList.remove('done');
+    const u = new SpeechSynthesisUtterance(text);
+    const v = pickVoice(); if(v) u.voice = v;
+    u.rate = 1.02; u.pitch = 0.92;
+    let idx = 0; const starts=[]; let pos=0;
+    text.split(' ').forEach(w=>{ starts.push(pos); pos += w.length+1; });
+    u.onboundary = e => {
+      if(e.name && e.name!=='word') return;
+      while(idx<starts.length && starts[idx] <= e.charIndex){ idx++; }
+      words.forEach((w,i)=>{ w.classList.toggle('on', i===idx-1); if(i<idx) w.classList.remove('todo'); });
+    };
+    u.onend = () => { if(state.utter!==u) return; words.forEach(w=>w.classList.remove('on','todo')); cap.classList.remove('idle'); cap.classList.add('done'); state.speaking=false; done&&done(); };
+    u.onerror = () => { if(state.utter!==u) return; stopCaption(); typeLine(text, done); };
+    state.utter = u; state.speaking = true;
+    speechSynthesis.speak(u);
+    // Safari sometimes never fires boundary events: fall back to a timed reveal.
+    setTimeout(()=>{ if(state.speaking && !words[0].classList.contains('on') && words[0].classList.contains('todo')){ let i=0; state.typer=setInterval(()=>{ if(i<words.length){ words[i].classList.remove('todo'); i++; } else { clearInterval(state.typer); state.typer=null; } }, 150); } }, 700);
+  }
+  function say(text, done){
+    stopCaption();
+    if(state.audioOK && !state.muted && window.speechSynthesis){ hear.hidden = true; speakLine(text, done); }
+    else { hear.hidden = state.muted || !window.speechSynthesis; typeLine(text, done); }
+  }
+
+  // ---- screen 1 content by state
+  function renderS1(){
+    const r = state.returning;
+    $('h1').innerHTML = r ? 'Welcome<br>back.' : 'Find<br>your fit.';
+    $('d-talk-t').textContent = r ? 'Continue where we left off' : 'Talk to the fitter';
+    $('d-talk-s').textContent = r ? '201 vs 201T still open · 2 min to settle it' : '~10 min · he measures with you and watches you swing';
+    $('dm-note').textContent = r ? 'saved fit found (simulated)' : '';
+  }
+  function start(){
+    stopCaption();
+    s2.hidden = true; s1.hidden = false;
+    hideSheet();
+    renderS1();
+    // re-run the entrance
+    s1.querySelectorAll('.rise').forEach(el=>{ el.style.animation='none'; void el.offsetWidth; el.style.animation=''; });
+    setTimeout(()=> say(state.returning ? LINES.back : LINES.fresh), reduce ? 0 : 500);
+  }
+
+  // ---- doors
+  function go(kind){
+    stopCaption(); // barge-in: he stops mid-sentence
+    if(kind==='talk'){ showSheet(); return; }
+    enterS2(kind);
+  }
+  function enterS2(kind){
+    hideSheet();
+    s1.hidden = true; s2.hidden = false;
+    const mic = $('mic');
+    const voice = kind==='talk';
+    mic.classList.toggle('typing', !voice);
+    $('s2-big').textContent = voice ? 'Listening' : (kind==='quiz' ? 'Question 1 of 8' : 'Your turn — type');
+    $('s2-sub').textContent = voice ? 'Hold the button and talk. Everything he hears shows up as text so you can correct him.' : (kind==='quiz' ? 'Same engine as the chat. He still explains every question.' : 'Same fitter, keyboard instead of mic. He still talks — you read.');
+    const line = state.returning && voice ? LINES.cont : LINES[kind];
+    const words = $('cap2-text'); words.textContent = line;
+    if(state.audioOK && !state.muted && window.speechSynthesis){ const u=new SpeechSynthesisUtterance(line); const v=pickVoice(); if(v)u.voice=v; u.rate=1.02; u.pitch=0.92; speechSynthesis.speak(u); }
+  }
+  function showSheet(){ $('scrim').classList.add('show'); $('sheet').classList.add('show'); $('sheet-yes').focus(); }
+  function hideSheet(){ $('scrim').classList.remove('show'); $('sheet').classList.remove('show'); }
+
+  $('d-talk').addEventListener('click', ()=>go('talk'));
+  $('d-type').addEventListener('click', ()=>go('type'));
+  $('d-quiz').addEventListener('click', ()=>go('quiz'));
+  $('sheet-yes').addEventListener('click', ()=>enterS2('talk'));
+  $('sheet-no').addEventListener('click', ()=>enterS2('type'));   // denied → typing, no second ask
+  $('scrim').addEventListener('click', hideSheet);
+  $('back').addEventListener('click', start);
+
+  // first tap anywhere unlocks audio for the rest of the session (browsers need a gesture)
+  hear.addEventListener('click', ()=>{ state.audioOK = true; say(state.returning ? LINES.back : LINES.fresh); });
+  document.addEventListener('pointerdown', ()=>{ if(!state.audioOK && !state.muted && window.speechSynthesis){ state.audioOK = true; } }, {capture:true});
+
+  // units
+  $('u-imp').addEventListener('click', ()=>setUnits('imp'));
+  $('u-met').addEventListener('click', ()=>setUnits('met'));
+  function setUnits(u){
+    $('u-imp').setAttribute('aria-pressed', u==='imp'); $('u-met').setAttribute('aria-pressed', u==='met');
+    try{ localStorage.setItem('fitter.units', u); }catch(e){}
+  }
+  try{ const u = localStorage.getItem('fitter.units'); if(u) setUnits(u); }catch(e){}
+
+  // demo controls
+  $('dm-reset').addEventListener('click', start);
+  $('dm-return').addEventListener('click', e=>{ state.returning = !state.returning; e.currentTarget.setAttribute('aria-pressed', state.returning); start(); });
+  $('dm-mute').addEventListener('click', e=>{ state.muted = !state.muted; e.currentTarget.setAttribute('aria-pressed', state.muted); if(state.muted) stopCaption(); hear.hidden = state.muted || cap.classList.contains('done'); });
+
+  if(window.speechSynthesis){ speechSynthesis.onvoiceschanged = ()=>{}; speechSynthesis.getVoices(); }
+  start();
+})();
+</script>

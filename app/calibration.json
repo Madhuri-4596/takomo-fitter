@@ -1,0 +1,266 @@
+{
+ "source": "Takomo Fitting Lab 2026 simulated data (kit/data); train split for errors, dev split for checks",
+ "self_report": {
+  "height_cm": {
+   "n": 20000,
+   "bias": 0.99,
+   "sd": 1.29,
+   "p68_abs": 1.29,
+   "p90_abs": 2.7
+  },
+  "wrist_to_floor_cm": {
+   "n": 20000,
+   "bias": -0.2,
+   "sd": 3.25,
+   "p68_abs": 3.2,
+   "p90_abs": 5.4
+  },
+  "speed_mph": {
+   "n": 3286,
+   "bias": 2.02,
+   "sd": 4.03,
+   "p68_abs": 3.92,
+   "p90_abs": 7.4
+  },
+  "carry_yd": {
+   "n": 16714,
+   "bias": 15.37,
+   "sd": 8.77,
+   "p68_abs": 8.67,
+   "p90_abs": 26.7
+  },
+  "score_bucket_wrong": 0.268,
+  "tempo_wrong": 0.358,
+  "glove_wrong": 0.369
+ },
+ "strike": {
+  "n_golfers": 4962,
+  "sd_tertile_low_mm": 8.7,
+  "sd_tertile_high_mm": 12.1,
+  "sd_median_mm": 10.4
+ },
+ "line_accuracy": {
+  "Grip|glove size|": {
+   "right": 0.759,
+   "n": 6682
+  },
+  "Grip||": {
+   "right": 0.932,
+   "n": 1318
+  },
+  "Head|carry|": {
+   "right": 0.654,
+   "n": 1471
+  },
+  "Head|swing speed|": {
+   "right": 0.595,
+   "n": 190
+  },
+  "Head||": {
+   "right": 0.867,
+   "n": 6339
+  },
+  "Length|carry+height|self_body": {
+   "right": 0.57,
+   "n": 107
+  },
+  "Length|carry|self_body": {
+   "right": 0.84,
+   "n": 294
+  },
+  "Length|height+swing speed|self_body": {
+   "right": 0.542,
+   "n": 24
+  },
+  "Length|height|self_body": {
+   "right": 0.534,
+   "n": 1434
+  },
+  "Length|swing speed|self_body": {
+   "right": 0.698,
+   "n": 86
+  },
+  "Length||self_body": {
+   "right": 0.932,
+   "n": 6055
+  },
+  "Lie|height+wrist-to-floor|self_body": {
+   "right": 0.346,
+   "n": 364
+  },
+  "Lie|wrist-to-floor|self_body": {
+   "right": 0.319,
+   "n": 7545
+  },
+  "Lie||self_body": {
+   "right": 0.451,
+   "n": 91
+  },
+  "Shaft model|carry+tempo|carry": {
+   "right": 0.703,
+   "n": 633
+  },
+  "Shaft model|carry|carry": {
+   "right": 0.691,
+   "n": 1052
+  },
+  "Shaft model|swing speed+tempo|speed": {
+   "right": 0.62,
+   "n": 79
+  },
+  "Shaft model|swing speed|speed": {
+   "right": 0.473,
+   "n": 129
+  },
+  "Shaft model|tempo|carry": {
+   "right": 0.512,
+   "n": 1658
+  },
+  "Shaft model|tempo|speed": {
+   "right": 0.697,
+   "n": 379
+  },
+  "Shaft model||carry": {
+   "right": 0.583,
+   "n": 3383
+  },
+  "Shaft model||speed": {
+   "right": 0.722,
+   "n": 687
+  },
+  "Shaft|carry|carry": {
+   "right": 0.673,
+   "n": 3387
+  },
+  "Shaft|swing speed|speed": {
+   "right": 0.627,
+   "n": 927
+  },
+  "Shaft||carry": {
+   "right": 0.348,
+   "n": 3339
+  },
+  "Shaft||speed": {
+   "right": 0.686,
+   "n": 347
+  }
+ },
+ "dev_confidence_check": {
+  "by_line": {
+   "Head": {
+    "Medium": {
+     "right": 0.656,
+     "n": 482
+    },
+    "High": {
+     "right": 0.867,
+     "n": 2450
+    },
+    "Low": {
+     "right": 0.588,
+     "n": 68
+    }
+   },
+   "Shaft": {
+    "Medium": {
+     "right": 0.696,
+     "n": 1359
+    },
+    "Low": {
+     "right": 0.42,
+     "n": 1641
+    }
+   },
+   "Shaft model": {
+    "Medium": {
+     "right": 0.678,
+     "n": 996
+    },
+    "Low": {
+     "right": 0.561,
+     "n": 2004
+    }
+   },
+   "Length": {
+    "High": {
+     "right": 0.923,
+     "n": 2274
+    },
+    "Low": {
+     "right": 0.538,
+     "n": 567
+    },
+    "Medium": {
+     "right": 0.767,
+     "n": 159
+    }
+   },
+   "Lie": {
+    "Low": {
+     "right": 0.321,
+     "n": 3000
+    }
+   },
+   "Grip": {
+    "Medium": {
+     "right": 0.753,
+     "n": 2488
+    },
+    "High": {
+     "right": 0.936,
+     "n": 512
+    }
+   }
+  },
+  "overall": {
+   "Medium": {
+    "right": 0.717,
+    "n": 5484
+   },
+   "High": {
+    "right": 0.898,
+    "n": 5236
+   },
+   "Low": {
+    "right": 0.429,
+    "n": 7280
+   }
+  }
+ },
+ "ball_line": {
+  "self": {
+   "coef_static": 0.3337,
+   "coef_tilt": -0.4067,
+   "intercept": 0.1948,
+   "resid_sd_deg": 0.84,
+   "n_train": 3981,
+   "n_dev": 586,
+   "shots_median": 5.0,
+   "dev_with_ball_line": {
+    "exact": 0.459,
+    "within_1": 0.937
+   },
+   "dev_static_only": {
+    "exact": 0.323,
+    "within_1": 0.799
+   }
+  },
+  "true": {
+   "coef_static": 0.6039,
+   "coef_tilt": -0.3478,
+   "intercept": 0.0279,
+   "resid_sd_deg": 0.778,
+   "n_train": 3981,
+   "n_dev": 586,
+   "shots_median": 5.0,
+   "dev_with_ball_line": {
+    "exact": 0.493,
+    "within_1": 0.954
+   },
+   "dev_static_only": {
+    "exact": 0.391,
+    "within_1": 0.863
+   }
+  }
+ }
+}

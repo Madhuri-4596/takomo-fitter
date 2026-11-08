@@ -1,0 +1,3001 @@
+golfer_id,split,age,sex,handedness,rounds_per_year,own_7i_loft_deg
+G680337,dev,34,male,right,31-50,
+G856889,dev,57,male,right,31-50,28.4
+G725142,dev,27,male,right,Under 10,28.3
+G590494,dev,59,male,right,10-30,
+G558578,dev,50,female,right,Over 50,
+G165905,dev,59,male,right,Over 50,31.7
+G719969,dev,45,male,right,10-30,31.1
+G327534,dev,43,male,right,31-50,32.8
+G385552,dev,62,male,right,10-30,32.2
+G975115,dev,45,male,left,31-50,
+G333447,dev,33,male,right,Under 10,28.3
+G238788,dev,40,male,right,10-30,31.7
+G567083,dev,44,male,right,10-30,
+G204319,dev,53,male,right,10-30,34.6
+G960029,dev,57,female,right,Over 50,
+G802097,dev,78,male,right,Over 50,28.9
+G859535,dev,68,female,right,10-30,
+G683437,dev,50,male,right,Over 50,32.0
+G465989,dev,57,male,left,Under 10,
+G263798,dev,32,female,right,10-30,
+G351380,dev,41,female,right,31-50,
+G744218,dev,84,male,right,Under 10,
+G369086,dev,54,male,right,10-30,
+G627165,dev,52,male,left,31-50,
+G375309,dev,81,male,right,31-50,
+G422477,dev,64,female,right,Under 10,33.9
+G700882,dev,66,female,right,10-30,
+G858380,dev,60,female,right,31-50,31.4
+G719766,dev,70,male,right,10-30,27.1
+G631151,dev,61,male,right,Over 50,
+G608521,dev,45,male,right,10-30,27.6
+G914432,dev,44,male,right,10-30,
+G487291,dev,36,male,right,10-30,
+G222359,dev,61,female,right,10-30,
+G510051,dev,56,male,right,Under 10,
+G757395,dev,63,male,right,31-50,
+G367444,dev,35,male,left,31-50,
+G720086,dev,53,male,right,Under 10,31.3
+G185063,dev,57,female,right,10-30,
+G730709,dev,38,male,right,Over 50,30.8
+G690566,dev,39,male,right,10-30,29.5
+G654799,dev,53,male,right,Over 50,32.0
+G479389,dev,59,female,right,Over 50,
+G472663,dev,69,male,right,Under 10,
+G468149,dev,59,male,right,Under 10,
+G269982,dev,71,male,right,Under 10,
+G112634,dev,40,male,right,Over 50,35.0
+G391547,dev,31,male,right,31-50,
+G392414,dev,78,male,right,31-50,
+G409830,dev,41,male,right,10-30,
+G457052,dev,24,male,right,10-30,
+G941601,dev,58,male,right,10-30,
+G317059,dev,45,female,right,Over 50,
+G301918,dev,24,male,left,10-30,
+G747714,dev,68,female,right,10-30,
+G144978,dev,42,male,right,Over 50,
+G858373,dev,72,male,right,31-50,31.2
+G307233,dev,54,male,right,31-50,
+G941292,dev,54,male,right,31-50,
+G593326,dev,62,male,right,31-50,30.1
+G290197,dev,34,male,right,10-30,
+G827177,dev,58,male,right,31-50,31.6
+G474980,dev,55,male,right,Under 10,
+G517049,dev,31,male,right,31-50,
+G820359,dev,54,male,right,31-50,
+G937714,dev,33,male,right,31-50,
+G791610,dev,71,female,right,10-30,30.9
+G835717,dev,55,male,right,31-50,33.4
+G377536,dev,43,male,left,Under 10,
+G595532,dev,24,male,right,10-30,
+G577074,dev,54,female,right,10-30,
+G722816,dev,44,female,right,Over 50,
+G347999,dev,61,male,right,Under 10,
+G533550,dev,43,male,right,10-30,
+G417395,dev,19,male,right,31-50,
+G247703,dev,35,female,left,Over 50,
+G321286,dev,56,female,right,31-50,31.1
+G982119,dev,54,male,right,31-50,32.9
+G396988,dev,51,male,right,10-30,
+G259366,dev,47,female,right,31-50,29.9
+G378461,dev,48,male,right,Over 50,30.4
+G751548,dev,36,male,left,31-50,
+G765275,dev,43,female,right,Over 50,29.3
+G916429,dev,40,male,right,31-50,
+G989476,dev,63,male,right,31-50,
+G611937,dev,30,male,right,Over 50,
+G731222,dev,45,female,right,31-50,30.3
+G477200,dev,51,male,left,31-50,
+G947883,dev,36,male,right,Over 50,
+G428957,dev,36,male,right,31-50,
+G684495,dev,44,male,right,31-50,33.3
+G840604,dev,19,female,right,31-50,30.2
+G765778,dev,65,male,right,31-50,
+G417143,dev,61,male,right,Over 50,
+G892107,dev,24,male,right,10-30,29.6
+G862820,dev,68,male,right,10-30,
+G360621,dev,55,male,right,Over 50,
+G701420,dev,85,male,right,Under 10,
+G467248,dev,54,male,right,Over 50,31.4
+G670021,dev,80,male,left,Over 50,
+G957420,dev,33,male,right,Under 10,
+G984644,dev,41,female,right,Over 50,32.3
+G778486,dev,55,female,right,31-50,32.5
+G956451,dev,49,male,right,10-30,30.6
+G365821,dev,43,male,right,31-50,35.1
+G323791,dev,73,female,right,10-30,31.2
+G269419,dev,48,male,right,Under 10,
+G307341,dev,44,male,right,31-50,32.7
+G273142,dev,47,male,right,31-50,34.0
+G212398,dev,67,female,right,31-50,30.9
+G696098,dev,38,female,right,31-50,
+G580814,dev,35,male,right,10-30,
+G427992,dev,36,male,right,10-30,
+G993428,dev,48,male,right,10-30,31.9
+G980876,dev,32,male,right,31-50,
+G200935,dev,27,male,right,31-50,
+G679536,dev,69,male,right,31-50,
+G177744,dev,37,male,right,10-30,
+G339407,dev,51,male,right,10-30,30.7
+G596152,dev,41,female,right,31-50,34.0
+G527339,dev,30,male,right,Over 50,
+G646492,dev,42,male,right,Over 50,
+G337657,dev,53,male,right,Over 50,
+G542725,dev,29,male,right,10-30,31.7
+G585190,dev,47,male,right,Under 10,32.0
+G655255,dev,27,male,right,10-30,29.9
+G168839,dev,53,female,right,10-30,
+G827717,dev,51,female,right,Under 10,32.9
+G513544,dev,46,male,right,Under 10,
+G875525,dev,58,male,right,10-30,31.1
+G663280,dev,45,male,left,31-50,
+G900869,dev,71,female,right,10-30,
+G699226,dev,42,male,right,10-30,
+G297235,dev,54,male,right,Under 10,31.5
+G529501,dev,41,male,right,Under 10,32.3
+G179962,dev,60,male,right,10-30,
+G646348,dev,44,male,right,Over 50,
+G820159,dev,36,male,right,31-50,
+G652493,dev,76,female,left,31-50,
+G384886,dev,36,male,right,10-30,
+G509843,dev,63,male,right,Over 50,30.5
+G852223,dev,38,male,right,Over 50,
+G328648,dev,48,female,right,Over 50,
+G401542,dev,48,male,right,10-30,34.7
+G422279,dev,48,female,right,31-50,
+G466795,dev,59,female,right,Under 10,29.7
+G560989,dev,53,male,left,10-30,
+G243326,dev,55,male,right,Over 50,
+G477496,dev,30,male,right,31-50,
+G248112,dev,37,male,right,31-50,28.2
+G555911,dev,43,male,right,Over 50,27.0
+G782844,dev,55,male,right,31-50,
+G489701,dev,45,male,right,Under 10,
+G205443,dev,27,female,right,10-30,
+G654118,dev,55,male,left,31-50,33.0
+G286641,dev,69,male,left,31-50,
+G823656,dev,52,male,right,10-30,
+G353694,dev,67,female,right,10-30,
+G600770,dev,53,male,right,Over 50,29.1
+G246771,dev,60,male,right,31-50,
+G804082,dev,47,male,left,Over 50,
+G207093,dev,44,male,right,10-30,
+G809504,dev,40,male,left,Over 50,
+G181193,dev,60,male,right,31-50,27.9
+G966201,dev,85,male,right,Under 10,29.4
+G698820,dev,61,female,right,Over 50,
+G728072,dev,59,male,right,31-50,
+G632608,dev,51,male,right,31-50,
+G433813,dev,43,female,right,10-30,
+G387677,dev,64,female,right,Under 10,
+G991846,dev,40,male,right,31-50,
+G257070,dev,57,female,right,31-50,35.6
+G598524,dev,41,male,right,31-50,
+G374985,dev,55,male,right,Under 10,
+G212581,dev,50,female,right,31-50,
+G879266,dev,55,male,right,Under 10,
+G289842,dev,74,male,right,10-30,
+G609092,dev,75,male,right,31-50,
+G129673,dev,29,male,right,Over 50,
+G274227,dev,38,female,right,10-30,
+G659012,dev,80,male,right,Under 10,27.0
+G774525,dev,50,male,right,Over 50,
+G916003,dev,50,male,right,31-50,
+G252162,dev,41,male,right,Over 50,
+G324280,dev,62,male,right,Under 10,
+G769550,dev,32,female,right,Under 10,
+G609487,dev,35,male,right,Over 50,
+G145376,dev,39,male,right,10-30,
+G311246,dev,59,male,right,31-50,
+G272553,dev,40,female,right,Over 50,29.4
+G476872,dev,30,female,right,31-50,31.2
+G232282,dev,46,male,left,10-30,
+G294820,dev,45,male,right,Over 50,
+G803987,dev,70,male,right,31-50,
+G658780,dev,36,male,right,Over 50,
+G459123,dev,47,male,right,10-30,
+G277237,dev,66,male,right,10-30,
+G378641,dev,67,male,right,Under 10,
+G264458,dev,60,female,right,10-30,
+G249752,dev,56,male,right,31-50,
+G322042,dev,66,male,right,31-50,
+G849532,dev,46,male,right,Under 10,29.8
+G780963,dev,54,male,right,Over 50,34.8
+G371934,dev,66,male,right,10-30,29.0
+G916452,dev,63,female,right,10-30,
+G849050,dev,53,male,right,10-30,
+G272168,dev,71,male,right,Under 10,31.6
+G729008,dev,35,female,right,Over 50,
+G493637,dev,52,male,right,Over 50,
+G559657,dev,31,female,right,10-30,
+G533409,dev,43,female,right,Over 50,
+G907501,dev,46,male,right,10-30,
+G452176,dev,55,male,right,Under 10,33.7
+G327822,dev,37,female,right,10-30,
+G512664,dev,47,male,right,10-30,29.3
+G116577,dev,42,male,right,31-50,
+G970747,dev,66,male,right,Under 10,
+G574682,dev,77,male,right,10-30,
+G738056,dev,59,male,right,31-50,
+G587981,dev,36,female,right,31-50,29.8
+G143385,dev,68,male,right,Over 50,
+G695381,dev,59,male,left,Over 50,
+G581798,dev,42,male,left,Over 50,
+G457809,dev,49,male,right,31-50,33.4
+G219945,dev,52,female,right,10-30,
+G687653,dev,29,female,right,31-50,
+G355669,dev,40,male,right,31-50,31.9
+G489309,dev,18,male,right,Over 50,29.5
+G422501,dev,26,male,right,10-30,29.9
+G940829,dev,42,female,right,Under 10,
+G461154,dev,63,male,right,31-50,30.4
+G663898,dev,69,male,right,Under 10,
+G339927,dev,68,female,right,Over 50,
+G264087,dev,52,male,left,Under 10,
+G472966,dev,42,male,right,10-30,
+G197456,dev,45,male,left,Under 10,28.3
+G477868,dev,47,male,right,31-50,30.5
+G352478,dev,34,male,right,10-30,32.1
+G986320,dev,46,male,right,31-50,
+G929233,dev,46,male,right,Under 10,
+G641857,dev,63,male,right,Over 50,
+G534278,dev,75,male,right,31-50,31.4
+G232350,dev,57,female,right,10-30,32.2
+G853464,dev,52,male,right,10-30,27.0
+G386425,dev,65,female,right,Under 10,32.3
+G368053,dev,51,female,right,31-50,30.9
+G953588,dev,60,male,right,31-50,
+G910893,dev,40,male,right,Over 50,31.1
+G780726,dev,64,male,right,10-30,31.6
+G510239,dev,24,male,right,10-30,
+G592013,dev,28,male,right,31-50,
+G990135,dev,31,male,left,Under 10,31.7
+G447525,dev,32,male,right,Over 50,
+G182885,dev,62,male,right,10-30,28.8
+G215221,dev,61,male,right,31-50,
+G355882,dev,41,female,right,Over 50,
+G362202,dev,64,female,right,Under 10,
+G149529,dev,56,male,right,31-50,30.4
+G593085,dev,45,female,right,10-30,
+G340667,dev,59,male,right,31-50,
+G912606,dev,53,male,right,10-30,
+G735063,dev,40,male,right,31-50,
+G126999,dev,61,male,right,10-30,
+G261936,dev,67,male,right,Over 50,
+G955355,dev,57,male,right,Under 10,
+G148350,dev,41,female,right,10-30,31.6
+G186923,dev,44,male,right,10-30,
+G684473,dev,43,male,right,10-30,
+G695153,dev,29,female,right,Under 10,
+G709941,dev,64,female,right,Under 10,
+G875003,dev,22,male,right,10-30,29.7
+G165096,dev,51,male,right,Under 10,
+G114791,dev,51,male,right,Under 10,27.7
+G867588,dev,26,male,right,31-50,31.6
+G988771,dev,42,male,right,31-50,
+G199040,dev,64,male,right,31-50,32.7
+G637360,dev,44,male,right,Under 10,
+G390444,dev,57,male,right,31-50,
+G678524,dev,61,male,right,Over 50,32.3
+G376839,dev,30,male,right,Over 50,32.2
+G900187,dev,50,male,right,Over 50,
+G916512,dev,72,female,right,10-30,28.0
+G703901,dev,61,female,right,10-30,
+G410089,dev,36,male,right,Over 50,
+G885680,dev,42,female,right,Under 10,
+G500660,dev,64,female,right,Over 50,
+G443749,dev,57,female,right,31-50,
+G288029,dev,44,male,right,31-50,34.2
+G308390,dev,43,female,right,Over 50,31.5
+G349508,dev,41,male,right,Over 50,30.9
+G888295,dev,36,female,right,Under 10,28.7
+G751880,dev,45,male,right,10-30,
+G541957,dev,34,male,right,10-30,30.5
+G277531,dev,57,female,right,Under 10,
+G625336,dev,40,male,right,31-50,
+G412147,dev,44,female,left,10-30,
+G850360,dev,43,male,right,Under 10,
+G955706,dev,59,male,right,31-50,
+G993156,dev,52,female,right,Under 10,29.2
+G544417,dev,54,male,right,31-50,29.0
+G132159,dev,65,female,right,31-50,28.5
+G940034,dev,41,male,right,Over 50,
+G936696,dev,39,male,right,31-50,
+G155749,dev,52,male,right,Over 50,
+G420856,dev,33,female,right,31-50,
+G178701,dev,64,female,right,Under 10,
+G250391,dev,61,female,right,10-30,
+G442955,dev,48,male,right,10-30,31.4
+G339907,dev,52,male,right,31-50,31.2
+G540523,dev,18,male,right,31-50,31.0
+G378756,dev,64,male,right,Under 10,
+G542717,dev,44,male,right,10-30,28.3
+G928260,dev,41,male,left,31-50,
+G603952,dev,52,male,right,31-50,
+G357054,dev,63,male,right,Under 10,
+G898904,dev,40,male,right,Under 10,29.5
+G583717,dev,43,male,right,31-50,29.6
+G522335,dev,48,male,right,Over 50,30.5
+G383575,dev,48,male,right,Over 50,33.5
+G390189,dev,33,male,right,10-30,32.1
+G324472,dev,51,female,right,Over 50,
+G714613,dev,47,male,right,10-30,
+G857433,dev,72,female,right,31-50,33.0
+G257341,dev,73,female,right,10-30,32.5
+G941334,dev,39,male,right,31-50,
+G308655,dev,67,female,left,Over 50,29.7
+G546553,dev,46,male,right,Over 50,
+G471899,dev,73,male,right,Under 10,29.0
+G386050,dev,40,male,right,10-30,29.1
+G606826,dev,47,female,right,10-30,
+G416503,dev,34,male,right,10-30,32.5
+G222900,dev,67,male,right,Over 50,27.7
+G956614,dev,48,male,right,10-30,32.3
+G869016,dev,40,female,right,31-50,
+G165874,dev,57,female,right,31-50,
+G266378,dev,68,male,right,31-50,
+G513845,dev,51,male,right,31-50,
+G489794,dev,57,male,right,Over 50,33.7
+G693058,dev,52,male,right,10-30,
+G184278,dev,54,male,right,31-50,34.1
+G382702,dev,54,female,right,31-50,
+G521138,dev,64,male,right,Under 10,
+G283635,dev,35,male,left,Over 50,
+G691430,dev,46,male,left,Over 50,
+G728551,dev,62,female,right,Under 10,
+G920219,dev,56,male,right,10-30,29.4
+G246763,dev,60,female,right,Over 50,29.9
+G834100,dev,43,male,right,Over 50,
+G884196,dev,54,male,right,31-50,
+G403579,dev,38,female,right,31-50,
+G448844,dev,40,male,right,Under 10,
+G809933,dev,69,male,right,Under 10,
+G907416,dev,43,female,right,Over 50,
+G925029,dev,60,female,right,Over 50,
+G523371,dev,39,male,right,10-30,
+G105882,dev,71,male,right,10-30,
+G546932,dev,56,female,left,Over 50,30.9
+G188351,dev,38,male,right,31-50,
+G662219,dev,58,male,right,10-30,
+G869806,dev,49,male,right,Under 10,
+G514548,dev,58,female,right,Over 50,
+G492149,dev,48,male,right,10-30,29.8
+G962949,dev,59,male,left,31-50,31.2
+G345567,dev,62,male,left,31-50,
+G411226,dev,72,male,right,31-50,
+G607184,dev,51,male,right,31-50,
+G440547,dev,49,male,right,31-50,
+G223013,dev,63,female,right,Over 50,31.9
+G343352,dev,61,male,right,31-50,28.6
+G142588,dev,64,male,right,Over 50,
+G902246,dev,38,female,right,Over 50,32.0
+G421732,dev,48,male,right,31-50,31.4
+G537261,dev,39,male,right,10-30,28.8
+G463120,dev,47,female,right,Under 10,
+G503062,dev,47,male,right,10-30,
+G894221,dev,24,male,right,Over 50,
+G802234,dev,33,male,right,Over 50,
+G512287,dev,18,male,right,10-30,
+G811498,dev,57,female,right,Over 50,
+G431451,dev,59,male,right,31-50,
+G977529,dev,31,female,right,Over 50,
+G201689,dev,40,male,right,Under 10,32.8
+G186118,dev,75,male,right,31-50,
+G268152,dev,50,male,right,31-50,
+G541559,dev,30,male,right,Over 50,
+G217674,dev,47,female,right,Over 50,30.4
+G328276,dev,52,male,right,31-50,
+G346406,dev,58,male,right,Over 50,
+G819397,dev,59,male,right,31-50,31.3
+G529298,dev,61,female,left,Over 50,31.0
+G288236,dev,49,male,right,10-30,31.7
+G502527,dev,36,male,right,Over 50,31.2
+G330166,dev,57,male,right,Under 10,32.1
+G616319,dev,29,female,right,31-50,
+G827681,dev,42,female,right,31-50,
+G438869,dev,66,female,right,Under 10,
+G550723,dev,40,male,right,Over 50,
+G656317,dev,22,female,right,Over 50,30.4
+G889511,dev,36,male,right,10-30,
+G315979,dev,34,male,left,31-50,
+G143886,dev,57,male,right,Over 50,31.1
+G642243,dev,56,female,right,31-50,32.3
+G384994,dev,49,female,right,Over 50,
+G305483,dev,34,male,right,31-50,
+G655901,dev,30,female,right,31-50,29.1
+G608332,dev,50,male,right,31-50,32.4
+G671955,dev,44,male,right,Over 50,
+G412229,dev,66,male,right,10-30,
+G544034,dev,33,female,right,Under 10,
+G425230,dev,50,female,right,10-30,29.5
+G400209,dev,59,male,right,Under 10,28.8
+G801792,dev,58,male,right,Under 10,
+G572705,dev,85,male,right,Under 10,
+G853099,dev,55,female,right,Under 10,31.7
+G168292,dev,52,male,right,31-50,31.2
+G728369,dev,65,male,right,31-50,29.5
+G968127,dev,54,male,right,31-50,
+G105439,dev,66,female,right,31-50,
+G514592,dev,53,male,right,10-30,
+G979425,dev,51,male,right,31-50,33.2
+G546933,dev,39,female,right,10-30,
+G801919,dev,72,male,right,10-30,
+G642446,dev,52,female,left,31-50,
+G754152,dev,54,male,right,10-30,30.4
+G311757,dev,45,male,right,Over 50,
+G770783,dev,50,male,right,31-50,
+G130988,dev,27,male,right,10-30,
+G856908,dev,44,male,right,10-30,
+G932440,dev,62,female,right,Under 10,32.4
+G245313,dev,52,male,right,Over 50,
+G455701,dev,57,male,right,Under 10,
+G753887,dev,18,male,right,10-30,
+G651217,dev,31,male,right,Under 10,32.8
+G974009,dev,49,male,right,31-50,
+G666543,dev,38,male,right,Under 10,
+G646286,dev,39,male,right,31-50,29.2
+G979322,dev,48,female,right,31-50,31.9
+G874184,dev,55,male,right,Over 50,33.8
+G459241,dev,20,male,right,10-30,
+G473563,dev,36,male,right,31-50,29.9
+G315992,dev,53,male,right,Over 50,
+G403075,dev,54,male,right,Over 50,
+G912042,dev,35,male,right,10-30,
+G407856,dev,52,male,right,Under 10,
+G876457,dev,47,male,right,31-50,
+G675535,dev,41,male,left,Over 50,31.4
+G399170,dev,35,male,right,10-30,
+G463081,dev,36,male,right,Under 10,
+G952472,dev,43,male,right,Under 10,30.5
+G637006,dev,53,male,right,10-30,
+G918299,dev,46,male,right,Under 10,30.6
+G600776,dev,46,male,right,Over 50,
+G879907,dev,61,female,right,31-50,
+G566249,dev,42,male,right,10-30,
+G968577,dev,28,male,right,Under 10,
+G432591,dev,42,female,right,10-30,
+G871053,dev,45,male,right,10-30,32.2
+G418210,dev,35,male,right,Over 50,34.8
+G243978,dev,32,male,right,31-50,31.9
+G667498,dev,61,male,right,10-30,29.7
+G329262,dev,20,male,right,10-30,30.5
+G432128,dev,50,male,right,Over 50,
+G894571,dev,30,male,right,10-30,
+G980065,dev,44,male,right,10-30,
+G485210,dev,48,female,right,31-50,29.6
+G424401,dev,35,male,right,31-50,
+G565483,dev,60,male,right,Over 50,
+G327726,dev,63,male,right,Under 10,
+G137438,dev,38,female,right,10-30,31.6
+G403690,dev,60,male,right,10-30,
+G826419,dev,73,male,right,Over 50,
+G370841,dev,55,male,right,10-30,
+G979621,dev,39,male,right,10-30,31.0
+G744155,dev,24,male,right,10-30,31.9
+G513776,dev,55,male,right,10-30,
+G458223,dev,44,female,right,10-30,
+G610594,dev,46,male,left,Under 10,
+G145101,dev,71,male,right,10-30,
+G642776,dev,53,male,right,31-50,
+G236579,dev,29,male,left,Over 50,
+G473702,dev,27,female,right,31-50,
+G578106,dev,49,male,right,31-50,28.1
+G522862,dev,64,male,right,Under 10,30.6
+G335705,dev,54,male,right,31-50,35.2
+G757958,dev,32,male,right,10-30,
+G754887,dev,51,male,right,10-30,30.1
+G184939,dev,66,male,right,Over 50,
+G739241,dev,57,female,right,Over 50,31.3
+G362443,dev,55,female,right,10-30,
+G609870,dev,50,male,left,10-30,
+G550136,dev,47,male,right,Over 50,
+G763786,dev,72,male,left,31-50,
+G943342,dev,33,male,left,Under 10,27.8
+G877613,dev,34,female,right,10-30,
+G347363,dev,50,male,right,Under 10,33.8
+G678790,dev,45,male,right,10-30,
+G698054,dev,76,male,right,10-30,
+G254207,dev,33,male,right,10-30,
+G539068,dev,24,male,right,Under 10,29.7
+G873620,dev,41,male,left,10-30,
+G593790,dev,59,male,left,Under 10,
+G238946,dev,55,female,right,10-30,
+G643439,dev,40,male,left,Under 10,
+G787064,dev,44,male,right,Over 50,
+G676223,dev,45,male,right,Over 50,
+G339209,dev,57,female,right,Under 10,
+G397460,dev,41,male,right,31-50,
+G923842,dev,66,male,right,31-50,
+G894652,dev,34,male,right,31-50,
+G244440,dev,84,male,right,Under 10,30.2
+G282690,dev,57,male,right,10-30,
+G301970,dev,32,female,right,Under 10,
+G915024,dev,53,female,right,Under 10,30.4
+G218301,dev,55,male,right,31-50,
+G607135,dev,55,male,right,10-30,
+G635152,dev,36,male,right,Under 10,
+G904169,dev,52,male,right,Under 10,28.7
+G449262,dev,41,male,right,10-30,
+G910602,dev,29,female,right,Over 50,31.0
+G928042,dev,50,male,right,31-50,32.5
+G404285,dev,68,male,right,31-50,31.5
+G644071,dev,28,female,right,31-50,
+G921125,dev,32,male,left,Over 50,
+G322088,dev,62,female,right,Over 50,
+G279377,dev,29,male,right,Over 50,31.1
+G383826,dev,49,male,right,10-30,
+G601559,dev,54,female,right,Under 10,31.1
+G755585,dev,49,male,left,31-50,
+G544924,dev,63,male,right,Under 10,34.2
+G747973,dev,54,female,right,31-50,
+G900067,dev,56,male,right,Over 50,
+G449053,dev,48,female,right,Over 50,
+G980991,dev,39,male,right,Over 50,31.7
+G247669,dev,40,male,right,10-30,
+G155686,dev,56,female,right,Under 10,
+G998479,dev,63,male,right,Over 50,29.2
+G183231,dev,44,female,right,Under 10,
+G719126,dev,26,male,right,Under 10,
+G271727,dev,53,female,right,Over 50,
+G224994,dev,27,male,right,10-30,
+G384408,dev,42,male,left,10-30,
+G178737,dev,65,female,right,Over 50,29.2
+G217789,dev,42,female,right,Over 50,28.7
+G598025,dev,61,male,right,Under 10,32.6
+G755600,dev,51,male,right,31-50,28.7
+G906728,dev,67,male,right,31-50,32.2
+G852439,dev,20,male,right,10-30,
+G143016,dev,30,male,right,Over 50,
+G213940,dev,54,male,right,10-30,
+G523433,dev,55,male,right,Over 50,28.9
+G977348,dev,52,male,right,Under 10,30.6
+G773953,dev,25,male,right,Under 10,32.1
+G749596,dev,64,male,left,31-50,
+G706968,dev,63,male,right,Over 50,31.4
+G803239,dev,53,male,right,31-50,
+G243645,dev,53,male,right,10-30,29.3
+G333111,dev,59,male,right,10-30,
+G808356,dev,42,male,right,10-30,
+G513323,dev,30,male,right,31-50,
+G499484,dev,64,male,right,10-30,29.9
+G405535,dev,26,female,right,31-50,
+G413097,dev,50,female,left,Under 10,29.3
+G731172,dev,57,male,right,31-50,
+G221082,dev,56,male,right,31-50,31.3
+G720837,dev,28,male,right,Under 10,33.6
+G507767,dev,45,male,right,Under 10,
+G258528,dev,71,male,right,10-30,
+G153817,dev,42,male,right,Over 50,32.0
+G295281,dev,45,female,right,Under 10,
+G641962,dev,44,male,right,10-30,
+G959017,dev,58,male,right,Over 50,
+G958767,dev,67,male,right,31-50,
+G712860,dev,39,male,right,10-30,
+G245656,dev,37,female,right,Over 50,
+G853362,dev,27,male,right,Under 10,
+G884954,dev,37,male,right,31-50,
+G392578,dev,26,male,right,Under 10,
+G605905,dev,43,male,right,Over 50,30.1
+G741258,dev,51,male,right,Under 10,
+G774925,dev,40,male,right,10-30,
+G337637,dev,56,male,right,10-30,30.2
+G115736,dev,49,female,right,Under 10,
+G612617,dev,43,male,right,Under 10,31.2
+G232430,dev,26,male,right,31-50,
+G511297,dev,44,male,right,Over 50,
+G908024,dev,37,male,right,Over 50,
+G764743,dev,72,male,right,Under 10,
+G528246,dev,33,male,right,Over 50,
+G790003,dev,62,male,left,Under 10,
+G569547,dev,41,female,right,31-50,31.9
+G337308,dev,35,male,right,Under 10,33.1
+G519135,dev,47,male,left,31-50,
+G930723,dev,45,female,right,31-50,
+G445233,dev,64,female,right,Under 10,
+G776172,dev,56,male,right,Over 50,32.9
+G749389,dev,53,female,right,31-50,
+G508735,dev,31,female,right,Over 50,
+G356830,dev,28,female,right,10-30,34.8
+G313607,dev,41,male,right,10-30,
+G234015,dev,48,male,right,Under 10,30.5
+G917509,dev,52,male,right,31-50,
+G349619,dev,61,female,left,Under 10,
+G757216,dev,62,male,right,Under 10,
+G894153,dev,71,male,right,Over 50,
+G471895,dev,54,male,right,31-50,
+G931543,dev,35,male,right,10-30,31.6
+G373620,dev,30,male,left,31-50,
+G947637,dev,61,male,right,Under 10,
+G370985,dev,29,male,right,31-50,30.3
+G663368,dev,45,male,right,Over 50,
+G578528,dev,49,female,right,10-30,30.4
+G907252,dev,67,male,right,31-50,30.1
+G900484,dev,68,female,right,10-30,
+G239536,dev,30,male,right,31-50,31.8
+G854103,dev,51,female,right,Over 50,31.8
+G514971,dev,58,male,left,10-30,29.7
+G884878,dev,71,male,right,Over 50,
+G370154,dev,60,male,right,31-50,
+G890297,dev,50,female,right,Under 10,32.2
+G432070,dev,62,female,right,Under 10,
+G561773,dev,81,male,right,Under 10,
+G356050,dev,40,female,right,10-30,
+G874986,dev,31,male,right,Over 50,
+G169873,dev,42,male,right,Over 50,31.6
+G159272,dev,76,male,left,Under 10,
+G512552,dev,50,male,right,10-30,31.5
+G193649,dev,43,female,right,31-50,
+G744565,dev,51,male,right,Under 10,
+G502091,dev,58,male,right,Under 10,29.5
+G433510,dev,34,female,right,10-30,28.4
+G330647,dev,79,male,right,Under 10,27.4
+G681652,dev,63,male,right,Over 50,31.2
+G795206,dev,45,male,left,10-30,35.7
+G859429,dev,68,male,right,Over 50,28.3
+G306358,dev,53,male,right,10-30,
+G925276,dev,64,female,right,Over 50,
+G816723,dev,56,male,right,31-50,28.5
+G611470,dev,25,male,right,Under 10,27.1
+G295461,dev,51,female,right,Over 50,33.7
+G948215,dev,53,male,right,Over 50,30.1
+G916813,dev,55,male,right,10-30,
+G438777,dev,80,male,right,10-30,
+G427737,dev,62,male,right,31-50,31.1
+G408123,dev,75,male,right,10-30,
+G852325,dev,27,male,right,Over 50,32.6
+G136857,dev,65,female,left,31-50,
+G704783,dev,58,female,right,Over 50,33.2
+G962351,dev,47,female,right,31-50,
+G114917,dev,85,female,right,10-30,
+G403453,dev,64,male,right,31-50,
+G167243,dev,57,female,right,Under 10,
+G191520,dev,56,male,left,10-30,
+G678110,dev,51,female,right,31-50,33.8
+G998242,dev,50,female,right,10-30,
+G837308,dev,32,female,right,Over 50,
+G336500,dev,44,male,right,31-50,
+G100796,dev,36,male,right,Over 50,
+G740894,dev,35,male,right,Over 50,
+G317918,dev,64,female,right,10-30,
+G706042,dev,43,female,right,31-50,27.3
+G164696,dev,66,male,right,31-50,32.4
+G344832,dev,61,female,right,Under 10,33.8
+G109764,dev,69,male,right,10-30,28.7
+G907757,dev,46,male,right,Under 10,
+G837121,dev,72,male,right,Under 10,
+G957240,dev,49,female,right,10-30,29.8
+G911256,dev,74,male,right,Under 10,30.4
+G526831,dev,50,male,right,10-30,31.2
+G434739,dev,35,female,right,10-30,
+G875004,dev,59,female,right,31-50,34.0
+G912571,dev,42,male,right,10-30,31.1
+G335044,dev,51,female,right,Under 10,
+G986041,dev,45,female,right,31-50,
+G368647,dev,62,male,right,31-50,
+G993875,dev,67,male,right,31-50,
+G751110,dev,58,male,right,Over 50,
+G238284,dev,42,male,left,Over 50,
+G849269,dev,42,male,right,10-30,
+G250046,dev,55,female,right,Under 10,
+G614755,dev,36,male,right,10-30,
+G298883,dev,45,male,right,10-30,
+G323344,dev,56,male,right,Under 10,31.0
+G137931,dev,63,male,right,31-50,
+G312737,dev,57,male,right,Under 10,
+G175190,dev,31,male,right,Over 50,
+G668903,dev,81,male,left,Over 50,31.1
+G847231,dev,37,male,right,31-50,
+G410853,dev,47,female,right,10-30,30.0
+G369840,dev,50,male,right,31-50,31.9
+G471871,dev,53,male,right,Over 50,31.3
+G742340,dev,42,male,right,Over 50,
+G544155,dev,55,male,right,Under 10,
+G670628,dev,56,male,right,31-50,32.1
+G768894,dev,42,male,left,Under 10,
+G892217,dev,43,male,right,31-50,
+G255727,dev,85,male,right,31-50,32.9
+G599433,dev,50,female,right,Over 50,
+G310909,dev,72,male,right,Over 50,29.0
+G525330,dev,48,female,right,10-30,32.3
+G713506,dev,53,male,right,10-30,
+G975184,dev,43,female,right,Over 50,
+G189540,dev,63,male,right,10-30,29.7
+G562289,dev,33,male,right,10-30,
+G921085,dev,53,male,right,31-50,30.0
+G621457,dev,33,female,right,31-50,30.0
+G193671,dev,26,male,right,31-50,
+G189409,dev,30,male,right,31-50,
+G371206,dev,47,male,right,Over 50,29.9
+G167064,dev,85,male,right,31-50,
+G221558,dev,27,male,left,Under 10,31.4
+G108991,dev,49,male,left,10-30,
+G518004,dev,74,male,right,10-30,
+G251613,dev,27,male,right,10-30,33.2
+G642782,dev,43,female,left,31-50,
+G738417,dev,21,female,right,10-30,
+G544456,dev,47,male,right,31-50,31.0
+G767213,dev,30,male,right,Under 10,
+G810032,dev,45,male,right,Over 50,
+G994345,dev,40,male,right,Over 50,
+G294805,dev,48,female,right,10-30,
+G384081,dev,56,male,right,31-50,
+G235016,dev,59,male,right,Over 50,33.1
+G468041,dev,37,male,left,Over 50,31.4
+G948352,dev,45,male,right,Under 10,28.5
+G812782,dev,25,female,right,10-30,
+G705216,dev,28,male,right,10-30,
+G740416,dev,65,male,left,10-30,
+G999824,dev,46,male,right,31-50,34.8
+G307089,dev,54,male,right,10-30,
+G514959,dev,44,male,right,Under 10,
+G925517,dev,57,male,right,Under 10,29.7
+G547416,dev,69,male,right,Under 10,
+G479611,dev,46,male,left,31-50,
+G522011,dev,46,female,right,10-30,29.5
+G671010,dev,61,female,right,31-50,
+G321560,dev,55,male,right,31-50,
+G764152,dev,34,male,right,Under 10,
+G608342,dev,82,male,right,31-50,
+G726376,dev,49,male,right,31-50,
+G563309,dev,68,female,right,31-50,
+G740902,dev,20,male,right,Under 10,
+G439140,dev,53,male,right,31-50,
+G231066,dev,19,male,right,31-50,
+G827415,dev,44,male,right,10-30,
+G160065,dev,47,male,right,31-50,
+G253758,dev,18,female,right,Over 50,
+G198495,dev,72,female,right,10-30,31.6
+G144346,dev,38,male,right,Over 50,32.9
+G413320,dev,39,male,right,31-50,
+G654187,dev,59,male,right,31-50,
+G111833,dev,32,male,left,Under 10,
+G843755,dev,39,male,right,Under 10,
+G176879,dev,32,male,right,Over 50,29.6
+G451732,dev,43,male,right,Over 50,29.5
+G971111,dev,30,male,right,31-50,
+G870553,dev,24,male,right,Over 50,28.8
+G946228,dev,30,male,right,Over 50,
+G901512,dev,61,male,right,10-30,
+G790854,dev,49,male,right,31-50,31.9
+G932409,dev,50,female,right,31-50,
+G693045,dev,34,male,right,10-30,
+G445249,dev,32,male,right,31-50,32.0
+G412778,dev,51,male,right,31-50,32.9
+G545449,dev,56,male,right,Under 10,
+G943312,dev,80,male,right,Under 10,
+G556370,dev,69,male,left,Over 50,
+G901798,dev,39,male,right,Over 50,30.4
+G707435,dev,50,male,left,Over 50,34.3
+G175655,dev,49,female,right,31-50,
+G396013,dev,41,male,right,Under 10,30.2
+G223371,dev,65,male,right,Under 10,
+G252770,dev,54,female,right,10-30,
+G913600,dev,57,female,left,31-50,
+G546607,dev,60,female,right,31-50,32.9
+G587605,dev,73,female,right,Under 10,
+G443265,dev,61,male,left,Under 10,32.7
+G951747,dev,43,male,right,31-50,
+G759109,dev,62,female,right,10-30,
+G266328,dev,58,female,right,Under 10,
+G735082,dev,55,male,right,Over 50,
+G637626,dev,39,female,left,Over 50,
+G701777,dev,70,female,right,31-50,
+G210799,dev,47,male,right,10-30,
+G890600,dev,44,male,right,Under 10,
+G262904,dev,84,male,right,Over 50,
+G116270,dev,42,male,right,10-30,
+G155237,dev,84,male,right,10-30,
+G218665,dev,44,male,left,Over 50,
+G431417,dev,37,male,right,Over 50,
+G801544,dev,69,female,right,Under 10,
+G162825,dev,31,male,right,31-50,30.4
+G598447,dev,50,male,right,10-30,
+G145852,dev,46,female,left,10-30,
+G711606,dev,34,male,right,10-30,
+G515798,dev,41,female,right,31-50,
+G165595,dev,51,female,right,Under 10,
+G473658,dev,55,female,right,Over 50,
+G877832,dev,31,male,right,31-50,31.4
+G438459,dev,54,male,right,10-30,
+G260566,dev,60,male,right,Under 10,
+G695426,dev,36,male,right,Under 10,
+G508332,dev,28,male,right,31-50,
+G942787,dev,42,male,right,Over 50,
+G595056,dev,55,male,right,31-50,
+G674278,dev,35,male,right,10-30,
+G742533,dev,46,male,right,Over 50,
+G138602,dev,35,male,right,Under 10,
+G864067,dev,56,male,right,Over 50,30.1
+G680926,dev,37,female,right,10-30,
+G548126,dev,59,male,right,Over 50,
+G534458,dev,48,male,right,Under 10,
+G702732,dev,49,male,right,Over 50,
+G693725,dev,42,male,left,31-50,
+G537540,dev,60,male,right,Over 50,
+G987846,dev,52,male,right,10-30,
+G140607,dev,75,male,right,Under 10,
+G400406,dev,37,female,right,Under 10,
+G371563,dev,28,female,right,31-50,31.7
+G125272,dev,84,female,right,Under 10,
+G206466,dev,71,male,right,Over 50,
+G801359,dev,49,male,right,31-50,
+G545195,dev,70,female,right,Over 50,
+G887882,dev,46,female,right,Over 50,
+G167855,dev,66,male,right,31-50,28.2
+G840279,dev,33,male,right,Over 50,
+G123137,dev,30,male,right,10-30,
+G555908,dev,48,male,right,10-30,28.5
+G604816,dev,59,male,right,31-50,29.3
+G140722,dev,60,male,right,Under 10,34.4
+G689297,dev,38,male,right,Under 10,
+G855901,dev,65,male,right,31-50,
+G957378,dev,53,male,right,Over 50,
+G915154,dev,47,male,right,10-30,
+G940063,dev,64,male,right,10-30,30.4
+G949871,dev,56,male,right,Under 10,
+G793671,dev,44,male,right,31-50,
+G942676,dev,55,male,right,31-50,
+G411152,dev,67,male,right,31-50,
+G997194,dev,49,male,right,Over 50,
+G950482,dev,73,female,right,Over 50,34.2
+G615081,dev,51,female,left,Over 50,
+G350338,dev,58,male,right,Over 50,32.0
+G154720,dev,68,male,right,31-50,
+G358238,dev,57,male,left,Over 50,
+G903102,dev,25,male,right,31-50,
+G752593,dev,71,male,right,Over 50,34.0
+G568035,dev,18,male,right,Over 50,29.9
+G358115,dev,59,male,left,10-30,
+G677199,dev,33,female,right,10-30,
+G411716,dev,55,male,right,10-30,
+G659762,dev,49,male,right,10-30,30.9
+G178422,dev,38,male,right,31-50,
+G672859,dev,41,male,right,Under 10,27.0
+G191680,dev,45,male,right,10-30,
+G625786,dev,77,male,right,Under 10,33.8
+G251046,dev,48,male,right,Under 10,
+G988682,dev,55,female,right,Over 50,
+G841163,dev,43,male,right,10-30,
+G123984,dev,62,male,right,10-30,30.3
+G935839,dev,68,female,right,31-50,32.9
+G717869,dev,57,male,right,Over 50,
+G330208,dev,56,male,right,31-50,
+G447401,dev,71,male,right,31-50,30.4
+G475929,dev,51,male,right,Over 50,
+G427683,dev,47,male,right,31-50,
+G789854,dev,58,male,right,Over 50,
+G125897,dev,28,male,left,10-30,33.6
+G437218,dev,57,female,right,Under 10,
+G901543,dev,32,male,right,10-30,
+G677612,dev,48,male,right,31-50,
+G659908,dev,24,female,right,Under 10,
+G943729,dev,36,male,right,31-50,
+G353765,dev,36,male,right,Under 10,
+G414914,dev,71,female,right,Over 50,
+G442025,dev,38,male,right,10-30,
+G311458,dev,42,female,right,Over 50,
+G160697,dev,41,female,right,10-30,
+G491521,dev,42,male,right,31-50,
+G872404,dev,62,male,right,Under 10,
+G167785,dev,49,male,right,31-50,33.1
+G827821,dev,25,male,right,10-30,
+G561208,dev,70,female,right,10-30,32.3
+G742574,dev,28,male,right,10-30,
+G153326,dev,68,male,right,31-50,
+G239562,dev,58,male,right,31-50,32.1
+G454586,dev,60,female,left,Under 10,
+G773510,dev,63,male,right,10-30,
+G607191,dev,59,male,right,10-30,
+G991095,dev,54,female,right,Under 10,
+G659987,dev,38,female,right,10-30,32.7
+G680607,dev,63,male,left,31-50,
+G378105,dev,67,male,right,Under 10,
+G418370,dev,49,male,right,Under 10,
+G720190,dev,50,female,right,Over 50,
+G767940,dev,85,male,right,10-30,30.1
+G780552,dev,29,male,right,31-50,
+G122476,dev,40,male,right,Under 10,
+G903636,dev,44,male,right,Over 50,
+G681758,dev,43,female,left,Over 50,29.5
+G283455,dev,51,female,right,Over 50,30.9
+G207075,dev,68,male,right,Under 10,30.4
+G884728,dev,70,male,right,10-30,
+G248847,dev,85,male,right,Over 50,30.4
+G336123,dev,49,male,right,Over 50,
+G115855,dev,51,male,right,Over 50,
+G491559,dev,39,female,right,31-50,
+G206199,dev,43,female,right,Over 50,
+G628625,dev,64,female,right,Over 50,
+G728001,dev,81,male,right,Under 10,
+G853043,dev,47,male,right,Under 10,
+G663311,dev,65,male,right,31-50,
+G172903,dev,50,male,right,10-30,31.4
+G476838,dev,47,male,right,10-30,
+G622626,dev,30,male,right,Under 10,30.2
+G950164,dev,65,female,left,10-30,
+G897896,dev,37,male,right,Under 10,30.9
+G581446,dev,57,female,right,Under 10,33.6
+G880360,dev,38,male,right,Under 10,
+G637083,dev,18,male,right,31-50,34.7
+G932455,dev,36,male,right,10-30,
+G784871,dev,65,male,right,Over 50,
+G649283,dev,62,male,right,10-30,35.1
+G324385,dev,37,male,right,10-30,
+G674654,dev,61,female,right,Over 50,
+G923855,dev,48,female,right,Over 50,
+G662118,dev,63,male,right,31-50,
+G863546,dev,22,male,left,Over 50,
+G160091,dev,67,male,right,Under 10,29.0
+G407054,dev,53,male,left,31-50,
+G579983,dev,69,male,right,Over 50,
+G593279,dev,54,male,right,31-50,32.9
+G358173,dev,38,male,right,10-30,
+G334699,dev,57,male,right,31-50,31.3
+G784107,dev,59,male,right,Over 50,
+G785719,dev,81,male,right,31-50,
+G302652,dev,36,male,right,10-30,
+G822512,dev,71,male,right,Under 10,31.1
+G413116,dev,44,female,right,10-30,
+G491416,dev,39,male,right,10-30,
+G798346,dev,42,male,right,Over 50,
+G124755,dev,44,male,right,Over 50,
+G531278,dev,70,male,right,10-30,
+G416856,dev,42,male,right,31-50,
+G405637,dev,57,male,right,10-30,
+G921452,dev,63,male,right,31-50,
+G851337,dev,66,female,right,Over 50,
+G811736,dev,54,male,right,31-50,29.8
+G505532,dev,63,female,right,Over 50,
+G692630,dev,78,female,right,Over 50,31.4
+G158709,dev,35,male,right,10-30,
+G820624,dev,36,female,right,10-30,
+G548840,dev,69,male,right,Under 10,
+G863896,dev,52,male,right,Under 10,
+G585561,dev,57,male,left,10-30,31.1
+G487982,dev,34,female,right,10-30,31.2
+G861436,dev,76,male,right,Over 50,31.6
+G113611,dev,81,female,left,Under 10,
+G930732,dev,65,male,right,10-30,33.4
+G604886,dev,23,male,right,10-30,
+G570122,dev,32,female,right,Under 10,
+G836491,dev,45,male,right,10-30,
+G235723,dev,39,female,right,10-30,31.4
+G785422,dev,68,female,left,31-50,31.1
+G863713,dev,56,male,right,10-30,27.0
+G286478,dev,85,male,right,31-50,
+G720761,dev,43,female,right,Under 10,
+G173804,dev,62,female,right,31-50,
+G326669,dev,44,male,right,31-50,
+G708723,dev,45,female,right,10-30,
+G596148,dev,23,male,right,31-50,33.0
+G798072,dev,61,female,right,Over 50,
+G377872,dev,34,male,right,Under 10,31.6
+G633389,dev,38,male,left,Over 50,
+G315960,dev,50,male,right,Over 50,
+G864975,dev,67,male,right,Under 10,31.3
+G418915,dev,47,female,left,10-30,
+G388580,dev,47,male,right,Under 10,
+G826287,dev,54,male,right,31-50,
+G244630,dev,75,male,left,Under 10,
+G386428,dev,65,male,right,Under 10,33.3
+G698893,dev,23,male,right,Over 50,
+G404743,dev,18,male,right,Over 50,
+G615696,dev,57,male,right,31-50,
+G174683,dev,50,female,right,Under 10,
+G928278,dev,34,male,right,Over 50,32.8
+G853771,dev,43,male,left,10-30,
+G928192,dev,64,male,right,Under 10,30.6
+G106885,dev,72,male,right,Over 50,
+G895267,dev,37,female,right,Under 10,
+G304028,dev,59,male,right,10-30,
+G517247,dev,74,female,right,Under 10,
+G817719,dev,51,male,right,Under 10,
+G616745,dev,53,male,right,10-30,
+G541672,dev,46,female,right,Over 50,
+G747093,dev,29,male,right,Over 50,28.6
+G660635,dev,60,male,right,31-50,32.1
+G806128,dev,41,male,right,10-30,
+G366137,dev,73,male,right,31-50,30.2
+G363764,dev,35,male,right,Under 10,
+G546205,dev,55,male,left,31-50,
+G849938,dev,28,male,right,10-30,29.7
+G919061,dev,61,female,right,10-30,
+G480574,dev,33,female,right,Over 50,
+G480652,dev,37,male,right,31-50,30.8
+G419376,dev,18,male,right,31-50,31.7
+G778411,dev,51,male,right,Under 10,
+G540449,dev,68,male,right,31-50,
+G838266,dev,39,male,right,31-50,
+G683399,dev,50,male,right,31-50,31.6
+G447888,dev,42,male,right,Under 10,
+G913204,dev,64,male,left,Over 50,31.4
+G413032,dev,55,male,left,31-50,
+G854381,dev,85,male,right,31-50,29.5
+G113372,dev,57,male,right,Under 10,
+G609370,dev,18,female,right,Under 10,
+G484131,dev,46,female,right,31-50,
+G527769,dev,40,male,right,Over 50,32.0
+G193296,dev,54,male,right,31-50,33.0
+G651347,dev,51,male,right,10-30,
+G667097,dev,33,female,right,31-50,
+G438019,dev,55,male,right,31-50,31.9
+G131126,dev,50,female,right,Under 10,
+G944764,dev,50,male,right,10-30,
+G401026,dev,64,male,right,31-50,
+G660063,dev,52,male,right,31-50,31.1
+G515682,dev,27,male,right,10-30,
+G665729,dev,54,male,right,10-30,
+G876688,dev,22,male,right,Under 10,
+G300658,dev,43,female,right,10-30,32.1
+G497147,dev,62,male,right,Over 50,
+G650855,dev,45,male,right,Over 50,
+G986781,dev,85,male,left,Over 50,
+G427665,dev,50,male,left,Under 10,33.5
+G195288,dev,65,male,right,10-30,
+G834273,dev,27,male,right,31-50,
+G430534,dev,46,male,right,31-50,
+G528248,dev,49,male,right,Under 10,28.3
+G756976,dev,48,female,right,Over 50,30.6
+G225372,dev,79,female,right,Over 50,33.5
+G550048,dev,38,male,right,Over 50,33.0
+G997995,dev,50,male,right,10-30,
+G456732,dev,52,male,right,Under 10,
+G610507,dev,29,male,right,10-30,
+G124505,dev,31,female,right,10-30,32.7
+G367487,dev,40,male,right,Under 10,
+G398865,dev,39,male,right,31-50,
+G797668,dev,64,female,right,31-50,31.7
+G429438,dev,34,male,right,10-30,29.1
+G540197,dev,32,male,right,Under 10,31.7
+G251244,dev,46,male,right,10-30,
+G467731,dev,83,male,right,10-30,
+G382171,dev,59,male,right,10-30,
+G620346,dev,56,male,right,Under 10,32.0
+G328817,dev,61,male,right,31-50,31.7
+G458658,dev,71,male,right,Over 50,31.8
+G290756,dev,52,female,right,Under 10,30.4
+G314597,dev,30,male,right,10-30,
+G436819,dev,39,female,right,Under 10,
+G580080,dev,52,male,right,31-50,
+G455681,dev,60,male,left,31-50,
+G294824,dev,44,male,right,10-30,
+G304631,dev,56,female,right,Over 50,33.7
+G357713,dev,44,male,right,10-30,
+G894389,dev,78,male,right,Under 10,
+G537910,dev,49,male,right,Over 50,30.3
+G697381,dev,71,female,right,31-50,
+G934424,dev,47,male,right,Under 10,31.6
+G695383,dev,50,male,right,31-50,31.9
+G801603,dev,47,male,right,10-30,29.6
+G957364,dev,47,male,right,31-50,
+G209307,dev,61,female,right,10-30,30.0
+G986647,dev,70,male,right,10-30,
+G374059,dev,67,male,left,Under 10,31.4
+G770645,dev,33,male,left,10-30,
+G803711,dev,47,female,left,Under 10,33.9
+G771056,dev,58,female,right,Under 10,
+G102743,dev,56,male,right,10-30,
+G386637,dev,61,male,right,Over 50,
+G983544,dev,58,male,right,Under 10,
+G397840,dev,29,male,right,31-50,35.2
+G299240,dev,55,male,right,31-50,
+G557089,dev,54,male,right,31-50,
+G655352,dev,45,female,right,31-50,32.7
+G958122,dev,23,female,left,Over 50,
+G548709,dev,48,male,right,31-50,
+G333923,dev,44,male,right,31-50,32.1
+G181244,dev,32,male,right,Over 50,
+G214252,dev,49,male,right,31-50,33.2
+G458059,dev,55,male,left,Over 50,
+G451372,dev,82,female,right,Over 50,29.5
+G983144,dev,36,female,right,31-50,
+G841594,dev,46,male,right,10-30,29.7
+G331470,dev,47,male,right,10-30,30.5
+G741024,dev,39,female,right,10-30,
+G708846,dev,43,male,right,Over 50,29.6
+G281801,dev,63,male,right,10-30,
+G931305,dev,55,female,right,31-50,
+G375118,dev,61,female,right,31-50,
+G646693,dev,23,male,right,10-30,
+G394070,dev,62,male,right,Under 10,
+G251728,dev,44,male,right,31-50,
+G384202,dev,59,male,right,10-30,
+G702280,dev,50,male,right,10-30,
+G748178,dev,63,male,right,Under 10,
+G420323,dev,63,female,right,Over 50,
+G670607,dev,45,male,right,Over 50,32.1
+G235342,dev,57,male,right,Over 50,
+G907372,dev,23,male,right,31-50,
+G315588,dev,26,male,right,10-30,33.4
+G426312,dev,40,male,right,31-50,
+G608239,dev,33,male,right,10-30,
+G115388,dev,28,male,right,31-50,
+G213140,dev,34,male,right,31-50,
+G450644,dev,48,female,right,31-50,
+G379866,dev,61,male,right,Under 10,
+G215692,dev,52,male,right,10-30,29.1
+G624730,dev,56,male,right,Over 50,33.2
+G876034,dev,65,male,right,31-50,
+G384517,dev,45,male,right,10-30,31.7
+G885993,dev,77,male,right,31-50,
+G189086,dev,52,male,right,Under 10,
+G426428,dev,34,female,right,Under 10,
+G949653,dev,50,male,right,Under 10,32.3
+G228370,dev,65,female,right,Under 10,29.2
+G468229,dev,39,male,right,Over 50,
+G345667,dev,58,female,right,Over 50,
+G421276,dev,54,female,right,10-30,
+G207894,dev,64,male,right,Over 50,
+G473823,dev,44,male,right,31-50,
+G686320,dev,47,male,left,Under 10,
+G782073,dev,31,male,right,31-50,
+G179760,dev,27,male,right,Under 10,
+G785342,dev,41,male,right,Over 50,
+G633208,dev,64,female,right,Under 10,
+G644765,dev,45,male,right,Over 50,
+G454240,dev,45,male,right,Under 10,31.2
+G607806,dev,60,male,right,Over 50,33.4
+G180433,dev,70,male,right,10-30,27.0
+G825112,dev,65,male,right,Under 10,
+G483618,dev,55,male,left,Under 10,
+G427721,dev,33,male,right,31-50,29.4
+G582586,dev,33,female,right,10-30,33.7
+G127243,dev,54,male,right,10-30,
+G999921,dev,64,male,right,10-30,31.5
+G871919,dev,48,male,right,10-30,33.2
+G164807,dev,31,male,right,31-50,28.1
+G198617,dev,57,male,right,10-30,32.8
+G424877,dev,63,male,right,Under 10,
+G781668,dev,51,male,right,Over 50,
+G698391,dev,54,male,right,Over 50,30.4
+G714314,dev,38,male,right,10-30,
+G368884,dev,51,male,right,Over 50,28.9
+G790682,dev,28,female,right,31-50,
+G488462,dev,62,male,right,31-50,
+G999684,dev,24,male,right,10-30,32.1
+G887305,dev,43,male,right,31-50,31.1
+G921758,dev,36,male,right,10-30,30.2
+G565053,dev,25,female,right,10-30,
+G702418,dev,18,male,right,Over 50,
+G973385,dev,55,male,right,10-30,
+G140866,dev,36,male,right,10-30,31.6
+G966610,dev,54,male,right,10-30,
+G106701,dev,37,male,right,Over 50,33.2
+G873407,dev,54,male,right,Under 10,
+G868302,dev,68,male,right,10-30,32.7
+G116971,dev,66,male,right,Over 50,
+G636700,dev,50,female,right,31-50,
+G830795,dev,52,male,right,Over 50,
+G285534,dev,46,male,right,Under 10,
+G861558,dev,53,female,right,Under 10,
+G746662,dev,30,male,right,31-50,
+G615260,dev,42,male,right,31-50,
+G264664,dev,46,male,right,Under 10,31.2
+G701855,dev,45,male,right,10-30,
+G634032,dev,44,male,right,10-30,
+G899464,dev,56,male,right,Under 10,
+G731599,dev,40,male,right,10-30,
+G241643,dev,41,male,right,10-30,
+G899754,dev,50,male,right,31-50,
+G559472,dev,26,male,right,31-50,
+G715718,dev,37,male,right,31-50,30.5
+G850910,dev,36,male,right,10-30,
+G814735,dev,60,male,right,10-30,
+G906597,dev,42,male,right,Under 10,
+G381405,dev,74,male,right,31-50,
+G868303,dev,46,male,right,31-50,
+G745262,dev,37,male,right,31-50,
+G499343,dev,33,male,right,Over 50,
+G448815,dev,51,female,right,Under 10,29.3
+G632772,dev,45,male,right,10-30,
+G261169,dev,54,male,right,Over 50,34.5
+G261210,dev,21,female,right,10-30,32.3
+G847237,dev,61,male,left,Under 10,32.4
+G915152,dev,42,male,right,31-50,34.1
+G963806,dev,67,male,right,Over 50,
+G776706,dev,49,male,right,31-50,
+G977001,dev,64,female,right,31-50,
+G386748,dev,37,female,right,Over 50,
+G453341,dev,37,male,right,10-30,
+G596224,dev,41,male,right,31-50,
+G341005,dev,35,male,left,10-30,
+G962488,dev,50,female,right,31-50,
+G684136,dev,48,female,right,31-50,32.3
+G766651,dev,46,male,right,Over 50,
+G217120,dev,64,female,right,31-50,
+G804292,dev,26,female,right,Under 10,30.0
+G770326,dev,32,male,right,10-30,
+G369075,dev,53,male,right,31-50,31.3
+G844278,dev,42,female,right,Over 50,
+G869744,dev,34,male,right,31-50,30.9
+G792092,dev,39,male,right,31-50,
+G377561,dev,57,male,right,31-50,
+G915754,dev,72,male,right,Over 50,32.4
+G843002,dev,57,female,right,10-30,
+G209316,dev,58,male,right,10-30,32.0
+G307198,dev,63,male,right,Under 10,
+G691449,dev,34,female,right,31-50,
+G232278,dev,41,male,right,31-50,
+G109738,dev,42,male,right,10-30,
+G203190,dev,59,male,right,Over 50,
+G708272,dev,59,male,right,Over 50,30.2
+G480668,dev,68,male,right,Under 10,
+G199137,dev,63,male,right,31-50,
+G637920,dev,54,male,right,Under 10,30.2
+G610947,dev,47,female,right,10-30,
+G726646,dev,64,male,right,31-50,
+G596092,dev,41,male,right,10-30,
+G251660,dev,53,male,right,Over 50,33.0
+G117245,dev,28,female,right,Over 50,
+G685171,dev,52,male,right,31-50,28.2
+G280498,dev,43,female,right,10-30,
+G149383,dev,69,female,right,Over 50,29.1
+G397394,dev,53,male,right,Over 50,
+G581897,dev,42,male,right,31-50,
+G739322,dev,38,female,right,31-50,
+G333460,dev,63,male,right,31-50,32.2
+G717174,dev,19,male,right,31-50,29.2
+G783345,dev,30,male,right,31-50,
+G935250,dev,58,male,right,Under 10,30.6
+G358857,dev,70,male,left,Over 50,31.7
+G367687,dev,56,male,right,Under 10,
+G399249,dev,44,male,right,10-30,
+G747253,dev,18,female,right,10-30,33.0
+G416172,dev,59,male,right,Under 10,
+G892183,dev,43,male,right,10-30,
+G628287,dev,41,female,right,31-50,
+G882614,dev,68,male,right,31-50,29.4
+G135581,dev,58,male,right,10-30,
+G207145,dev,43,male,right,Under 10,31.0
+G465601,dev,62,male,left,Under 10,
+G700550,dev,55,male,right,31-50,
+G886258,dev,63,female,right,Over 50,
+G813652,dev,66,male,right,Over 50,31.7
+G368814,dev,43,male,right,10-30,31.8
+G267579,dev,39,male,right,Over 50,
+G557701,dev,81,male,right,10-30,
+G895098,dev,35,male,right,Over 50,
+G989980,dev,53,male,right,Under 10,30.3
+G865944,dev,35,male,right,10-30,
+G542142,dev,55,male,left,31-50,29.9
+G430757,dev,75,male,right,31-50,
+G815104,dev,58,male,right,31-50,30.8
+G143063,dev,33,male,right,10-30,31.6
+G417746,dev,57,male,right,10-30,31.1
+G900916,dev,54,female,right,31-50,33.6
+G735159,dev,23,female,right,Over 50,
+G774872,dev,82,female,left,Over 50,32.6
+G561688,dev,54,male,right,Over 50,
+G218035,dev,40,male,left,Under 10,34.2
+G545729,dev,36,female,right,31-50,
+G185545,dev,29,female,right,Under 10,29.7
+G118836,dev,46,male,right,Over 50,
+G531741,dev,49,male,right,Under 10,30.2
+G711813,dev,45,male,right,Over 50,32.3
+G449924,dev,40,male,right,10-30,
+G267099,dev,48,male,right,10-30,
+G441342,dev,31,male,left,10-30,33.8
+G465836,dev,69,female,right,31-50,31.0
+G503496,dev,83,male,right,Under 10,
+G180080,dev,59,male,right,10-30,32.0
+G231993,dev,52,female,left,Under 10,31.7
+G407435,dev,41,male,right,31-50,
+G958747,dev,18,male,right,Under 10,
+G561047,dev,56,male,right,Under 10,30.4
+G416221,dev,33,male,right,10-30,28.2
+G641644,dev,51,female,right,Under 10,
+G409083,dev,43,male,right,Under 10,30.4
+G628655,dev,72,male,right,Over 50,
+G538456,dev,82,male,right,Under 10,
+G389929,dev,58,male,right,10-30,28.4
+G397579,dev,62,male,right,10-30,
+G567707,dev,55,male,right,31-50,
+G886695,dev,53,female,left,31-50,
+G607520,dev,45,female,right,31-50,
+G806231,dev,65,female,right,31-50,
+G673061,dev,31,male,right,Over 50,30.1
+G506095,dev,53,male,right,Over 50,
+G876123,dev,53,male,right,Under 10,31.0
+G301861,dev,31,male,right,31-50,
+G447148,dev,54,male,right,Over 50,29.9
+G824905,dev,62,male,right,31-50,
+G366020,dev,39,female,left,Under 10,
+G779664,dev,31,female,right,Over 50,
+G491713,dev,45,male,right,10-30,
+G512841,dev,76,female,right,31-50,
+G985994,dev,31,male,right,Over 50,
+G542946,dev,35,male,right,Under 10,
+G529730,dev,67,female,right,Under 10,
+G221901,dev,60,male,right,10-30,
+G937676,dev,49,male,right,Over 50,
+G725451,dev,23,male,right,Under 10,32.2
+G474919,dev,65,female,right,10-30,30.0
+G575813,dev,63,male,right,Over 50,
+G688189,dev,63,male,right,10-30,29.5
+G123901,dev,69,male,right,31-50,34.3
+G223838,dev,66,male,right,Over 50,
+G656145,dev,58,male,left,10-30,
+G854143,dev,54,female,right,10-30,
+G558154,dev,47,male,left,31-50,
+G416572,dev,29,male,right,10-30,31.6
+G361273,dev,46,male,right,Under 10,32.7
+G173321,dev,50,male,right,31-50,
+G427684,dev,65,female,right,Over 50,
+G281635,dev,59,male,right,Under 10,28.3
+G312339,dev,57,male,right,10-30,
+G336775,dev,53,female,left,Under 10,30.2
+G223621,dev,57,male,right,31-50,33.3
+G162160,dev,18,female,right,Under 10,
+G998289,dev,54,male,right,Over 50,31.7
+G383320,dev,53,male,right,Under 10,
+G518441,dev,54,male,left,Under 10,
+G729439,dev,42,male,right,Under 10,
+G245502,dev,47,male,left,31-50,30.8
+G143320,dev,79,female,right,Under 10,34.2
+G391453,dev,35,female,right,Under 10,
+G512728,dev,65,male,right,Over 50,
+G327110,dev,43,male,right,10-30,27.0
+G896849,dev,52,female,right,Over 50,28.8
+G869394,dev,41,male,right,Over 50,
+G277572,dev,62,male,right,Under 10,
+G536212,dev,35,male,right,31-50,
+G715899,dev,66,male,right,10-30,
+G277898,dev,60,male,right,Over 50,
+G209718,dev,55,male,right,Over 50,
+G863330,dev,67,male,right,Over 50,
+G585131,dev,73,male,right,Under 10,
+G365891,dev,44,male,right,10-30,
+G655198,dev,62,male,right,Over 50,
+G747009,dev,60,male,right,Over 50,
+G975886,dev,59,female,right,31-50,
+G662049,dev,74,female,right,10-30,
+G903527,dev,58,male,right,31-50,
+G811446,dev,55,male,right,10-30,
+G588672,dev,59,male,right,31-50,
+G972793,dev,42,male,right,31-50,
+G500629,dev,52,female,right,Under 10,30.2
+G882134,dev,50,male,right,10-30,
+G230181,dev,50,male,right,Under 10,
+G330377,dev,58,male,right,10-30,
+G282213,dev,56,female,right,10-30,31.7
+G775439,dev,51,male,right,Over 50,
+G650049,dev,31,female,right,Over 50,
+G464385,dev,66,male,right,31-50,
+G784899,dev,73,male,right,31-50,31.8
+G690307,dev,56,male,right,Over 50,27.3
+G881347,dev,71,male,right,Over 50,
+G472364,dev,52,male,right,10-30,
+G346262,dev,62,male,right,10-30,
+G359166,dev,34,male,right,10-30,31.5
+G746525,dev,45,male,right,Under 10,31.9
+G530275,dev,48,male,right,31-50,
+G404597,dev,29,male,right,10-30,
+G865174,dev,57,female,right,31-50,32.0
+G112227,dev,60,male,right,31-50,
+G599093,dev,31,male,right,31-50,
+G992991,dev,25,female,right,31-50,
+G804568,dev,40,male,right,31-50,
+G932975,dev,56,male,right,31-50,
+G882711,dev,47,male,left,31-50,
+G827871,dev,18,male,right,Under 10,
+G575242,dev,52,male,right,31-50,
+G682675,dev,47,male,right,Over 50,31.2
+G584082,dev,83,female,right,Under 10,
+G855412,dev,50,male,right,Over 50,
+G617951,dev,62,male,right,Over 50,28.7
+G377166,dev,49,male,right,Under 10,
+G378649,dev,82,male,right,Over 50,
+G320994,dev,61,female,right,Over 50,
+G254589,dev,42,male,right,10-30,
+G509544,dev,65,male,right,Over 50,31.4
+G250281,dev,33,male,right,Under 10,
+G277274,dev,19,male,right,Under 10,29.3
+G688632,dev,59,male,left,Over 50,29.7
+G769931,dev,64,male,right,Under 10,
+G148799,dev,63,male,right,Over 50,
+G168182,dev,56,male,right,10-30,
+G917099,dev,51,male,right,31-50,
+G624945,dev,66,male,right,10-30,
+G952653,dev,51,male,right,31-50,
+G259691,dev,48,female,right,Over 50,
+G176347,dev,63,female,right,Over 50,
+G885308,dev,27,male,right,10-30,30.5
+G983532,dev,67,male,right,Over 50,
+G479369,dev,72,female,right,10-30,
+G821687,dev,25,female,left,10-30,31.9
+G129077,dev,36,male,right,10-30,
+G181009,dev,43,male,right,10-30,
+G529059,dev,56,male,right,10-30,
+G763699,dev,63,male,right,Over 50,
+G539164,dev,63,male,right,Over 50,31.7
+G716286,dev,58,male,right,10-30,
+G502587,dev,80,male,right,31-50,30.4
+G480437,dev,44,male,right,Under 10,30.9
+G875242,dev,41,male,right,10-30,30.1
+G998887,dev,45,female,right,31-50,
+G997731,dev,24,male,right,10-30,
+G701722,dev,47,male,right,31-50,
+G144352,dev,56,male,right,10-30,29.6
+G737521,dev,32,male,right,Under 10,
+G118834,dev,56,male,left,10-30,30.3
+G763258,dev,44,male,right,Under 10,
+G509762,dev,46,female,right,Under 10,
+G319648,dev,59,female,right,10-30,
+G320718,dev,64,male,right,Under 10,
+G499429,dev,48,male,right,Over 50,31.3
+G439016,dev,75,female,right,31-50,
+G932223,dev,38,male,right,31-50,
+G897573,dev,60,male,right,31-50,
+G903668,dev,69,female,right,Over 50,
+G633726,dev,64,male,right,31-50,
+G338812,dev,82,female,right,Under 10,35.0
+G146882,dev,60,male,right,31-50,
+G473718,dev,40,female,right,Under 10,
+G642978,dev,82,male,right,31-50,28.0
+G587465,dev,70,male,right,Under 10,
+G319295,dev,43,male,right,Under 10,
+G494825,dev,28,male,right,Over 50,
+G686636,dev,85,male,right,Under 10,
+G701053,dev,76,male,right,Over 50,
+G792055,dev,43,female,right,10-30,
+G185824,dev,34,male,right,10-30,
+G374587,dev,57,male,right,Under 10,
+G410922,dev,43,female,right,Under 10,29.6
+G210303,dev,62,male,right,Under 10,30.3
+G148510,dev,28,female,left,Under 10,
+G919863,dev,30,male,right,31-50,28.9
+G710428,dev,43,male,right,Under 10,
+G984463,dev,19,male,left,10-30,29.4
+G864609,dev,44,female,right,10-30,28.5
+G638763,dev,44,male,right,31-50,
+G834208,dev,43,female,right,Over 50,
+G871066,dev,40,male,right,31-50,
+G463282,dev,39,male,right,Over 50,
+G913677,dev,58,male,right,10-30,
+G303181,dev,47,female,right,Over 50,32.1
+G752118,dev,50,male,right,Over 50,30.0
+G241980,dev,29,female,right,10-30,
+G177132,dev,33,female,right,31-50,34.7
+G129858,dev,60,female,right,Over 50,31.2
+G790047,dev,62,male,right,31-50,
+G328714,dev,85,female,right,10-30,
+G122714,dev,66,female,right,31-50,
+G910300,dev,46,male,right,Under 10,32.8
+G140183,dev,44,female,right,Under 10,30.6
+G440396,dev,56,male,right,Over 50,
+G783413,dev,41,male,right,10-30,
+G781133,dev,53,male,right,31-50,34.0
+G385751,dev,83,male,right,31-50,
+G225020,dev,71,male,right,Under 10,
+G608757,dev,66,male,right,10-30,31.1
+G914257,dev,31,male,right,31-50,27.0
+G694417,dev,49,female,left,Under 10,
+G207496,dev,52,male,right,Under 10,
+G446664,dev,40,male,right,Over 50,
+G398193,dev,38,male,right,Over 50,
+G435577,dev,75,female,right,Over 50,
+G323389,dev,73,male,left,10-30,
+G574854,dev,67,male,right,10-30,
+G643662,dev,35,male,right,Under 10,29.6
+G933938,dev,84,male,right,31-50,30.5
+G138793,dev,55,female,right,10-30,29.2
+G480119,dev,57,female,right,Under 10,
+G861696,dev,62,male,right,10-30,31.5
+G521522,dev,38,female,right,31-50,
+G846465,dev,58,female,right,Over 50,
+G591459,dev,45,female,right,10-30,
+G435715,dev,41,male,right,Under 10,
+G261186,dev,29,female,right,Over 50,
+G189020,dev,18,male,right,Over 50,
+G629109,dev,50,male,right,10-30,30.8
+G977712,dev,84,male,right,Under 10,31.3
+G950386,dev,70,male,right,10-30,33.1
+G784596,dev,66,male,right,Under 10,
+G381687,dev,34,female,right,31-50,28.2
+G862711,dev,28,male,right,Under 10,
+G609305,dev,39,male,right,31-50,
+G729254,dev,26,male,right,Under 10,31.4
+G484307,dev,42,male,right,31-50,
+G374159,dev,34,male,right,Under 10,
+G599824,dev,41,male,right,31-50,31.8
+G225212,dev,49,male,right,31-50,30.3
+G260780,dev,44,male,right,10-30,
+G657044,dev,48,male,right,10-30,
+G240199,dev,63,female,left,Under 10,
+G686740,dev,63,male,right,Under 10,27.8
+G220941,dev,27,female,right,31-50,
+G559727,dev,60,female,right,Under 10,32.0
+G959009,dev,53,male,right,Under 10,
+G326401,dev,30,male,right,Under 10,
+G699604,dev,41,male,right,Over 50,
+G887954,dev,62,female,right,31-50,28.9
+G458255,dev,18,male,right,Over 50,
+G589633,dev,67,male,right,31-50,32.2
+G217777,dev,58,male,right,Under 10,
+G123211,dev,18,male,left,Over 50,
+G651686,dev,36,male,right,Under 10,
+G211887,dev,69,male,right,Under 10,
+G915828,dev,39,female,right,Over 50,31.0
+G136572,dev,82,male,right,Under 10,
+G182529,dev,38,male,right,10-30,27.5
+G583583,dev,55,male,right,31-50,
+G363683,dev,67,male,right,Over 50,
+G563690,dev,43,male,left,31-50,
+G983763,dev,49,male,right,Under 10,
+G132597,dev,29,male,right,10-30,32.1
+G368902,dev,32,male,right,10-30,
+G549875,dev,44,male,right,31-50,31.7
+G224726,dev,20,male,right,31-50,
+G279601,dev,18,female,right,10-30,32.2
+G658136,dev,47,male,right,31-50,
+G429252,dev,63,male,right,Under 10,28.7
+G953528,dev,27,male,right,Under 10,
+G653289,dev,77,male,right,31-50,
+G552293,dev,35,male,right,Under 10,27.1
+G834857,dev,49,male,right,10-30,
+G637199,dev,28,female,right,10-30,
+G634378,dev,70,female,right,Under 10,
+G491915,dev,49,male,left,10-30,
+G424002,dev,41,male,right,10-30,31.6
+G881193,dev,58,male,right,10-30,29.2
+G588381,dev,72,male,right,Under 10,
+G169024,dev,59,male,right,10-30,28.7
+G756397,dev,51,male,right,Over 50,
+G978272,dev,39,male,right,10-30,
+G159316,dev,53,female,left,31-50,31.1
+G946698,dev,39,male,right,10-30,
+G778557,dev,39,male,left,31-50,27.0
+G218382,dev,50,male,right,10-30,
+G796905,dev,45,male,right,31-50,
+G701004,dev,27,male,right,Over 50,
+G699344,dev,85,male,right,Under 10,
+G834925,dev,41,male,right,Under 10,29.9
+G335055,dev,53,female,right,Under 10,
+G104278,dev,46,female,right,10-30,31.0
+G715187,dev,63,male,right,Over 50,
+G747451,dev,40,male,right,10-30,
+G758886,dev,51,male,right,31-50,
+G224859,dev,66,female,right,31-50,
+G714267,dev,40,male,left,Over 50,
+G262646,dev,31,female,right,Under 10,
+G579918,dev,78,male,right,31-50,
+G913437,dev,34,female,left,Over 50,
+G648730,dev,26,male,right,Over 50,30.9
+G683969,dev,78,male,right,Over 50,
+G562346,dev,39,female,right,31-50,30.1
+G345543,dev,44,male,right,10-30,
+G589654,dev,37,male,right,31-50,31.6
+G647283,dev,53,male,right,10-30,
+G399987,dev,32,male,right,Under 10,
+G598434,dev,25,male,right,10-30,
+G600821,dev,50,male,left,Over 50,30.6
+G349395,dev,46,male,left,Over 50,28.1
+G501558,dev,50,male,right,Over 50,
+G980753,dev,33,female,right,10-30,
+G261857,dev,43,female,right,31-50,31.1
+G677166,dev,49,male,left,Over 50,
+G403346,dev,51,male,right,10-30,
+G183403,dev,56,female,right,Under 10,
+G618030,dev,54,male,right,Over 50,
+G422630,dev,56,male,right,10-30,
+G644855,dev,70,male,right,Over 50,
+G597646,dev,28,male,left,31-50,32.3
+G768389,dev,59,male,right,31-50,32.5
+G807284,dev,46,male,right,10-30,
+G968993,dev,32,female,right,31-50,
+G934339,dev,35,male,right,31-50,30.0
+G338497,dev,18,male,right,31-50,
+G604249,dev,56,female,left,10-30,32.4
+G708961,dev,85,male,right,10-30,31.9
+G665474,dev,73,male,right,10-30,
+G773505,dev,40,male,right,31-50,
+G921271,dev,46,male,right,Over 50,
+G775632,dev,31,male,right,10-30,
+G120226,dev,51,male,left,Under 10,
+G271207,dev,43,female,right,Over 50,32.9
+G772056,dev,41,male,right,Under 10,
+G988785,dev,29,male,right,Under 10,
+G164631,dev,72,female,right,10-30,
+G122523,dev,46,male,right,31-50,34.7
+G122446,dev,46,female,right,Over 50,31.2
+G347368,dev,70,female,right,Under 10,
+G928337,dev,73,male,right,10-30,
+G816379,dev,43,female,right,31-50,
+G576125,dev,37,female,right,31-50,
+G701884,dev,65,male,right,31-50,31.1
+G197110,dev,64,male,right,31-50,
+G360807,dev,50,female,right,Under 10,32.1
+G267254,dev,37,male,right,Under 10,
+G343703,dev,47,male,right,31-50,
+G851102,dev,38,female,right,Over 50,
+G120979,dev,56,male,left,31-50,
+G959239,dev,44,male,right,Over 50,
+G967539,dev,27,male,right,10-30,
+G590668,dev,55,male,right,Under 10,
+G197973,dev,65,male,right,Under 10,27.1
+G570309,dev,37,female,right,31-50,33.7
+G838922,dev,36,female,right,Under 10,36.0
+G438153,dev,18,male,right,10-30,
+G880211,dev,51,female,right,31-50,
+G124241,dev,53,male,right,31-50,
+G901668,dev,37,male,right,31-50,
+G794934,dev,60,female,right,Over 50,
+G462224,dev,60,male,right,Under 10,31.9
+G774532,dev,70,male,left,31-50,
+G203690,dev,69,female,right,10-30,29.0
+G176830,dev,46,male,right,Over 50,
+G911422,dev,37,male,right,Over 50,
+G738199,dev,44,male,right,31-50,
+G600085,dev,70,male,left,Over 50,
+G623112,dev,36,female,right,Under 10,
+G681802,dev,40,female,right,Under 10,
+G662816,dev,42,female,right,Over 50,
+G947479,dev,53,male,right,Under 10,
+G375430,dev,42,male,right,Over 50,
+G809498,dev,48,male,right,Under 10,33.4
+G712397,dev,27,male,right,Under 10,
+G382759,dev,55,male,right,10-30,
+G290008,dev,22,male,right,31-50,
+G954928,dev,49,female,right,10-30,
+G512784,dev,28,male,right,Over 50,
+G492163,dev,75,male,left,31-50,
+G700859,dev,58,female,right,10-30,
+G434169,dev,53,male,right,Under 10,
+G223469,dev,18,female,right,Over 50,
+G698134,dev,31,male,right,31-50,29.3
+G630720,dev,68,male,right,Over 50,31.0
+G926448,dev,63,male,right,10-30,
+G712058,dev,62,female,right,31-50,31.7
+G468798,dev,18,male,right,Over 50,
+G689453,dev,62,male,right,Under 10,31.3
+G828280,dev,85,male,right,31-50,30.9
+G287827,dev,49,female,left,Over 50,
+G262125,dev,60,female,right,Over 50,
+G453567,dev,53,male,left,31-50,30.6
+G441892,dev,41,male,left,Over 50,
+G233468,dev,68,female,right,31-50,29.2
+G980570,dev,44,male,right,31-50,
+G481903,dev,47,male,right,Over 50,34.2
+G635601,dev,42,male,right,10-30,
+G230413,dev,68,male,right,Under 10,
+G586655,dev,48,female,right,10-30,
+G507916,dev,39,male,right,Under 10,
+G235963,dev,35,male,right,10-30,31.8
+G728686,dev,46,female,right,31-50,32.8
+G639997,dev,61,male,right,10-30,
+G185916,dev,57,male,right,Under 10,33.0
+G795258,dev,24,male,right,Under 10,33.2
+G488553,dev,36,male,right,Over 50,30.1
+G441780,dev,63,male,right,10-30,30.6
+G145206,dev,57,male,right,Over 50,
+G145997,dev,70,male,right,10-30,
+G367941,dev,29,male,left,10-30,
+G274058,dev,69,female,right,10-30,29.6
+G674333,dev,85,male,right,31-50,
+G247838,dev,43,male,left,31-50,
+G858280,dev,47,male,right,Over 50,28.9
+G667151,dev,37,male,right,10-30,33.1
+G318802,dev,58,female,right,10-30,
+G228572,dev,26,male,right,Over 50,
+G293872,dev,57,male,right,31-50,
+G872859,dev,51,male,right,10-30,
+G666417,dev,46,female,right,Over 50,32.4
+G206130,dev,40,male,right,10-30,28.9
+G616363,dev,79,male,right,Over 50,
+G391656,dev,48,female,right,31-50,29.9
+G625646,dev,36,female,right,Under 10,
+G582420,dev,54,male,right,Over 50,
+G252600,dev,45,female,right,31-50,
+G402821,dev,55,male,right,10-30,
+G968489,dev,58,female,right,31-50,
+G381240,dev,49,female,right,Under 10,31.8
+G141235,dev,64,male,right,Under 10,29.7
+G158105,dev,55,male,right,Under 10,
+G148014,dev,43,female,right,31-50,30.7
+G294420,dev,41,male,right,Over 50,
+G459856,dev,41,male,right,31-50,
+G369746,dev,35,male,right,Under 10,
+G924281,dev,39,male,right,31-50,28.9
+G814581,dev,56,female,right,Over 50,
+G406599,dev,67,male,right,31-50,
+G979500,dev,48,male,right,Under 10,30.6
+G147861,dev,66,male,right,10-30,33.2
+G202411,dev,66,female,right,Over 50,
+G586702,dev,40,male,right,Over 50,28.7
+G990487,dev,57,female,right,10-30,
+G338952,dev,41,male,right,Over 50,
+G203079,dev,18,male,right,Over 50,29.4
+G227683,dev,37,male,right,Over 50,
+G260937,dev,60,female,right,Over 50,
+G356581,dev,78,male,right,Under 10,
+G743354,dev,55,male,right,31-50,
+G275089,dev,39,male,right,Over 50,
+G143903,dev,54,male,left,10-30,
+G323755,dev,34,female,right,31-50,
+G909612,dev,52,male,right,10-30,
+G946213,dev,49,female,right,31-50,30.9
+G540723,dev,75,male,right,31-50,28.8
+G412625,dev,44,male,right,Under 10,32.3
+G415845,dev,37,male,right,10-30,28.2
+G736599,dev,49,male,left,31-50,30.2
+G905976,dev,53,male,left,31-50,
+G262779,dev,44,female,right,31-50,
+G992857,dev,72,male,right,31-50,
+G779891,dev,43,female,right,Over 50,
+G518669,dev,69,male,right,Under 10,29.8
+G596178,dev,55,female,right,10-30,
+G804922,dev,49,male,right,Over 50,
+G576931,dev,56,male,right,Under 10,
+G986759,dev,35,male,left,10-30,30.4
+G993064,dev,63,male,right,Under 10,
+G375768,dev,61,male,right,Over 50,
+G898666,dev,77,male,left,Over 50,
+G156520,dev,39,male,right,Under 10,
+G133854,dev,80,female,right,10-30,
+G431498,dev,39,male,right,31-50,
+G111128,dev,46,male,right,31-50,
+G679349,dev,46,male,right,Over 50,
+G256840,dev,43,male,right,Under 10,
+G736959,dev,53,female,right,31-50,
+G199520,dev,46,male,right,10-30,
+G215036,dev,55,male,right,31-50,
+G996399,dev,55,male,right,Over 50,28.1
+G318350,dev,82,male,right,10-30,32.0
+G564577,dev,47,male,right,10-30,31.3
+G721454,dev,43,female,right,Under 10,
+G603207,dev,52,female,right,10-30,
+G374663,dev,58,male,right,31-50,29.7
+G718408,dev,47,male,right,Over 50,
+G976482,dev,55,male,right,Over 50,
+G819104,dev,76,male,right,Under 10,
+G227163,dev,43,male,right,Over 50,
+G861620,dev,56,male,right,Over 50,32.3
+G603099,dev,68,male,right,31-50,
+G736942,dev,44,male,right,Under 10,
+G557476,dev,49,male,right,10-30,
+G585108,dev,51,male,right,Under 10,
+G305950,dev,33,male,right,31-50,
+G165720,dev,30,male,left,10-30,32.8
+G902459,dev,55,male,right,Under 10,
+G606463,dev,34,male,right,31-50,28.7
+G701725,dev,69,female,right,Over 50,31.3
+G683553,dev,53,female,right,Under 10,
+G489153,dev,32,female,right,31-50,30.8
+G560686,dev,35,male,right,31-50,
+G249376,dev,38,male,right,Over 50,32.5
+G492845,dev,39,male,right,Over 50,
+G266837,dev,35,male,right,10-30,
+G483341,dev,61,male,right,10-30,
+G522381,dev,66,male,right,10-30,33.2
+G990403,dev,20,male,right,Under 10,
+G398060,dev,31,male,right,31-50,34.1
+G543600,dev,54,male,right,10-30,33.4
+G196643,dev,61,female,right,10-30,
+G357140,dev,37,male,right,Over 50,
+G349620,dev,43,female,right,31-50,27.8
+G422998,dev,60,male,right,Under 10,
+G181668,dev,19,male,right,Over 50,
+G249831,dev,82,male,right,Under 10,34.1
+G824143,dev,49,male,right,10-30,
+G827240,dev,54,male,right,Under 10,
+G599905,dev,30,male,right,10-30,33.5
+G321096,dev,57,female,right,10-30,31.9
+G354328,dev,63,male,right,31-50,
+G837399,dev,85,male,right,10-30,
+G357228,dev,34,male,right,Under 10,
+G663812,dev,66,male,right,Under 10,31.1
+G944789,dev,61,male,right,31-50,
+G101434,dev,39,male,right,Under 10,30.3
+G329557,dev,49,male,right,31-50,
+G998633,dev,53,female,right,Under 10,33.1
+G550487,dev,38,male,right,Under 10,29.6
+G609013,dev,64,male,right,Under 10,
+G866078,dev,20,male,right,10-30,
+G815134,dev,29,female,right,10-30,
+G336020,dev,39,female,right,10-30,
+G995889,dev,34,male,right,10-30,
+G208499,dev,42,female,right,10-30,
+G666592,dev,48,male,right,10-30,
+G668272,dev,50,male,right,Under 10,32.8
+G746225,dev,51,female,right,Over 50,
+G489561,dev,78,male,left,31-50,
+G662258,dev,27,male,right,31-50,
+G794843,dev,50,male,right,Under 10,30.1
+G724278,dev,56,male,right,31-50,28.8
+G442328,dev,48,male,right,31-50,
+G535973,dev,62,male,right,31-50,
+G298461,dev,50,female,right,Under 10,
+G555165,dev,49,male,right,Over 50,
+G106856,dev,75,male,right,Under 10,
+G881594,dev,28,female,right,31-50,
+G204029,dev,47,male,right,31-50,31.9
+G966991,dev,60,male,right,Under 10,
+G901946,dev,31,male,left,10-30,28.1
+G829020,dev,64,male,right,31-50,
+G143368,dev,62,male,left,31-50,30.0
+G500081,dev,35,male,right,Over 50,30.0
+G997896,dev,30,male,right,10-30,31.1
+G210062,dev,42,male,right,31-50,32.0
+G271436,dev,67,male,right,Under 10,
+G301616,dev,30,male,right,Over 50,
+G180177,dev,59,male,right,Under 10,28.5
+G491716,dev,36,male,right,Under 10,
+G536847,dev,40,male,right,31-50,30.3
+G508211,dev,27,male,right,Over 50,
+G636277,dev,47,male,right,10-30,32.1
+G233467,dev,48,female,right,Under 10,
+G446426,dev,28,male,right,Over 50,34.0
+G149081,dev,62,female,right,31-50,
+G917546,dev,33,female,right,Under 10,
+G425521,dev,66,male,right,31-50,28.6
+G542385,dev,40,male,right,Over 50,33.3
+G797694,dev,52,male,right,Over 50,
+G149077,dev,62,male,left,31-50,
+G833972,dev,34,female,right,Over 50,
+G998405,dev,56,male,right,Under 10,32.5
+G975427,dev,36,male,right,31-50,
+G227003,dev,18,male,right,31-50,
+G438057,dev,48,male,right,Over 50,
+G497897,dev,65,male,right,10-30,29.9
+G338620,dev,30,male,right,31-50,
+G740866,dev,53,male,right,10-30,
+G884099,dev,42,male,right,31-50,
+G453825,dev,73,male,right,Under 10,
+G357113,dev,71,male,right,31-50,
+G967429,dev,67,male,right,Under 10,
+G506064,dev,40,male,right,10-30,
+G151526,dev,38,male,right,10-30,30.7
+G451238,dev,60,male,right,10-30,
+G845842,dev,51,female,right,10-30,31.5
+G896033,dev,38,male,right,Under 10,
+G288493,dev,31,male,right,Over 50,
+G131411,dev,40,male,right,Over 50,32.9
+G474040,dev,54,female,right,31-50,31.7
+G265239,dev,47,female,right,31-50,32.9
+G483362,dev,19,female,right,31-50,
+G628003,dev,51,female,right,Over 50,31.8
+G391658,dev,50,male,right,31-50,29.4
+G906655,dev,72,male,right,Under 10,
+G453212,dev,34,female,right,31-50,
+G377099,dev,36,male,left,Under 10,30.9
+G874525,dev,59,male,right,31-50,
+G856485,dev,21,male,left,Over 50,
+G180483,dev,42,male,right,Under 10,
+G978894,dev,38,female,right,10-30,
+G546728,dev,69,male,right,10-30,29.4
+G288632,dev,76,male,right,Over 50,27.6
+G660786,dev,34,male,right,31-50,
+G562493,dev,44,male,right,Under 10,29.1
+G637007,dev,56,male,right,Over 50,
+G118727,dev,43,female,right,Under 10,
+G230651,dev,32,male,right,Under 10,
+G714066,dev,44,male,right,Under 10,34.0
+G242122,dev,45,female,right,31-50,30.3
+G916827,dev,56,male,right,Under 10,28.4
+G802675,dev,42,male,right,31-50,29.2
+G312083,dev,31,male,right,Under 10,32.4
+G266167,dev,39,male,right,Over 50,
+G951217,dev,30,male,left,Under 10,32.8
+G522924,dev,38,male,right,Under 10,
+G969882,dev,44,male,right,10-30,35.1
+G611001,dev,57,male,left,31-50,
+G731775,dev,18,male,right,Under 10,32.4
+G861310,dev,34,male,right,Over 50,33.6
+G433816,dev,25,male,left,Under 10,
+G161220,dev,42,female,right,Under 10,28.1
+G982442,dev,33,male,right,Over 50,29.0
+G739502,dev,39,male,right,Over 50,
+G638162,dev,85,male,right,31-50,28.6
+G262502,dev,31,male,right,Over 50,28.1
+G572099,dev,43,male,right,Under 10,31.5
+G703565,dev,71,male,right,31-50,
+G375200,dev,28,male,right,31-50,
+G282618,dev,71,male,right,31-50,
+G256809,dev,36,male,right,10-30,
+G732280,dev,30,female,right,Under 10,
+G594348,dev,63,male,right,Under 10,32.6
+G461291,dev,60,male,right,Under 10,
+G475248,dev,51,male,right,Over 50,30.5
+G236315,dev,47,male,right,Under 10,
+G242045,dev,50,female,right,10-30,
+G785357,dev,35,female,right,31-50,
+G259808,dev,47,male,right,31-50,
+G381198,dev,45,male,right,Under 10,
+G148151,dev,55,male,right,Under 10,
+G931971,dev,36,male,right,31-50,29.3
+G439929,dev,45,female,right,Under 10,30.2
+G825322,dev,77,female,right,31-50,
+G706275,dev,26,female,right,Over 50,
+G855081,dev,54,female,right,10-30,
+G530080,dev,32,female,right,Under 10,
+G690850,dev,24,female,right,10-30,
+G523523,dev,52,male,right,Over 50,27.4
+G243504,dev,61,male,right,10-30,
+G516542,dev,37,male,right,10-30,
+G399386,dev,66,female,right,Under 10,
+G337049,dev,48,female,right,Under 10,29.4
+G164006,dev,61,female,left,Under 10,
+G102086,dev,60,male,right,10-30,
+G831244,dev,51,male,right,Under 10,
+G493284,dev,51,male,right,Under 10,28.5
+G892622,dev,43,female,right,Under 10,
+G530258,dev,70,female,right,10-30,31.7
+G956238,dev,43,male,right,10-30,32.8
+G413985,dev,32,male,right,10-30,
+G743825,dev,71,male,right,10-30,31.6
+G866005,dev,66,female,right,10-30,
+G799113,dev,41,male,right,Under 10,
+G423266,dev,37,male,right,10-30,
+G788961,dev,61,male,right,Over 50,28.6
+G820615,dev,64,female,right,Over 50,33.0
+G835928,dev,47,female,left,31-50,
+G210617,dev,41,male,left,31-50,
+G119032,dev,70,female,right,31-50,
+G134032,dev,51,male,right,10-30,
+G530237,dev,58,male,right,Over 50,
+G382601,dev,31,male,right,31-50,
+G831949,dev,49,female,right,31-50,
+G894916,dev,74,male,right,10-30,
+G530850,dev,76,male,right,Over 50,31.7
+G301036,dev,59,male,right,31-50,30.8
+G648624,dev,38,male,right,31-50,
+G675996,dev,30,female,right,Under 10,
+G359587,dev,44,male,right,10-30,
+G318129,dev,60,male,right,Over 50,
+G364897,dev,50,male,right,Over 50,
+G109808,dev,27,male,right,Over 50,
+G774779,dev,64,female,right,Over 50,30.0
+G648884,dev,62,male,left,10-30,
+G615265,dev,56,male,right,Over 50,
+G859830,dev,26,male,right,Under 10,
+G974851,dev,56,male,right,Under 10,
+G765537,dev,27,male,right,Over 50,30.5
+G375415,dev,40,female,right,31-50,
+G109752,dev,72,male,right,10-30,
+G781436,dev,50,male,right,31-50,30.0
+G942734,dev,56,female,right,31-50,
+G400248,dev,24,male,right,31-50,
+G509583,dev,65,female,left,31-50,34.0
+G474297,dev,42,male,right,10-30,
+G709526,dev,43,female,right,Over 50,
+G238827,dev,24,male,right,31-50,
+G746223,dev,39,male,right,31-50,
+G749197,dev,42,male,right,Under 10,
+G640575,dev,44,male,right,Under 10,
+G251011,dev,41,male,left,31-50,31.0
+G770307,dev,65,female,right,Under 10,32.0
+G477923,dev,64,male,right,Under 10,
+G557992,dev,54,male,right,10-30,
+G964887,dev,21,male,right,10-30,
+G312668,dev,76,female,right,Over 50,
+G941958,dev,42,male,right,31-50,
+G142497,dev,45,male,right,31-50,28.2
+G833516,dev,55,female,right,10-30,28.7
+G346338,dev,83,male,right,31-50,
+G891640,dev,54,male,right,Under 10,
+G304642,dev,60,male,right,10-30,
+G970140,dev,19,female,right,Over 50,
+G753309,dev,51,female,right,31-50,30.8
+G693039,dev,46,male,right,31-50,
+G931972,dev,48,male,right,31-50,
+G166540,dev,60,male,right,Under 10,30.1
+G494338,dev,40,male,right,Under 10,33.4
+G843184,dev,43,female,right,Under 10,32.0
+G688122,dev,46,female,right,31-50,
+G560230,dev,57,male,right,31-50,30.0
+G458143,dev,24,female,right,31-50,
+G831783,dev,44,male,right,31-50,
+G414476,dev,37,female,right,10-30,
+G997457,dev,31,male,right,10-30,
+G760624,dev,40,male,right,Under 10,
+G426017,dev,37,male,right,Under 10,
+G736131,dev,60,male,right,Under 10,
+G305865,dev,42,male,right,Over 50,
+G877829,dev,30,male,right,Under 10,
+G219312,dev,28,female,right,31-50,
+G326606,dev,44,male,right,31-50,
+G422698,dev,51,male,right,Over 50,
+G446983,dev,69,male,right,31-50,29.5
+G556422,dev,60,male,right,Under 10,
+G287836,dev,52,male,right,31-50,
+G943042,dev,64,male,right,Under 10,
+G508591,dev,27,male,left,10-30,
+G949743,dev,43,male,right,Under 10,31.0
+G425400,dev,47,female,right,31-50,29.9
+G389793,dev,54,female,right,10-30,31.3
+G718787,dev,28,male,right,10-30,
+G418728,dev,53,male,right,31-50,
+G744005,dev,40,male,left,31-50,30.8
+G192130,dev,69,male,left,31-50,29.5
+G854811,dev,66,male,right,10-30,
+G168267,dev,54,male,right,31-50,
+G354600,dev,46,male,right,10-30,
+G779977,dev,53,male,right,10-30,
+G421398,dev,52,female,left,31-50,
+G537609,dev,52,male,right,Under 10,
+G740973,dev,59,male,right,Under 10,
+G818448,dev,42,male,right,10-30,
+G734388,dev,20,male,right,Over 50,
+G852997,dev,54,male,right,31-50,32.4
+G516238,dev,52,female,right,10-30,
+G840809,dev,48,male,right,Under 10,31.7
+G579097,dev,32,male,right,Under 10,
+G819209,dev,55,male,right,Under 10,
+G464785,dev,48,male,right,10-30,
+G619436,dev,32,male,right,Over 50,29.7
+G261812,dev,69,female,right,Over 50,
+G574755,dev,39,male,right,Under 10,
+G852402,dev,68,male,right,Under 10,
+G165399,dev,52,male,right,Over 50,31.4
+G457711,dev,39,male,right,Under 10,
+G366701,dev,48,female,right,Under 10,
+G580789,dev,48,male,right,Over 50,
+G286792,dev,66,male,left,10-30,32.8
+G273940,dev,62,male,right,31-50,
+G714500,dev,38,male,right,Under 10,
+G527614,dev,63,male,right,Over 50,
+G179900,dev,67,male,right,31-50,
+G766759,dev,39,male,right,Over 50,
+G208180,dev,75,male,right,31-50,
+G275515,dev,53,male,right,10-30,
+G604429,dev,49,female,right,10-30,
+G618425,dev,63,male,right,Over 50,
+G814383,dev,45,male,right,Over 50,31.5
+G890372,dev,60,male,right,Over 50,
+G709440,dev,26,male,right,10-30,31.3
+G128844,dev,46,male,right,Over 50,
+G118801,dev,60,female,left,31-50,
+G426635,dev,25,male,right,Over 50,30.1
+G686860,dev,29,male,right,10-30,
+G661424,dev,45,male,right,31-50,
+G140682,dev,62,female,right,Under 10,
+G982452,dev,51,male,right,Over 50,
+G827378,dev,45,male,right,10-30,
+G993958,dev,46,male,right,10-30,
+G289610,dev,79,male,right,31-50,
+G538261,dev,18,female,right,31-50,
+G855227,dev,63,male,right,10-30,
+G569592,dev,33,male,right,Under 10,
+G534765,dev,43,female,right,Over 50,
+G776865,dev,56,male,right,Under 10,31.6
+G327802,dev,41,male,right,Over 50,32.5
+G834554,dev,52,female,right,31-50,
+G775134,dev,51,male,right,10-30,
+G562998,dev,58,male,right,10-30,
+G792999,dev,59,male,right,31-50,33.0
+G780741,dev,35,male,right,Over 50,
+G743791,dev,67,male,right,Under 10,29.8
+G961634,dev,54,male,right,10-30,28.3
+G972710,dev,54,male,right,10-30,29.7
+G103988,dev,54,female,right,10-30,
+G666390,dev,32,female,right,10-30,31.8
+G151031,dev,68,female,right,10-30,30.7
+G286574,dev,18,male,right,10-30,32.0
+G839739,dev,18,male,right,Under 10,29.2
+G383904,dev,37,male,right,Over 50,
+G826153,dev,28,male,right,Under 10,
+G906682,dev,61,male,right,Over 50,
+G412157,dev,63,male,right,10-30,
+G894794,dev,32,male,right,31-50,30.1
+G698911,dev,56,male,right,10-30,
+G153911,dev,39,male,right,Over 50,
+G908253,dev,64,male,right,31-50,
+G125569,dev,23,male,right,Over 50,30.5
+G251373,dev,63,male,right,31-50,
+G555514,dev,41,male,left,Over 50,
+G665938,dev,41,male,right,31-50,
+G364653,dev,65,male,right,31-50,30.5
+G350944,dev,48,male,right,10-30,28.4
+G952632,dev,54,male,right,Under 10,
+G189606,dev,48,male,right,10-30,
+G580585,dev,76,male,right,10-30,
+G141057,dev,38,male,right,Under 10,
+G115816,dev,30,male,right,31-50,
+G640797,dev,33,male,left,Over 50,
+G616899,dev,50,male,left,Over 50,
+G189211,dev,63,male,right,31-50,
+G807743,dev,42,male,right,31-50,27.1
+G833353,dev,60,male,right,Under 10,
+G789207,dev,53,male,right,31-50,
+G322728,dev,43,male,right,Under 10,
+G859408,dev,51,male,right,Over 50,
+G215752,dev,57,male,right,Under 10,
+G994549,dev,41,male,right,31-50,31.1
+G326195,dev,66,male,right,31-50,
+G205918,dev,67,male,right,Under 10,31.9
+G149899,dev,63,male,right,31-50,31.3
+G714147,dev,32,female,right,Over 50,27.7
+G389644,dev,54,female,right,Over 50,
+G932758,dev,56,female,right,Over 50,33.0
+G284141,dev,56,female,right,Under 10,
+G997573,dev,58,male,right,31-50,29.5
+G757829,dev,27,male,right,Under 10,
+G615766,dev,66,male,right,10-30,
+G876878,dev,75,male,left,Under 10,
+G456460,dev,42,male,right,Under 10,
+G205901,dev,60,male,left,Under 10,34.3
+G757006,dev,53,male,right,31-50,
+G567420,dev,48,male,right,Under 10,28.0
+G561125,dev,57,female,right,Under 10,
+G201522,dev,38,female,right,10-30,
+G144017,dev,64,male,right,Over 50,
+G491137,dev,31,male,right,31-50,
+G298400,dev,41,male,right,10-30,32.1
+G235932,dev,55,male,right,Over 50,33.4
+G538296,dev,51,male,right,31-50,
+G744233,dev,30,male,right,Over 50,
+G784461,dev,23,male,right,Over 50,
+G304969,dev,54,male,right,10-30,
+G783653,dev,39,male,right,10-30,
+G738645,dev,59,male,right,Over 50,
+G493993,dev,38,male,right,10-30,30.9
+G543047,dev,46,male,right,10-30,
+G613020,dev,25,female,right,Over 50,
+G466512,dev,18,female,right,31-50,
+G304528,dev,81,male,right,Over 50,
+G773870,dev,40,male,right,10-30,
+G481737,dev,34,male,right,Under 10,
+G159058,dev,47,male,right,10-30,
+G586512,dev,40,male,right,31-50,
+G399245,dev,46,female,right,Over 50,29.7
+G393466,dev,70,female,right,Over 50,
+G992059,dev,42,female,right,31-50,31.8
+G899256,dev,41,male,right,Over 50,30.3
+G436389,dev,40,male,right,10-30,30.7
+G259395,dev,79,male,right,Under 10,27.8
+G814016,dev,56,female,right,10-30,
+G793776,dev,28,male,right,31-50,
+G576128,dev,47,male,right,Over 50,
+G954975,dev,60,female,right,10-30,
+G560278,dev,32,male,right,31-50,28.6
+G777471,dev,51,male,right,10-30,
+G788637,dev,74,female,right,10-30,
+G656040,dev,41,male,right,31-50,32.2
+G200777,dev,46,female,right,10-30,
+G489198,dev,40,female,right,31-50,33.6
+G450427,dev,75,male,right,10-30,31.7
+G870302,dev,34,male,right,Over 50,
+G841652,dev,67,female,right,31-50,
+G113367,dev,54,male,right,10-30,
+G875063,dev,36,male,right,31-50,
+G746079,dev,38,male,right,31-50,32.3
+G886182,dev,41,female,right,Under 10,
+G886721,dev,57,female,right,10-30,
+G827647,dev,45,male,right,Over 50,
+G138654,dev,29,female,right,Under 10,
+G496041,dev,54,male,right,Under 10,
+G785420,dev,48,male,right,10-30,29.5
+G811698,dev,32,male,right,Over 50,
+G335704,dev,65,male,right,31-50,29.4
+G394023,dev,35,male,right,Over 50,30.9
+G383447,dev,72,male,right,Over 50,
+G554793,dev,51,female,right,10-30,32.4
+G800009,dev,41,male,right,10-30,30.4
+G929374,dev,35,male,right,31-50,31.1
+G878135,dev,59,male,right,Under 10,
+G498228,dev,54,male,right,10-30,30.5
+G498738,dev,61,female,right,Over 50,
+G136003,dev,46,male,left,Under 10,30.4
+G530892,dev,38,female,right,10-30,
+G751059,dev,32,female,right,10-30,27.7
+G179452,dev,67,male,right,31-50,32.9
+G629906,dev,44,female,right,10-30,
+G887851,dev,35,male,right,31-50,30.9
+G421180,dev,45,female,right,10-30,30.1
+G550308,dev,45,male,right,Under 10,
+G912116,dev,55,female,right,Under 10,
+G620047,dev,30,male,right,Under 10,
+G958705,dev,28,male,right,10-30,34.1
+G774361,dev,47,male,right,31-50,30.5
+G101856,dev,43,male,right,31-50,
+G311570,dev,48,male,right,31-50,
+G517569,dev,49,male,right,Over 50,
+G112663,dev,38,male,right,31-50,
+G164333,dev,72,male,right,Under 10,32.5
+G442740,dev,61,male,right,Over 50,31.1
+G879371,dev,38,male,right,Over 50,
+G355912,dev,48,male,left,Over 50,
+G951275,dev,46,male,right,Under 10,
+G679107,dev,35,male,right,31-50,31.8
+G704607,dev,22,male,right,Over 50,
+G608292,dev,55,female,right,10-30,
+G666606,dev,43,female,right,Under 10,
+G424094,dev,85,male,right,10-30,
+G619614,dev,50,female,right,10-30,
+G495163,dev,71,female,right,Over 50,31.3
+G141368,dev,45,male,right,Over 50,
+G124263,dev,70,male,left,10-30,29.2
+G398588,dev,57,male,right,10-30,
+G495990,dev,53,male,right,31-50,32.5
+G810740,dev,46,female,right,Over 50,
+G207081,dev,73,male,right,31-50,27.9
+G350665,dev,61,male,right,Over 50,
+G702082,dev,38,male,left,31-50,
+G720099,dev,66,male,right,31-50,
+G432679,dev,57,male,right,31-50,29.9
+G543403,dev,67,female,right,Over 50,33.3
+G905575,dev,56,male,right,31-50,
+G208319,dev,25,male,left,31-50,31.2
+G634863,dev,63,male,right,Under 10,27.5
+G133647,dev,38,male,right,31-50,
+G222032,dev,56,male,right,10-30,
+G381575,dev,45,male,right,31-50,
+G905096,dev,70,male,right,31-50,
+G144943,dev,49,male,left,31-50,
+G332202,dev,41,female,right,Over 50,30.9
+G839850,dev,38,male,right,Under 10,27.0
+G864181,dev,29,male,right,10-30,
+G501887,dev,58,male,right,31-50,
+G575397,dev,26,female,right,Under 10,
+G201207,dev,41,male,right,10-30,
+G630841,dev,44,male,right,10-30,
+G236749,dev,48,male,right,31-50,
+G808924,dev,85,male,right,31-50,27.0
+G100907,dev,39,male,right,31-50,
+G665226,dev,39,male,right,10-30,30.0
+G577569,dev,46,female,right,31-50,
+G653218,dev,26,male,left,Under 10,
+G816824,dev,74,male,right,31-50,
+G897657,dev,53,male,right,31-50,
+G747629,dev,33,female,right,10-30,
+G174034,dev,54,male,left,Under 10,
+G172270,dev,44,male,left,Over 50,
+G467191,dev,73,male,right,Under 10,
+G354871,dev,43,male,right,Under 10,28.6
+G583404,dev,59,female,right,31-50,32.5
+G104672,dev,59,male,right,31-50,29.2
+G602268,dev,27,male,right,Under 10,
+G885637,dev,40,male,right,Under 10,
+G776039,dev,58,female,right,Over 50,31.6
+G931031,dev,52,male,right,31-50,
+G317868,dev,46,female,right,Under 10,
+G210371,dev,54,male,right,10-30,
+G393166,dev,38,male,right,31-50,
+G356007,dev,44,male,right,Over 50,31.6
+G840742,dev,50,male,right,Over 50,
+G294181,dev,31,male,right,Over 50,32.8
+G904032,dev,50,male,right,31-50,30.0
+G605579,dev,49,male,right,Under 10,32.3
+G660764,dev,42,male,right,31-50,
+G227153,dev,53,male,right,Under 10,
+G701642,dev,56,male,right,10-30,
+G461109,dev,28,male,right,Under 10,31.5
+G667561,dev,55,male,right,31-50,
+G684431,dev,18,male,right,31-50,
+G613236,dev,69,male,right,Over 50,
+G537011,dev,19,female,right,Over 50,33.0
+G240849,dev,37,male,right,10-30,
+G549588,dev,57,male,right,10-30,31.8
+G462363,dev,47,male,right,31-50,
+G345276,dev,47,male,right,Under 10,28.7
+G129640,dev,21,male,right,Under 10,
+G211953,dev,63,male,right,10-30,
+G747361,dev,43,male,right,Under 10,
+G983333,dev,56,male,right,31-50,
+G339774,dev,37,female,right,Over 50,
+G675520,dev,70,male,right,Under 10,
+G441157,dev,55,male,right,Under 10,
+G382141,dev,32,female,right,31-50,
+G964942,dev,34,male,right,Under 10,
+G866695,dev,41,male,right,Over 50,
+G894649,dev,38,female,right,31-50,
+G198525,dev,54,male,right,Over 50,31.7
+G578889,dev,37,male,right,10-30,30.4
+G809514,dev,67,male,right,31-50,28.0
+G144716,dev,57,male,right,Under 10,
+G666294,dev,71,male,right,31-50,
+G297820,dev,23,male,right,31-50,
+G885058,dev,57,male,right,Under 10,
+G552919,dev,54,female,right,31-50,
+G660837,dev,30,male,right,Under 10,
+G427435,dev,83,male,right,10-30,32.2
+G344523,dev,48,female,right,10-30,
+G152073,dev,63,male,right,Under 10,
+G591789,dev,74,male,right,31-50,
+G858790,dev,51,female,left,31-50,
+G941641,dev,34,male,right,31-50,
+G191685,dev,60,male,right,10-30,
+G389779,dev,50,male,right,31-50,30.9
+G256245,dev,45,male,right,Under 10,30.1
+G602867,dev,44,female,right,10-30,31.7
+G949631,dev,59,male,right,Over 50,31.1
+G474191,dev,52,male,right,Over 50,29.8
+G376164,dev,75,male,right,Over 50,
+G721538,dev,51,female,right,Over 50,
+G184294,dev,38,male,right,10-30,30.9
+G100847,dev,41,male,right,10-30,28.6
+G319630,dev,49,female,right,10-30,
+G116139,dev,67,female,right,31-50,
+G166062,dev,23,male,right,10-30,34.4
+G650767,dev,50,male,right,Under 10,33.4
+G363751,dev,28,male,right,10-30,28.5
+G846129,dev,45,female,right,Over 50,29.9
+G825366,dev,43,male,right,Under 10,
+G660197,dev,53,male,right,Over 50,31.9
+G803974,dev,56,male,right,Over 50,
+G417976,dev,53,male,right,10-30,
+G891603,dev,82,female,right,Under 10,
+G177486,dev,70,male,right,Over 50,
+G781679,dev,55,male,left,10-30,
+G540475,dev,37,male,right,Under 10,
+G261036,dev,67,female,right,Under 10,
+G388843,dev,56,male,right,10-30,
+G580579,dev,69,male,right,10-30,32.5
+G856077,dev,30,female,right,Under 10,32.8
+G345995,dev,29,female,left,Under 10,
+G211254,dev,44,male,left,31-50,27.0
+G545597,dev,74,male,right,Under 10,29.7
+G574462,dev,76,male,right,31-50,
+G447099,dev,39,female,right,10-30,
+G567725,dev,68,male,right,10-30,32.4
+G917601,dev,61,male,right,10-30,
+G605200,dev,31,male,left,Over 50,31.6
+G410310,dev,50,male,left,10-30,
+G520083,dev,43,male,right,31-50,
+G232900,dev,30,male,right,Under 10,29.3
+G163921,dev,45,male,right,Over 50,32.5
+G731963,dev,51,male,left,10-30,33.4
+G658234,dev,39,male,right,10-30,
+G483470,dev,48,male,right,31-50,30.6
+G901832,dev,61,male,right,31-50,32.6
+G182683,dev,25,male,right,10-30,
+G360489,dev,37,male,right,Under 10,
+G116207,dev,57,male,right,Under 10,
+G802076,dev,45,male,right,Under 10,32.6
+G423298,dev,68,male,left,10-30,
+G380425,dev,31,female,right,Over 50,
+G155838,dev,56,female,right,10-30,
+G301519,dev,74,male,left,Over 50,
+G351681,dev,57,male,right,Over 50,
+G231477,dev,26,male,right,31-50,
+G905712,dev,18,male,right,31-50,
+G236155,dev,32,female,right,10-30,31.9
+G690709,dev,19,male,left,Under 10,
+G791409,dev,45,male,right,Under 10,33.9
+G580584,dev,56,male,right,Under 10,35.6
+G899429,dev,21,male,left,Under 10,
+G597983,dev,53,female,right,Under 10,
+G935752,dev,85,male,right,Under 10,
+G901883,dev,48,male,right,31-50,31.1
+G379988,dev,74,female,right,Under 10,32.6
+G397721,dev,30,male,right,31-50,
+G833816,dev,57,male,right,31-50,30.1
+G383999,dev,58,male,right,10-30,
+G914852,dev,23,male,right,31-50,30.3
+G878409,dev,77,male,right,Over 50,32.7
+G505899,dev,18,male,right,31-50,
+G167619,dev,57,male,right,31-50,
+G764340,dev,47,male,right,31-50,
+G963008,dev,55,male,right,31-50,30.0
+G378142,dev,56,female,right,Under 10,
+G436460,dev,78,female,right,Over 50,
+G103797,dev,49,male,right,10-30,
+G301831,dev,58,male,right,10-30,
+G378255,dev,45,male,right,10-30,
+G716325,dev,48,female,right,10-30,
+G333288,dev,41,female,right,10-30,
+G266066,dev,45,female,right,Over 50,
+G898892,dev,58,male,right,31-50,
+G154708,dev,56,female,right,10-30,
+G694317,dev,48,male,right,10-30,
+G275611,dev,55,female,right,Over 50,
+G732002,dev,26,male,right,Over 50,
+G169907,dev,69,male,right,31-50,
+G662276,dev,49,female,right,Over 50,
+G460935,dev,67,male,right,31-50,32.7
+G980518,dev,43,male,right,31-50,
+G451610,dev,38,male,right,31-50,
+G485587,dev,55,male,right,10-30,30.1
+G235001,dev,40,male,right,31-50,
+G535566,dev,64,male,right,31-50,
+G202448,dev,54,male,right,Over 50,
+G770541,dev,49,male,right,Under 10,
+G918089,dev,18,male,right,Under 10,
+G315277,dev,25,female,right,31-50,
+G522257,dev,61,male,right,Under 10,
+G149021,dev,61,male,right,Over 50,
+G485123,dev,55,male,right,Under 10,
+G427274,dev,40,male,right,Over 50,
+G552470,dev,27,male,right,Over 50,30.1
+G796225,dev,53,female,right,31-50,31.8
+G546323,dev,75,male,right,Under 10,
+G968731,dev,29,male,left,Over 50,
+G939384,dev,49,male,right,10-30,29.6
+G610502,dev,62,male,right,Under 10,
+G563884,dev,43,male,right,Over 50,
+G658790,dev,74,female,right,10-30,31.3
+G234705,dev,23,male,right,10-30,30.0
+G219752,dev,58,male,right,31-50,
+G949598,dev,40,male,right,31-50,
+G353110,dev,45,male,left,10-30,
+G305628,dev,50,female,right,Over 50,
+G777194,dev,44,male,right,10-30,30.5
+G731411,dev,60,male,right,31-50,32.0
+G751570,dev,54,male,right,Over 50,29.4
+G610219,dev,52,female,right,31-50,
+G155261,dev,44,female,right,10-30,
+G312561,dev,47,male,right,Over 50,
+G586127,dev,65,male,right,31-50,
+G153327,dev,58,male,right,10-30,
+G633988,dev,41,male,left,Under 10,30.4
+G174435,dev,50,male,right,10-30,30.8
+G195581,dev,50,female,left,10-30,
+G197558,dev,73,female,right,10-30,32.0
+G683857,dev,65,male,right,10-30,
+G498069,dev,45,female,right,10-30,32.4
+G318252,dev,53,male,right,10-30,
+G730813,dev,42,male,right,10-30,
+G189906,dev,50,male,right,Under 10,31.5
+G264490,dev,18,male,right,31-50,30.4
+G590535,dev,63,male,right,10-30,
+G732107,dev,80,male,right,10-30,
+G509096,dev,39,male,right,Over 50,
+G676875,dev,53,male,right,Under 10,
+G250643,dev,54,male,right,Over 50,
+G765750,dev,24,male,right,Over 50,
+G749598,dev,60,male,right,10-30,30.7
+G460821,dev,46,female,right,31-50,
+G904937,dev,31,male,right,10-30,29.0
+G987563,dev,67,male,right,Under 10,29.9
+G232165,dev,53,male,right,Under 10,
+G657211,dev,52,male,right,31-50,28.4
+G505028,dev,46,female,left,Over 50,
+G986445,dev,32,male,right,10-30,
+G725326,dev,33,male,right,Under 10,
+G703531,dev,44,male,right,10-30,30.9
+G467542,dev,27,male,right,Under 10,
+G428475,dev,53,male,right,10-30,
+G423496,dev,55,male,right,10-30,29.2
+G636998,dev,26,male,right,Under 10,
+G755419,dev,45,female,right,Under 10,29.5
+G915347,dev,61,male,right,Over 50,
+G595185,dev,67,female,right,Under 10,
+G823833,dev,81,female,right,10-30,
+G113606,dev,55,female,left,10-30,
+G180736,dev,67,male,right,Under 10,
+G233992,dev,42,male,right,10-30,
+G968011,dev,39,male,right,Over 50,
+G330548,dev,51,male,right,Under 10,28.7
+G699526,dev,85,female,right,10-30,29.8
+G652369,dev,62,male,right,Under 10,
+G270700,dev,36,male,right,Over 50,32.4
+G198502,dev,76,male,right,31-50,29.9
+G505974,dev,51,male,right,Over 50,31.1
+G791511,dev,50,male,right,Under 10,
+G482064,dev,53,female,right,Over 50,
+G368587,dev,35,male,left,31-50,
+G547754,dev,43,male,right,Under 10,28.9
+G734547,dev,56,male,right,10-30,
+G802085,dev,37,male,right,10-30,
+G597844,dev,54,male,left,Under 10,
+G711121,dev,34,male,right,10-30,
+G991273,dev,58,female,right,10-30,30.4
+G417331,dev,48,male,right,31-50,33.4
+G671976,dev,49,male,right,31-50,33.8
+G575312,dev,34,male,right,10-30,29.8
+G707327,dev,44,male,right,31-50,
+G353071,dev,18,male,left,Under 10,
+G424564,dev,45,male,right,Under 10,27.1
+G379752,dev,56,male,right,Over 50,29.3
+G643895,dev,18,female,right,31-50,
+G193985,dev,59,male,right,Over 50,
+G942096,dev,34,female,right,31-50,
+G354510,dev,68,female,right,10-30,
+G191715,dev,51,female,right,Under 10,
+G547902,dev,19,female,right,Under 10,
+G806519,dev,66,male,right,Under 10,32.1
+G901119,dev,53,female,right,31-50,
+G402849,dev,40,female,right,31-50,30.4
+G350754,dev,53,male,right,31-50,
+G824010,dev,79,male,right,31-50,
+G388490,dev,57,male,right,Over 50,
+G230056,dev,49,male,right,31-50,
+G176918,dev,50,male,right,31-50,
+G955761,dev,61,male,right,Under 10,30.7
+G253900,dev,44,female,right,Under 10,
+G277583,dev,43,male,right,Over 50,
+G437099,dev,39,male,right,10-30,
+G836269,dev,31,female,right,Under 10,
+G176732,dev,18,female,right,10-30,
+G215756,dev,26,male,right,31-50,28.9
+G186786,dev,58,female,right,10-30,
+G372552,dev,73,male,right,31-50,
+G864932,dev,37,male,right,10-30,33.1
+G662188,dev,55,male,right,Over 50,
+G518306,dev,39,male,right,Over 50,
+G723053,dev,52,male,right,10-30,
+G222069,dev,64,male,right,10-30,
+G889468,dev,54,male,right,10-30,
+G615662,dev,39,male,right,Under 10,31.0
+G248047,dev,57,male,right,Over 50,
+G624926,dev,82,female,right,Under 10,
+G250317,dev,43,male,right,31-50,
+G145899,dev,48,female,right,10-30,27.0
+G899069,dev,59,male,right,Over 50,
+G615459,dev,34,male,right,31-50,
+G286167,dev,54,female,right,Under 10,30.4
+G243103,dev,45,male,right,Under 10,
+G259413,dev,21,male,right,10-30,33.1
+G969483,dev,38,male,right,10-30,
+G610455,dev,23,male,left,Under 10,
+G473051,dev,76,female,left,31-50,
+G438297,dev,25,male,right,Under 10,
+G349501,dev,46,female,right,31-50,
+G104015,dev,65,female,right,Under 10,
+G261417,dev,41,male,right,Under 10,
+G921108,dev,48,male,right,Over 50,30.1
+G572706,dev,74,male,right,31-50,31.4
+G398222,dev,55,male,right,31-50,
+G209570,dev,51,male,right,31-50,
+G151047,dev,40,female,right,10-30,
+G132773,dev,45,male,right,10-30,
+G103088,dev,68,male,right,Under 10,
+G372868,dev,68,male,right,31-50,
+G193140,dev,53,male,right,31-50,
+G839844,dev,33,male,right,Over 50,
+G511052,dev,38,male,right,31-50,29.5
+G789776,dev,59,male,right,31-50,31.3
+G290069,dev,42,male,right,Over 50,
+G422502,dev,37,male,right,Over 50,
+G574805,dev,42,female,right,31-50,31.6
+G389823,dev,74,male,left,Over 50,
+G609475,dev,53,male,right,Over 50,
+G191022,dev,56,female,right,31-50,
+G671373,dev,44,male,right,Over 50,32.9
+G955636,dev,67,male,right,10-30,
+G641221,dev,56,male,right,10-30,29.7
+G906868,dev,37,male,right,31-50,32.5
+G273200,dev,29,male,right,Over 50,
+G470173,dev,44,male,left,10-30,
+G619318,dev,44,male,right,31-50,
+G681345,dev,64,female,right,Over 50,30.9
+G372832,dev,57,male,left,10-30,
+G993056,dev,48,male,right,10-30,32.3
+G208767,dev,40,male,right,31-50,
+G266987,dev,64,male,right,31-50,
+G778457,dev,52,male,right,10-30,
+G250809,dev,38,female,right,31-50,
+G614998,dev,55,male,right,Over 50,
+G598658,dev,51,male,right,31-50,
+G273226,dev,42,female,right,10-30,
+G945499,dev,24,male,right,Under 10,30.5
+G839907,dev,23,male,right,Over 50,
+G752518,dev,70,male,right,31-50,
+G116968,dev,35,male,right,Over 50,
+G839444,dev,22,male,right,10-30,
+G126567,dev,64,male,right,31-50,28.5
+G769906,dev,40,male,right,Under 10,
+G185713,dev,40,female,right,31-50,
+G143718,dev,41,female,right,31-50,
+G211127,dev,52,female,right,31-50,
+G736360,dev,54,male,right,31-50,31.4
+G548910,dev,48,male,right,10-30,
+G197053,dev,24,male,right,Under 10,31.8
+G667288,dev,53,male,right,10-30,
+G389419,dev,23,male,right,Under 10,33.5
+G644850,dev,63,male,right,31-50,
+G850428,dev,67,female,right,Over 50,
+G434451,dev,65,female,right,31-50,31.1
+G614102,dev,51,male,right,Over 50,
+G925899,dev,70,female,right,10-30,
+G934292,dev,45,male,right,10-30,
+G793212,dev,66,male,right,10-30,
+G842296,dev,53,male,right,10-30,31.4
+G421476,dev,18,male,right,10-30,31.8
+G660083,dev,40,male,right,Under 10,30.2
+G483192,dev,75,male,right,10-30,
+G838429,dev,85,female,right,31-50,30.0
+G230738,dev,47,male,right,Under 10,
+G990470,dev,40,male,right,31-50,
+G937747,dev,48,male,right,Under 10,30.5
+G145467,dev,42,male,right,Under 10,
+G692253,dev,43,male,left,31-50,
+G518754,dev,69,female,right,Under 10,
+G370695,dev,51,male,right,Over 50,
+G207671,dev,53,male,right,Over 50,31.6
+G115476,dev,61,female,right,Over 50,
+G462225,dev,33,male,right,10-30,
+G961082,dev,80,male,right,Under 10,
+G882147,dev,54,male,right,10-30,32.1
+G317266,dev,40,male,right,Under 10,33.7
+G861354,dev,40,female,right,31-50,
+G766232,dev,56,female,right,10-30,
+G811305,dev,22,male,right,31-50,
+G134710,dev,76,male,right,Under 10,36.0
+G866040,dev,48,male,right,10-30,30.5
+G139183,dev,47,male,right,Over 50,30.1
+G551018,dev,20,female,right,31-50,
+G668476,dev,49,male,right,10-30,31.3
+G399264,dev,85,male,right,31-50,31.5
+G586282,dev,27,male,right,Over 50,31.4
+G262579,dev,67,male,right,Under 10,
+G149937,dev,56,female,right,10-30,33.0
+G495335,dev,52,male,right,31-50,30.4
+G593657,dev,71,female,right,10-30,
+G249056,dev,73,male,right,Under 10,
+G726599,dev,46,female,right,Under 10,
+G443233,dev,62,male,left,31-50,36.0
+G107445,dev,70,male,left,10-30,
+G431075,dev,51,male,right,10-30,
+G930373,dev,68,male,right,Under 10,
+G777490,dev,43,male,right,31-50,
+G847110,dev,59,male,right,10-30,32.5
+G626899,dev,35,male,right,Over 50,
+G617889,dev,49,male,right,10-30,
+G976406,dev,52,male,right,Over 50,
+G980718,dev,36,male,right,Under 10,
+G775213,dev,57,male,right,Under 10,
+G839618,dev,36,male,right,10-30,33.2
+G774592,dev,60,male,left,31-50,
+G627620,dev,69,male,right,10-30,
+G858069,dev,66,female,right,31-50,
+G557636,dev,49,male,right,31-50,32.7
+G769772,dev,60,female,right,31-50,30.7
+G910266,dev,36,male,right,31-50,
+G475045,dev,27,male,left,Under 10,
+G857546,dev,38,female,left,31-50,
+G246994,dev,76,male,right,Over 50,
+G734976,dev,57,female,right,10-30,
+G487289,dev,58,male,right,Over 50,35.6
+G697705,dev,61,male,right,10-30,
+G484125,dev,61,male,right,10-30,
+G417001,dev,35,male,left,31-50,34.3
+G574746,dev,54,female,right,Under 10,
+G197666,dev,50,male,right,Over 50,
+G869389,dev,36,female,right,Under 10,29.6
+G414230,dev,27,male,right,31-50,
+G387215,dev,65,male,right,Over 50,
+G310911,dev,58,male,right,Over 50,
+G227417,dev,43,female,right,31-50,29.6
+G605764,dev,54,male,right,10-30,
+G698607,dev,45,male,right,10-30,
+G197079,dev,65,male,right,Under 10,
+G799489,dev,31,male,right,Over 50,
+G718235,dev,46,male,right,31-50,
+G250114,dev,70,male,left,Under 10,31.9
+G370412,dev,52,male,right,Under 10,
+G193624,dev,48,male,right,Over 50,30.3
+G333629,dev,53,female,right,Over 50,
+G587930,dev,60,male,right,10-30,31.2
+G317480,dev,66,male,left,31-50,
+G207513,dev,61,male,right,Over 50,32.4
+G532967,dev,32,male,right,10-30,
+G178212,dev,41,male,left,31-50,31.7
+G773942,dev,49,male,right,31-50,29.2
+G468455,dev,49,male,right,Under 10,
+G988442,dev,46,male,right,31-50,31.3
+G387634,dev,63,male,right,31-50,32.9
+G901324,dev,36,male,right,31-50,30.8
+G186992,dev,30,male,right,Under 10,
+G211823,dev,30,male,right,31-50,
+G297598,dev,24,male,right,Under 10,
+G645200,dev,52,male,right,Over 50,30.4
+G786477,dev,68,male,right,10-30,
+G915073,dev,39,male,right,10-30,31.8
+G433432,dev,63,male,right,10-30,
+G819958,dev,71,male,right,Under 10,
+G536222,dev,74,male,right,Under 10,
+G574176,dev,66,female,right,31-50,
+G178572,dev,37,male,right,10-30,
+G298838,dev,62,female,right,Over 50,31.3
+G749659,dev,38,male,right,31-50,
+G199351,dev,85,male,right,10-30,
+G308992,dev,74,male,right,Over 50,
+G231045,dev,44,male,right,31-50,
+G631017,dev,43,male,right,10-30,
+G845432,dev,40,male,right,Under 10,33.2
+G684086,dev,41,male,right,10-30,31.2
+G883174,dev,56,male,right,10-30,34.6
+G566115,dev,38,male,right,10-30,34.2
+G127136,dev,70,male,right,Under 10,
+G476805,dev,66,female,left,31-50,
+G423935,dev,50,male,right,31-50,
+G625618,dev,77,female,left,Under 10,29.6
+G560447,dev,41,female,right,31-50,
+G490153,dev,61,male,right,10-30,31.5
+G925422,dev,46,male,right,Over 50,
+G649047,dev,66,male,right,10-30,32.0
+G861987,dev,49,male,right,10-30,30.2
+G282591,dev,40,male,right,10-30,30.4
+G273412,dev,33,male,right,Under 10,31.9
+G243987,dev,59,female,right,31-50,29.9
+G312108,dev,54,male,right,31-50,
+G570563,dev,58,male,right,31-50,
+G106481,dev,66,male,right,10-30,
+G966371,dev,34,male,right,Under 10,32.2
+G743488,dev,22,female,right,Under 10,
+G603124,dev,76,male,right,Over 50,
+G154636,dev,40,female,right,Under 10,28.4
+G182658,dev,52,male,right,31-50,33.0
+G209132,dev,32,male,right,Over 50,
+G699917,dev,41,female,right,Under 10,34.0
+G866465,dev,60,male,right,31-50,
+G386053,dev,48,male,right,Under 10,
+G864834,dev,45,male,right,Over 50,
+G502996,dev,34,male,right,Over 50,31.6
+G143225,dev,79,male,right,Over 50,31.9
+G218047,dev,79,male,right,Under 10,32.0
+G330381,dev,53,male,right,10-30,
+G369866,dev,26,male,left,Over 50,
+G560705,dev,62,male,left,Over 50,31.0
+G819675,dev,23,male,right,10-30,
+G844531,dev,50,male,right,31-50,29.8
+G850022,dev,59,male,right,Over 50,
+G904173,dev,65,male,right,Under 10,
+G659373,dev,67,male,left,Over 50,28.3
+G587754,dev,32,female,right,31-50,
+G765194,dev,50,male,right,Under 10,
+G163819,dev,65,male,right,Over 50,
+G898293,dev,48,male,left,10-30,
+G417686,dev,52,male,right,31-50,32.4
+G740398,dev,42,male,right,Under 10,
+G126754,dev,18,male,left,Over 50,
+G909268,dev,37,male,right,Over 50,
+G598225,dev,51,male,right,10-30,
+G201779,dev,42,male,left,Over 50,
+G940911,dev,47,male,left,10-30,
+G737675,dev,39,male,right,31-50,
+G766208,dev,35,male,right,Over 50,
+G242391,dev,53,male,left,Over 50,
+G671899,dev,60,male,right,31-50,28.4
+G326148,dev,47,male,right,Under 10,
+G202615,dev,64,male,right,31-50,
+G697925,dev,47,male,right,Under 10,
+G129495,dev,49,male,right,10-30,
+G558328,dev,61,male,right,10-30,
+G509793,dev,41,female,right,Over 50,
+G253265,dev,70,male,left,Under 10,
+G389667,dev,41,male,right,Over 50,
+G648833,dev,56,male,right,31-50,31.0
+G467876,dev,85,male,right,Over 50,31.4
+G993036,dev,82,male,right,Under 10,
+G954027,dev,65,female,right,10-30,
+G968660,dev,56,male,right,10-30,31.8
+G726639,dev,47,male,right,31-50,
+G628420,dev,55,male,right,31-50,30.7
+G198372,dev,58,female,right,31-50,29.1
+G453550,dev,30,female,right,Under 10,
+G933370,dev,44,female,right,10-30,30.1
+G164307,dev,48,male,right,Under 10,32.1
+G912761,dev,81,male,right,Under 10,
+G611171,dev,18,male,right,Over 50,
+G344484,dev,65,male,right,31-50,27.0
+G802567,dev,54,male,right,Under 10,
+G804169,dev,62,male,right,10-30,
+G524362,dev,41,male,right,31-50,
+G904832,dev,22,male,right,Over 50,
+G109486,dev,33,male,right,10-30,29.2
+G319694,dev,45,male,right,10-30,
+G351977,dev,40,male,right,Under 10,
+G932241,dev,18,male,right,Under 10,
+G198424,dev,76,female,right,Under 10,
+G282275,dev,34,male,right,Over 50,31.2
+G980827,dev,85,female,right,10-30,30.7
+G517457,dev,49,female,right,31-50,32.9
+G658849,dev,66,male,right,Under 10,
+G962765,dev,28,male,right,10-30,
+G655014,dev,65,male,left,Over 50,
+G626307,dev,62,female,right,10-30,
+G702026,dev,67,male,right,Over 50,
+G233634,dev,44,male,right,31-50,
+G630057,dev,18,male,right,10-30,
+G660227,dev,43,female,right,Under 10,
+G563146,dev,32,male,left,10-30,
+G671151,dev,33,male,right,Over 50,
+G439242,dev,57,male,left,Under 10,
+G583305,dev,41,male,right,Under 10,
+G380491,dev,26,female,right,31-50,
+G242799,dev,31,male,right,10-30,32.9
+G843932,dev,56,male,left,10-30,
+G483145,dev,62,male,right,Under 10,
+G378772,dev,63,male,right,Over 50,30.3
+G270746,dev,78,male,right,Under 10,31.0
+G348055,dev,36,male,right,31-50,
+G860175,dev,36,male,left,Over 50,
+G159252,dev,68,female,right,10-30,
+G136858,dev,36,male,right,10-30,
+G878004,dev,42,female,right,10-30,
+G872180,dev,65,male,right,Under 10,32.1
+G753614,dev,39,male,right,Over 50,
+G657079,dev,23,female,right,Over 50,
+G171274,dev,38,female,right,10-30,30.4
+G476434,dev,32,male,right,Under 10,
+G272104,dev,56,female,right,Under 10,31.2
+G341320,dev,34,male,left,31-50,
+G503543,dev,75,male,right,Under 10,28.5
+G671924,dev,63,male,right,31-50,
+G779603,dev,51,male,left,10-30,
+G894183,dev,47,male,right,Over 50,
+G738187,dev,49,male,right,Over 50,
+G391071,dev,57,male,right,31-50,32.4
+G916202,dev,82,male,right,Over 50,
+G267173,dev,33,female,right,Over 50,
+G600342,dev,50,male,right,Under 10,32.8
+G812146,dev,23,male,right,10-30,31.3
+G852204,dev,60,male,right,Under 10,
+G912833,dev,65,male,right,Over 50,
+G825015,dev,32,male,right,31-50,32.9
+G457358,dev,31,male,right,Over 50,
+G352536,dev,46,male,right,10-30,35.9
+G985874,dev,48,male,right,10-30,33.1
+G700778,dev,51,male,right,10-30,
+G388476,dev,65,male,right,10-30,
+G262276,dev,61,male,right,Over 50,27.2
+G908698,dev,75,male,right,Under 10,
+G994826,dev,46,male,right,10-30,
+G918066,dev,32,male,right,31-50,28.4
+G554488,dev,46,male,right,Over 50,
+G594876,dev,51,female,right,10-30,
+G169591,dev,19,male,right,Over 50,31.1
+G355184,dev,28,male,right,Under 10,29.8
+G284255,dev,28,female,left,Under 10,
+G285891,dev,60,female,left,31-50,
+G667852,dev,51,male,right,Under 10,32.8
+G611060,dev,78,male,left,Under 10,
+G540862,dev,34,male,right,10-30,
+G560534,dev,58,male,right,Under 10,27.9
+G177872,dev,64,female,right,31-50,28.4
+G980666,dev,19,male,right,31-50,31.8
+G111397,dev,68,male,right,10-30,
+G576346,dev,56,male,right,31-50,30.1
+G603315,dev,47,male,right,Under 10,27.1
+G512818,dev,51,male,left,10-30,
+G630007,dev,44,female,right,31-50,
+G574246,dev,78,male,right,Under 10,
+G655973,dev,44,female,left,10-30,
+G153705,dev,57,male,right,31-50,30.6
+G981961,dev,54,male,right,Over 50,
+G419503,dev,66,male,right,31-50,
+G962405,dev,71,male,right,Under 10,
+G149075,dev,44,male,right,31-50,
+G353095,dev,61,male,right,Over 50,29.0
+G850994,dev,56,male,right,Over 50,
+G900081,dev,33,male,right,31-50,
+G947453,dev,53,female,right,Under 10,
+G652705,dev,34,female,right,31-50,
+G649711,dev,81,male,right,31-50,
+G792162,dev,60,female,right,Over 50,
+G520374,dev,56,male,right,Over 50,
+G918601,dev,50,male,right,Over 50,
+G768762,dev,41,male,right,10-30,
+G397967,dev,42,female,right,31-50,
+G953028,dev,65,female,right,31-50,29.5
+G330301,dev,85,female,right,Over 50,30.2
+G618608,dev,74,male,right,Over 50,32.6
+G248707,dev,40,female,right,Over 50,
+G519655,dev,44,female,right,31-50,
+G960310,dev,21,male,right,31-50,
+G238394,dev,20,male,right,Over 50,
+G999511,dev,34,male,right,31-50,29.8
+G310708,dev,35,male,right,Over 50,
+G633444,dev,85,male,left,Over 50,
+G597680,dev,50,female,right,Under 10,
+G784200,dev,39,female,right,31-50,31.6
+G521752,dev,67,male,right,Over 50,28.8
+G932867,dev,62,male,right,31-50,
+G465060,dev,54,male,right,31-50,30.8
+G529307,dev,44,male,right,Under 10,
+G896973,dev,54,female,right,Under 10,
+G290328,dev,31,female,right,10-30,31.3
+G477463,dev,80,male,left,Over 50,30.5
+G322120,dev,41,male,right,Over 50,
+G179424,dev,50,female,right,Under 10,32.6
+G862999,dev,55,male,right,Under 10,
+G514912,dev,45,male,right,31-50,
+G347603,dev,58,male,right,31-50,
+G782068,dev,47,male,right,31-50,
+G523068,dev,31,male,right,Over 50,31.0
+G748328,dev,74,male,left,Under 10,32.9
+G106910,dev,18,male,right,Under 10,30.4
+G877236,dev,63,male,right,Over 50,29.6
+G901779,dev,47,female,right,10-30,
+G495478,dev,41,male,right,Under 10,30.7
+G429222,dev,49,male,right,10-30,
+G440395,dev,67,male,right,Over 50,
+G554181,dev,46,male,right,Over 50,
+G560280,dev,67,male,right,10-30,
+G322748,dev,64,male,right,31-50,
+G734710,dev,41,male,right,Under 10,
+G376335,dev,32,female,right,10-30,
+G242254,dev,72,female,right,Under 10,
+G628475,dev,67,female,right,10-30,31.2
+G653633,dev,43,male,right,Under 10,
+G308563,dev,60,male,right,Under 10,31.7
+G586978,dev,51,male,right,Over 50,
+G300963,dev,64,male,right,31-50,
+G428770,dev,50,male,right,10-30,
+G305486,dev,52,male,right,Over 50,
+G592936,dev,63,male,right,31-50,32.3
+G523468,dev,50,female,right,10-30,29.5
+G702672,dev,70,male,right,10-30,
+G596069,dev,52,female,right,Over 50,
+G547914,dev,44,male,right,31-50,
+G677050,dev,47,male,right,Under 10,
+G231492,dev,54,female,right,Under 10,29.9
+G310220,dev,57,male,right,Over 50,
+G614041,dev,55,male,right,31-50,
+G712840,dev,75,male,right,Under 10,
+G154099,dev,36,male,right,31-50,
+G218760,dev,84,male,right,31-50,
+G924152,dev,38,male,right,10-30,32.9
+G524133,dev,26,male,right,Over 50,
+G771864,dev,67,male,right,31-50,
+G641220,dev,44,male,right,31-50,29.9
+G312965,dev,62,male,right,10-30,
+G441575,dev,40,female,right,Over 50,33.4
+G563108,dev,50,male,right,Under 10,34.2
+G368594,dev,47,male,right,10-30,
+G859117,dev,61,male,right,10-30,35.1
+G340940,dev,52,male,left,10-30,33.1
+G688925,dev,47,female,right,Over 50,
+G374031,dev,33,male,right,10-30,30.7
+G785736,dev,64,male,right,10-30,
+G638821,dev,37,male,right,31-50,
+G267025,dev,32,male,right,Over 50,
+G973497,dev,43,male,right,10-30,33.5
+G571668,dev,58,male,right,31-50,
+G650152,dev,45,male,right,31-50,
+G276891,dev,54,female,right,Over 50,29.5
+G426346,dev,38,male,right,Over 50,
+G154664,dev,39,male,left,31-50,
+G993871,dev,74,female,right,Over 50,
+G588596,dev,43,male,right,31-50,30.1
+G157158,dev,62,male,right,Under 10,
+G748342,dev,48,male,right,10-30,
+G868363,dev,54,male,right,Over 50,
+G171396,dev,67,male,right,Under 10,
+G838536,dev,39,male,right,Over 50,31.3
+G976871,dev,63,male,right,Under 10,
+G525862,dev,32,male,right,31-50,
+G273114,dev,33,female,left,Under 10,
+G621761,dev,62,male,right,10-30,31.1
+G481896,dev,56,male,right,Over 50,
+G774433,dev,22,male,right,Over 50,
+G422706,dev,61,female,right,Over 50,32.4
+G549942,dev,45,female,right,Over 50,
+G910431,dev,52,male,right,31-50,31.9
+G615547,dev,37,male,left,10-30,32.9
+G125874,dev,70,male,right,Over 50,
+G764483,dev,48,male,right,31-50,
+G895561,dev,30,male,right,Over 50,
+G311036,dev,37,male,right,Under 10,31.4
+G695629,dev,58,male,right,Over 50,
+G814682,dev,32,male,right,10-30,
+G538284,dev,60,female,right,10-30,
+G269599,dev,64,male,right,10-30,30.8
+G315841,dev,77,male,right,31-50,
+G313024,dev,27,male,right,10-30,
+G763129,dev,44,male,right,31-50,
+G181225,dev,33,male,right,Under 10,30.0
+G582271,dev,49,female,right,Over 50,32.8
+G346217,dev,34,male,right,31-50,30.0
+G350337,dev,49,male,right,10-30,30.7
+G487090,dev,57,male,right,Under 10,
+G525556,dev,29,male,right,Under 10,
+G799813,dev,35,male,right,Over 50,28.9
+G885700,dev,63,male,right,Under 10,30.3
+G558063,dev,62,male,right,10-30,
+G159953,dev,39,male,right,Under 10,32.6
+G757672,dev,21,male,right,31-50,
+G380080,dev,59,male,right,Over 50,
+G931196,dev,58,male,right,Under 10,
+G938354,dev,70,male,right,Under 10,
+G350876,dev,53,female,right,31-50,
+G941004,dev,50,male,right,31-50,32.0
+G864978,dev,56,male,right,Under 10,
+G282678,dev,61,male,right,10-30,
+G389515,dev,74,female,left,31-50,
+G144488,dev,52,male,right,Over 50,35.7
+G306746,dev,84,male,right,Over 50,
+G273990,dev,50,male,right,Under 10,
+G670785,dev,21,female,right,Over 50,
+G302876,dev,64,male,right,10-30,28.9
+G111063,dev,45,male,right,31-50,31.9
+G320300,dev,62,male,right,10-30,
+G833259,dev,28,male,right,31-50,
+G826142,dev,43,female,right,Over 50,32.1
+G138015,dev,36,male,right,10-30,
+G855919,dev,18,male,right,10-30,
+G217298,dev,75,male,right,10-30,27.4
+G858029,dev,45,male,right,Under 10,

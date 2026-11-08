@@ -1,0 +1,1688 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Takomo Fitter Prototype</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap">
+<style>
+/* Mobile-first website. One column, full-bleed on a phone; centred (max 480px) on the brand ground on wider screens.
+   Single dark look by choice: it is the brand. Tokens shared with step1.html. */
+:root{
+  /* light, like takomogolf.com; Midnight Black is kept for the fitter's own voice and for the camera */
+  --ground:#E6E6E6; --bg:#F8F8F8; --surface:#FFFFFF; --surface-2:#F0F0F0;
+  --line:#D9D9D9; --line-strong:#B5B5B5;
+  --fg:#0B0B0B; --fg-2:#262626; --fg-3:#4A4A4A; --fg-4:#8A8A8A;
+  --accent:#FF6E01; --accent-ink:#0B0B0B; --accent-soft:rgba(255,110,1,.12);
+  --ink:#0B0B0B; --ink-surface:#161616; --ink-line:#2A2A2A; --ink-fg:#F8F8F8; --ink-fg-2:#C8C8C8; --ink-fg-3:#8E8E8E; --ink-fg-4:#5A5A5A;
+  --fig:#1C1C1C; --fig-cap:#0B0B0B; --fig-brim:#0B0B0B; --fig-glove:#FFFFFF; --fig-club:#6F6F6F;
+  --display:'Barlow Condensed','Arial Narrow',Impact,sans-serif;
+  --body:Barlow,'Helvetica Neue',Arial,sans-serif;
+  color-scheme:light;
+}
+/* dark islands: his voice, the camera, the demo bar */
+.cam{--fg:var(--ink-fg);--fg-2:var(--ink-fg-2);--fg-3:var(--ink-fg-3);--fg-4:var(--ink-fg-4);--line:var(--ink-line);--line-strong:#3A3A3A;--surface:var(--ink-surface);--fig:#C8C8C8;--fig-cap:#3A3A3A;--fig-brim:#F8F8F8;--fig-glove:#F8F8F8;--fig-club:#8E8E8E}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);-webkit-font-smoothing:antialiased}
+button{font-family:var(--body)}
+.stage{min-height:100%;display:flex;flex-direction:column;align-items:stretch}
+.phone{position:relative;width:100%;flex:1 1 auto;min-height:100%;background:var(--bg);display:flex;flex-direction:column}
+.screen{flex:1 1 auto;min-height:100%;display:flex;flex-direction:column;gap:14px;padding:24px max(20px,env(safe-area-inset-left,0px)) calc(var(--demo-h,0px) + 12px) max(20px,env(safe-area-inset-right,0px));position:relative}
+.screen[hidden]{display:none}
+@media (min-width:700px){
+  body{background:var(--ground)}
+  .stage{align-items:center;padding:32px 16px}
+  .phone{max-width:480px;min-height:calc(100vh - 64px);border-left:1px solid var(--line);border-right:1px solid var(--line)}
+  .screen{padding-left:28px;padding-right:28px;padding-top:32px;padding-bottom:16px}
+}
+
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;min-height:28px}
+.wordmark{font-family:var(--display);font-weight:700;letter-spacing:.3em;font-size:15px}
+.steplabel{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;white-space:nowrap}
+@media (max-width:399px){.units .ul{display:none}}
+.units{display:flex;align-items:center;gap:2px;background:var(--surface);border-radius:3px;padding:2px 2px 2px 8px}
+.units .ul{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-4);margin-right:6px}
+.units button{font:600 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border:0;border-radius:2px;background:transparent;color:var(--fg-3);cursor:pointer;transition:background .25s,color .25s}
+.units button[aria-pressed="true"]{background:var(--line);color:var(--fg)}
+.rule{height:1px;background:var(--line)}
+
+/* progress spine */
+.spine{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.spine span{font-size:11px;letter-spacing:.08em;white-space:nowrap;text-transform:uppercase;color:var(--fg-4);padding-top:8px;border-top:2px solid var(--line);transition:color .3s,border-color .3s;font-weight:600}
+.spine span.done{color:var(--fg-3);border-color:var(--line-strong)}
+.spine span.on{color:var(--accent);border-color:var(--accent)}
+
+/* caption strip: the fitter is always saying something, and it is always readable */
+.cap{position:relative;border-left:3px solid var(--accent);padding-left:14px;display:flex;flex-direction:column;gap:6px;min-height:104px}
+/* meet: full screen, cap and glove, thought bubble; he waves, then gets pulled into the bottom bar */
+.meet{padding-bottom:24px}
+.meetstage{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;cursor:pointer;position:relative;transition:gap .6s var(--ease),flex-grow .6s var(--ease)}
+.guy{width:150px;height:auto;animation:bob 2.6s ease-in-out infinite;transition:width .6s var(--ease)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.guy .wave{transform-box:view-box;transform-origin:60px 58px;animation:wave 1.1s ease-in-out 3}
+@keyframes wave{0%,100%{transform:rotate(0)}30%{transform:rotate(-22deg)}70%{transform:rotate(14deg)}}
+.cap.thought{position:relative;width:min(100%,320px);min-height:0;border:0;border-left:0;padding:18px 20px;background:#ECECEC;color:var(--fg);border-radius:28px;gap:10px;align-items:center;text-align:center;animation:rise .5s var(--ease) both}
+.cap.thought .cap-text{font-size:19px;line-height:26px;min-height:0;font-weight:500}
+.cap.thought .cap-text .w.todo{color:#9A9A9A}
+.cap.thought .hear{color:var(--fg-2);border-color:var(--line-strong)}
+.cap.thought .hear{align-self:center;margin:0}
+.cap.thought .t1,.cap.thought .t2{position:absolute;border-radius:50%;background:#ECECEC;left:50%}
+.cap.thought .t1{width:16px;height:16px;bottom:-14px;margin-left:10px}
+.cap.thought .t2{width:9px;height:9px;bottom:-28px;margin-left:24px}
+.meetperms{display:flex;flex-direction:column;gap:10px;animation:rise .5s var(--ease) both}
+.meetperms[hidden]{display:none}
+.meetperms .row{display:flex;gap:8px}
+.meetperms .note{text-align:center}
+.meetstage.asking{flex:0 1 auto;gap:16px}
+.meetstage.asking .guy{width:104px}
+.meetstage.asking .meethint{opacity:0;height:0;margin:0;overflow:hidden}
+.meethint{transition:opacity .3s,height .3s}
+.meetperms{animation:rise .6s var(--ease) .25s both}
+.meethint{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-4)}
+.cap-label{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.4s ease-in-out infinite}
+.cap.done .dot{animation:none;opacity:.5}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.55);opacity:.45}}
+.cap-text{font-size:18px;line-height:25px;font-weight:500;min-height:50px}
+.cap-text .w{transition:color .12s}
+.cap-text .w.on{color:var(--accent)}
+.cap-text .w.todo{color:var(--fg-4)}
+.hear{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-top:2px;padding:6px 10px;border:1px solid var(--line-strong);border-radius:3px;background:transparent;color:var(--fg-2);font:600 12px/1 var(--body);letter-spacing:.04em;cursor:pointer}
+.hear[hidden]{display:none}
+.hear svg{width:14px;height:14px}
+
+/* hello */
+.doors.land{flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-evenly;gap:14px;padding:4px 0 8px;text-align:center}
+.scene{display:flex;flex-direction:column;align-items:center;gap:0}
+.guy.landing{width:118px;height:auto}
+.guy.landing .wave{animation:wave 1.1s ease-in-out 2 .9s}
+.ground{width:160px;height:1px;background:var(--line-strong);margin-top:-6px}
+.doors.land h1{font-size:44px;line-height:42px}
+.journey{list-style:none;margin:0;padding:0 8px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.journey::before{content:'';position:absolute;left:12.5%;right:12.5%;top:21px;border-top:2px dashed var(--line-strong)}
+.journey li{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;font:600 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-2);white-space:nowrap}
+.journey li svg{width:44px;height:44px;padding:6px;border-radius:50%;background:var(--surface);border:2px solid var(--line-strong);color:var(--fg)}
+.journey li:last-child svg{border-color:var(--accent);color:var(--accent)}
+.door.big{padding:20px 20px;justify-content:space-between;text-align:left}
+.door.big .t{font-size:28px;line-height:28px}
+.door.big .s{font-size:14px;margin-top:5px;letter-spacing:.01em}
+.door.big .s.needsrow{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid rgba(11,11,11,.18);font:600 12px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink)}
+.door.big .s.needsrow span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.door.big .s.needsrow svg{width:18px;height:18px;flex:none}
+.door.big{padding:18px 20px 16px;position:relative}
+.door.big .body{flex:1 1 auto;min-width:0;width:100%}
+.door.big .arrow{position:absolute;right:20px;top:16px}
+.door.big .s.needsrow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:10.5px;letter-spacing:.04em}
+.door.big .s.needsrow span{flex-direction:column;gap:6px;text-align:center;justify-content:flex-start}
+.door.big .s.needsrow svg{width:22px;height:22px}
+.door.big .arrow{font-size:28px;color:var(--accent-ink)}
+.camline.links{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;padding:0}
+.camline.links .sep{color:var(--fg-4)}
+.camline.ok #camline-t{color:var(--fg);font-weight:600}
+h1{margin:0;font-family:var(--display);font-size:52px;line-height:48px;font-weight:800;text-transform:uppercase;letter-spacing:-.01em;text-wrap:balance}
+.door{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-radius:5px;color:var(--fg);background:var(--surface);border:1px solid var(--line-strong);cursor:pointer;text-align:left;transition:transform .15s,border-color .2s}
+.door:active{transform:scale(.985)}
+.door .t{display:block;font-family:var(--display);font-size:22px;line-height:22px;font-weight:700;text-transform:uppercase}
+.door .s{display:block;font-size:15px;line-height:20px;color:var(--fg-2);margin-top:4px}
+.door.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);padding:18px}
+.door.primary .t{font-size:24px;line-height:24px}
+.door.primary .s{color:var(--accent-ink);opacity:.85;font-weight:500}
+.door .body{min-width:0;flex:1 1 auto}
+.door .best{display:inline-block;font:700 10px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:var(--accent-ink);border-radius:2px;padding:4px 6px;margin-bottom:8px}
+.door .icons{flex:none;display:flex;flex-direction:column;gap:6px;align-items:center}
+.door .icons svg{width:24px;height:24px}
+.door .needs{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.door .need{display:inline-flex;align-items:center;gap:5px;font:600 12px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:3px;border:1px solid var(--line-strong);color:var(--fg)}
+.door .need svg{width:13px;height:13px}
+.door.primary .need{border-color:rgba(11,11,11,.35);color:var(--accent-ink);background:rgba(11,11,11,.08)}
+.door .arrow{font-size:20px;color:var(--fg-3)}
+.camline{margin:0;padding:0 18px;font-size:15px;line-height:21px;color:var(--fg-2)}
+.camline.ok{color:var(--fg-2)}
+.linkbtn{background:none;border:0;padding:0;margin:0;color:var(--fg);font:inherit;font-weight:500;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:1.5px;text-underline-offset:3px;cursor:pointer}
+.linkbtn:hover{color:var(--accent)}
+.infos{display:grid;gap:8px;margin:2px 0}
+.info{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px dashed var(--line-strong);border-radius:4px}
+.info .ico{flex:none;width:26px;height:26px;display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.info .ico svg{width:22px;height:22px}
+.info span:last-child{font-size:13px;line-height:18px;color:var(--fg-3)}
+.info b{display:block;font-family:var(--display);font-size:17px;line-height:18px;text-transform:uppercase;color:var(--fg);font-weight:700;margin-bottom:2px}
+.fine{font-size:12px;line-height:16px;color:var(--fg-4);text-align:center;margin-top:4px}
+.rise{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}.rise.d4{animation-delay:.32s}
+@keyframes rise{from{transform:translateY(10px);opacity:.001}to{transform:none;opacity:1}}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* stage area + sub-stages */
+.stagearea{flex:1 1 auto;display:flex;flex-direction:column;gap:12px;min-height:0;position:relative}
+.stagearea.swapping{overflow:hidden}
+.ghoststage{position:absolute;inset:0 0 auto 0;pointer-events:none;z-index:1;background:var(--bg)}
+.st{display:flex;flex-direction:column;gap:12px}
+.st[hidden]{display:none}
+.st:not([hidden]){animation:rise .4s var(--ease) both}
+.screen:not([hidden]){animation:fadein .35s ease both}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.cap-text{transition:opacity var(--t-fast)}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+
+/* profile tiles */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tile{position:relative;background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;padding:10px 12px 9px;min-height:66px;text-align:left;color:var(--fg);cursor:pointer;transition:border-color .25s,background .25s}
+.tile{display:flex;flex-wrap:wrap;align-items:flex-start;gap:4px 6px}
+.tile .l{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);line-height:16px}
+.tile .v{flex-basis:100%;font-family:var(--display);font-size:24px;line-height:26px;font-weight:700;text-transform:uppercase;color:var(--fg-4)}
+.tile .v.small{font-size:17px;line-height:19px}
+.tile .src{margin-left:auto;font-size:9px;line-height:1;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-4);border:1px solid var(--line-strong);border-radius:2px;padding:3px 5px}
+.tile.filled .v{color:var(--fg)}
+.tile.filled .src{color:var(--fg-3)}
+.tile.filled .src.measured,.tile.filled .src.seen{color:var(--accent);border-color:var(--accent)}
+.tile.asking{border-color:var(--accent);background:var(--accent-soft)}
+.tile.asking .l{color:var(--accent)}
+.tile.asking .v{color:var(--fg-3)}
+.tile.fixing{border-color:var(--fg);}
+.tile.skipped .v{color:var(--fg-4);text-decoration:line-through}
+.said{display:flex;gap:10px;align-items:baseline;font-size:15px;line-height:21px;color:var(--fg-2);min-height:21px}
+.said b{flex:none;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);font-weight:600}
+.said i{font-style:normal;color:var(--fg-4)}
+
+/* measure */
+.measure{display:grid;grid-template-columns:1fr 92px;gap:10px;align-items:start}
+.figure{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:8px;height:100%;display:flex;align-items:center;justify-content:center}
+.figure svg{width:76px;height:auto}
+.readback{background:var(--surface);border:1px solid var(--line-strong);border-radius:4px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:6px}
+.readback[hidden]{display:none}
+.readback .big{font-family:var(--display);font-size:56px;line-height:52px;font-weight:800;text-transform:uppercase}
+.readback .heard{font-size:14px;color:var(--fg-3)}
+.readback .row{display:flex;gap:8px;margin-top:6px}
+.readback .say{display:none;font-size:14px;color:var(--fg-3);margin-top:2px}
+.readback .say b{color:var(--accent);font-weight:700}
+.readback.voice .row{display:none}
+.readback.voice .say{display:block}
+.note{font-size:15px;line-height:21px;color:var(--fg-2)}
+.note b{color:var(--fg-2);font-weight:600}
+
+/* swing */
+.cam{position:relative;aspect-ratio:3/4;max-height:52vh;background:radial-gradient(120% 90% at 50% 100%,#2a2420 0%,#141212 55%,#0e0e0e 100%);border:1px solid var(--line-strong);border-radius:4px;overflow:hidden;cursor:pointer;user-select:none}
+/* one motion scale for both steps */
+:root{--t-fast:.3s;--t-draw:1s;--ease:cubic-bezier(.2,.7,.2,1)}
+/* measure figure */
+#fig .arm{transform-box:view-box;transform-origin:40px 34px;transition:transform var(--t-draw) var(--ease)}
+#fig.t #arm-l{transform:rotate(70deg)}
+#fig.t #arm-r{transform:rotate(-70deg)}
+#fig.t #fig-hand,#fig.t #fig-wrist{opacity:0}
+#fig #fig-hand,#fig #fig-wrist{transition:opacity var(--t-fast) var(--t-draw)}
+#fig-hand{transform-box:view-box;transform-origin:54px 79px;transition:transform var(--t-fast) var(--ease)}
+#fig-body{transform-box:view-box;transform-origin:40px 75px;transition:transform var(--t-fast) var(--ease)}
+#fig-body.left{transform:scaleX(-1)}
+#fig .marker.pulse{animation:pulse 1.2s ease-in-out infinite}
+#fig .mline{stroke:var(--accent);stroke-dasharray:140;stroke-dashoffset:140;transition:stroke-dashoffset var(--t-draw) var(--ease),stroke var(--t-fast)}
+#fig .mline.drawn{stroke-dashoffset:0}
+#fig .mline.grey{stroke:var(--fg-4)}
+#fig .mlab{fill:var(--accent);font:700 9px var(--display);stroke:none;opacity:0;transform:translateY(4px);transition:opacity var(--t-fast),transform var(--t-fast) var(--ease)}
+#fig .mlab.in{opacity:1;transform:none}
+#fig .mlab.grey{fill:var(--fg-4)}
+.readback{transition:opacity var(--t-fast),transform var(--t-fast) var(--ease)}
+.readback.away{opacity:0;transform:translateY(-10px) scale(.96)}
+.readback:not([hidden]){animation:rise var(--t-fast) var(--ease) backwards}
+.tile.just .v{animation:rise var(--t-fast) var(--ease) both}
+/* swing camera */
+.cam .framesvg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.cam .framesvg path{fill:none;stroke:var(--fg-4);stroke-width:1.2;stroke-dasharray:4 4;vector-effect:non-scaling-stroke;transition:stroke var(--t-fast)}
+.cam.enter .framesvg path{stroke-dasharray:400;stroke-dashoffset:400;animation:draw var(--t-draw) var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.cam:not(.ok) .framesvg{animation:drift 2.2s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0)}33%{transform:translate(2px,-1px)}66%{transform:translate(-2px,1px)}}
+.cam.ok .framesvg path{stroke:var(--accent);stroke-dasharray:4 4;stroke-dashoffset:0;animation:settle var(--t-fast) var(--ease)}
+@keyframes settle{from{transform:scale(1.02)}to{transform:none}}
+.cam .trail{fill:none;stroke:var(--accent);stroke-width:1.5;opacity:0;stroke-dasharray:260;stroke-dashoffset:260}
+.cam.swinging .trail{opacity:.9;animation:draw 1.5s cubic-bezier(.4,0,.2,1) both}
+.cam.swinging .handdot{offset-path:path('M46 86C8 72 16 14 70 22C92 30 72 62 46 86');offset-rotate:0deg;animation:travel 1.5s cubic-bezier(.4,0,.2,1) both}
+@keyframes travel{from{offset-distance:0%}to{offset-distance:100%}}
+.cam .ghosts path{fill:none;stroke:var(--accent);stroke-width:1.2;opacity:.35;transition:transform var(--t-draw) var(--ease),opacity var(--t-draw)}
+.cam .ghosts.merge path{transform:none!important;opacity:.6}
+.cam .handdot{transition:transform var(--t-fast) var(--ease)}
+.cam.lowhands .handdot{transform:translateY(4px)}
+.cam .bracket{fill:none;stroke:var(--accent);stroke-width:1.5;opacity:0;transition:opacity var(--t-fast)}
+.cam.lowhands .bracket{opacity:1}
+.cam .pill{transition:transform var(--t-fast) var(--ease)}
+.cam .pill.bump{animation:bump .4s var(--ease)}
+@keyframes bump{30%{transform:scale(1.08)}}
+/* your fit */
+.vrow{transition:background var(--t-fast),opacity var(--t-fast),transform var(--t-fast) var(--ease)}
+.vrow.pre{opacity:.45;transform:translateY(6px)}
+.yourswing .mini{grid-row:1/2;width:44px;height:44px;animation:pop var(--t-fast) var(--ease) both}
+.yourswing .mini svg{width:44px;height:44px}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.cam .pill{position:absolute;left:10px;top:10px;display:flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg);background:rgba(0,0,0,.55);padding:5px 8px;border-radius:3px}
+.cam .pill .rec{width:8px;height:8px;border-radius:50%;background:#E5322D;animation:pulse 1.2s ease-in-out infinite}
+.cam .tempo{position:absolute;right:10px;top:10px;text-align:right;background:rgba(0,0,0,.55);padding:6px 9px;border-radius:3px}
+.cam .tempo .l{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3)}
+.cam .tempo .v{font-family:var(--display);font-size:26px;line-height:26px;font-weight:700;color:var(--accent)}
+.cam .tempo .v.todo{color:var(--fg-4)}
+.cam .line{position:absolute;left:0;right:0;bottom:0;padding:10px 12px;font-size:13px;line-height:18px;color:var(--fg-2);background:linear-gradient(transparent,rgba(0,0,0,.75))}
+.cam svg.golfer{position:absolute;left:50%;bottom:8%;width:46%;height:auto;transform:translateX(-50%);opacity:.9}
+.cam .d{fill:var(--accent)}
+.cam.swinging .arm{animation:swing 1.5s cubic-bezier(.4,0,.2,1) both;transform-origin:50px 46px}
+@keyframes swing{0%{transform:rotate(0)}45%{transform:rotate(-140deg)}62%{transform:rotate(20deg)}100%{transform:rotate(0)}}
+.cam .flash{position:absolute;inset:0;background:var(--fg);opacity:0;pointer-events:none}
+.cam.swinging .flash{animation:flash 1.5s linear both}
+@keyframes flash{0%,60%{opacity:0}63%{opacity:.08}66%,100%{opacity:0}}
+.fold{border:1px dashed var(--line-strong);border-radius:4px;padding:0 14px}
+.fold summary{display:flex;justify-content:space-between;align-items:center;list-style:none;cursor:pointer;padding:11px 0;font-family:var(--display);font-size:17px;line-height:18px;text-transform:uppercase;font-weight:700}
+.fold summary::-webkit-details-marker{display:none}
+.fold summary svg{width:18px;height:18px;color:var(--accent);transition:transform var(--t-fast) var(--ease)}
+.fold[open] summary svg{transform:rotate(180deg)}
+.fold p{margin:0 0 12px;font-size:15px;line-height:21px;color:var(--fg-2)}
+.fold[hidden]{display:none}
+.info[hidden],.cam[hidden],.clipstate[hidden]{display:none}
+.clipstate{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border:1px solid var(--accent);border-radius:4px}
+.clipstate .h{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.clipstate .t{font-family:var(--display);font-size:22px;line-height:22px;text-transform:uppercase;font-weight:700}
+.clipstate p{margin:0;font-size:13px;line-height:18px;color:var(--fg-2)}
+.plan{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.planbtn{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 12px 10px;border-radius:4px;border:1px solid var(--line-strong);background:var(--surface);color:var(--fg-3);cursor:pointer;transition:border-color .2s,background .2s,color .2s;overflow:hidden}
+.planbtn b{font:800 30px/30px var(--display);color:var(--fg)}
+.planbtn>span{font:600 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase}
+.planbtn .bars{display:flex;gap:3px;margin-top:10px;height:14px;align-items:flex-end}
+.planbtn .bars em{display:block;width:6px;border-radius:1px;background:var(--line-strong);transition:background .2s}
+.planbtn .bars em:nth-child(1){height:6px}.planbtn .bars em:nth-child(2){height:8px}.planbtn .bars em:nth-child(3){height:10px}.planbtn .bars em:nth-child(4){height:12px}.planbtn .bars em:nth-child(5){height:14px}
+.planbtn[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.planbtn[aria-checked="true"] .bars em{background:var(--accent)}
+.planbtn .tag5{position:absolute;right:0;top:0;font:700 9px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);padding:4px 6px;border-radius:0 3px 0 3px}
+.plan[hidden]{display:none}
+.seecard{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seecard div{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:10px 12px;font-size:14px;line-height:20px;color:var(--fg-2)}
+.seecard .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);font-weight:600;margin-bottom:4px;display:block}
+.seecard .cant .h{color:var(--fg-4)}
+.seecard .cant{color:var(--fg-3)}
+.seecard li{margin:0;padding:0}
+.seecard ul{margin:0;padding-left:14px}
+
+/* verdict */
+.verdict{background:var(--surface);border:1px solid var(--line-strong);border-radius:5px;overflow:hidden}
+.verdict .head{padding:14px 14px 12px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.verdict .head .big{font-family:var(--display);font-size:34px;line-height:32px;font-weight:800;text-transform:uppercase}
+.verdict .head .ru{font-size:12px;color:var(--fg-3);text-align:right;line-height:16px}
+.verdict .head .ru b{display:block;color:var(--fg-2);font-weight:600}
+.vrow{display:grid;grid-template-columns:62px 1fr auto;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line);align-items:start;transition:background .3s}
+.vrow:last-child{border-bottom:0}
+.vrow.on{background:var(--accent-soft)}
+.vrow .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);padding-top:4px;font-weight:600}
+.vrow .v{font-family:var(--display);font-size:20px;line-height:20px;font-weight:700;text-transform:uppercase}
+.vrow .why{font-size:15px;line-height:21px;color:var(--fg-2);margin-top:4px}
+.pill{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:4px 7px;border-radius:2px;border:1px solid var(--fg-3);color:var(--fg-2);white-space:nowrap}
+.pill.hmm{border-color:var(--accent);color:var(--accent)}
+.pill.guess{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.closecall{border:1px solid var(--accent);border-radius:4px;padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.closecall .h{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.closecall .t{font-family:var(--display);font-size:22px;line-height:22px;font-weight:700;text-transform:uppercase}
+.closecall p{margin:0;font-size:15px;line-height:21px;color:var(--fg-2)}
+.yourswing{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:10px 14px;display:grid;grid-template-columns:auto repeat(3,1fr);gap:8px 12px;align-items:center}
+.yourswing div{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+.yourswing b{display:block;font-family:var(--display);font-size:20px;line-height:20px;color:var(--fg);letter-spacing:0;font-weight:700}
+
+/* email box on the verdict */
+.mailbox{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.mailbox .field{height:46px;background:var(--bg)}
+.mailbox .field.bad{border-color:#E5322D}
+.mailbox.sent .field{display:none}
+.mailbox .note b{color:var(--accent)}
+
+/* ask */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 14px/1 var(--body);padding:10px 12px;border-radius:999px;border:1px solid var(--line-strong);background:transparent;color:var(--fg-2);cursor:pointer;transition:border-color .2s,color .2s}
+.chip:active{transform:scale(.97)}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:10px 14px;font-size:15px;line-height:21px;color:var(--fg-2)}
+.summary b{font-family:var(--display);font-size:18px;text-transform:uppercase;color:var(--fg);font-weight:700;display:block;margin-bottom:2px}
+.exits{display:grid;gap:8px}
+
+/* action bar: mic / type / skip, always in the same place */
+.bar{position:sticky;bottom:var(--demo-h,0px);margin:auto -20px 0;padding:10px 20px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 18%);display:flex;flex-direction:column;gap:8px}
+.bar .field{background:var(--surface)}
+/* swing screen: camera first. The camera takes the height, the dock is one slim row, the actions one slim row. */
+#s-fit.focus .stagearea{gap:8px}
+#s-fit.focus #cam{aspect-ratio:auto;max-height:none;height:calc(100svh - 268px - var(--demo-h,0px));min-height:340px}
+#s-fit.focus #simline-swing,#s-fit.focus .seecard,#s-fit.focus #said-measure{display:none}
+#s-fit.focus #st-measure{position:relative}
+#s-fit.focus #mcam{aspect-ratio:auto;max-height:none;height:calc(100svh - 300px - var(--demo-h,0px));min-height:300px}
+#s-fit.focus #measwrap,#s-fit.focus #said-measure{display:none}
+#s-fit.focus #m-tapeline{font-size:13px;line-height:18px;text-align:center}
+#s-fit.focus #setup summary{padding-top:6px;padding-bottom:6px}
+/* the readback lands over the bottom of the camera */
+#s-fit.focus #readback{position:absolute;left:10px;right:10px;bottom:38px;z-index:2;padding:10px 12px 10px;gap:4px;box-shadow:0 10px 30px rgba(11,11,11,.35)}
+#s-fit.focus #readback .big{font-size:36px;line-height:34px}
+#s-fit.focus #readback .heard{font-size:13px}
+#s-fit.focus #readback .row{margin-top:2px}
+/* measured values as chips over the video */
+.cam .vals{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.cam .val{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.55);padding:6px 9px;border-radius:3px;border:1px solid transparent;transition:border-color var(--t-fast),background var(--t-fast)}
+.cam .val .l{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);flex:1 1 auto}
+.cam .val .v{font-family:var(--display);font-size:18px;line-height:18px;font-weight:700;color:var(--fg-4);white-space:nowrap}
+.cam .val.filled .v{color:var(--fg)}
+.cam .val.asking{border-color:var(--accent)}
+.cam .val.asking .l{color:var(--accent)}
+.cam .val .tag{font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:2px;padding:2px 4px;line-height:1}
+.cam .val.just .v{animation:rise var(--t-fast) var(--ease) both}
+.mcam .vals{display:none}
+#s-fit.focus .mcam .vals{display:flex}
+#s-fit.focus .bar{padding-top:6px;gap:8px}
+#s-fit.focus .dock{display:flex;align-items:center;border-radius:12px}
+#s-fit.focus .dock .cap.line1{flex:1 1 auto;min-width:0;flex-direction:row;align-items:center;gap:10px;padding:8px 6px 8px 10px}
+#s-fit.focus .dock .cap.line1 .cap-label{flex:none;gap:0}
+/* no transcript here: the golfer is at the far end of the room. Name, status and the controls are enough. */
+#s-fit.focus .dock .cap.line1 .cap-text{display:none}
+#s-fit.focus .dock .cap.line1 .cap-label{flex:1 1 auto;min-width:0;gap:10px}
+#s-fit.focus .dock .cap.line1 .who{flex:1 1 auto;min-width:0}
+#s-fit.focus .dock .cap.line1 .who .lbl{font-size:13px}
+#s-fit.focus .dock .cap.line1 .who .status{font-size:10px}
+#s-fit.focus .dock .cap.line1 .eq{display:none}
+#s-fit.focus .dock .cap.line1 .who .lbl{white-space:nowrap}
+#s-fit.focus .dock .dot.avatar{width:34px;height:34px}
+#s-fit.focus .dock .cap.line1 .cap-text{flex:1 1 auto;min-width:0;font-size:14px;line-height:18px;min-height:0;padding:0}
+#s-fit.focus .dock .row.io{flex:none;padding:0 10px 0 0;gap:8px}
+#s-fit.focus .dock .rbtn{width:36px;height:36px}
+#s-fit.focus .dock .rbtn svg{width:17px;height:17px}
+#s-fit.focus .dock .micbtn{width:40px;height:40px}
+#s-fit.focus .dock .micbtn svg{width:20px;height:20px}
+#s-fit.focus .dock.ended .endbtn{width:40px;height:40px}
+#s-fit.focus #bar-actions.icons{display:flex;justify-content:space-evenly;align-items:flex-start;gap:8px;padding:0}
+#s-fit.focus .ibtn{flex:0 1 auto;flex-direction:column;gap:5px;font-size:9px;letter-spacing:.05em}
+#s-fit.focus .ibtn svg{width:34px;height:34px;padding:8px}
+#s-fit.focus .ibtn.wide{flex-direction:column;border:0;background:none;padding:0;gap:5px;justify-self:auto;text-align:center}
+#s-fit.focus .ibtn.wide span{align-items:center}
+#s-fit.focus .ibtn.wide svg{width:34px;height:34px;padding:7px;border:1px solid var(--accent);color:var(--accent)}
+#s-fit.focus .ibtn.wide small{display:none}
+/* the dock as a live call: who is on the line, whether he is speaking or listening, live captions, call controls */
+.dock .cap.line1{flex-direction:column;align-items:stretch;gap:8px}
+.dock .cap-label{display:flex;align-items:center;gap:12px;font:inherit;letter-spacing:0;text-transform:none;color:inherit}
+.dock .who{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dock .who .lbl{display:block;font:700 15px/1 var(--display);text-transform:uppercase;letter-spacing:.04em;color:var(--fg)}
+.dock .who .status{font:600 11px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);transition:color var(--t-fast)}
+.dock .cap:not(.done) .who .status{color:var(--accent)}
+.dock.listening .who .status{color:var(--accent)}
+.dock .eq{margin-left:auto;display:flex;align-items:center;gap:3px;height:22px}
+.dock .eq i{display:block;width:3px;height:6px;border-radius:2px;background:var(--line-strong);transition:background var(--t-fast),height var(--t-fast)}
+.dock .cap:not(.done) .eq i{background:var(--accent);animation:eq .7s ease-in-out infinite}
+.dock .cap:not(.done) .eq i:nth-child(2){animation-delay:.1s}.dock .cap:not(.done) .eq i:nth-child(3){animation-delay:.2s}.dock .cap:not(.done) .eq i:nth-child(4){animation-delay:.3s}.dock .cap:not(.done) .eq i:nth-child(5){animation-delay:.15s}
+@keyframes eq{0%,100%{height:6px}50%{height:20px}}
+.dock.listening .eq i{background:var(--accent);animation:eq 1.1s ease-in-out infinite}
+.dock .cap .dot.avatar{position:relative}
+.dock .cap:not(.done) .dot.avatar::after,.dock.listening .dot.avatar::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--accent);opacity:.5;animation:ring 1.4s ease-out infinite}
+@keyframes ring{0%{transform:scale(.85);opacity:.6}100%{transform:scale(1.25);opacity:0}}
+.dock .cap.line1 .cap-text{font-size:16px;line-height:22px;color:var(--fg-2);padding:0 2px}
+.dock .cap.line1 .cap-text .w.on{color:var(--fg);font-weight:600}
+.dock .row.io{justify-content:center;gap:18px;padding:4px 14px 14px}
+.dock .rbtn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);color:var(--fg-2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.dock .rbtn svg{width:20px;height:20px}
+.dock .rbtn[aria-pressed="true"]{border-color:var(--fg);color:var(--fg);background:var(--surface-2)}
+.dock .endbtn{border-color:#D64545;background:#D64545;color:#fff}
+.dock .endbtn .pick{display:none}
+.dock.ended .endbtn{border-color:#2E9E5B;background:#2E9E5B;color:#fff;width:60px;height:60px}
+.dock.ended .endbtn .hang{display:none}
+.dock.ended .endbtn .pick{display:block;width:24px;height:24px}
+.dock.ended .row.io > :not(.endbtn),.dock.ended .field.kb,.dock.ended .eq{display:none}
+.dock.ended .who .status{color:var(--fg-3)}
+.dock .micbtn{width:60px;height:60px;position:relative}
+.dock .micbtn .off{display:none}
+.dock .micbtn.muted{background:var(--surface);border:1px solid var(--fg);color:var(--fg);box-shadow:none}
+.dock .micbtn.muted .on{display:none}
+.dock .micbtn.muted .off{display:block}
+.dock .micbtn:disabled{opacity:1}
+.dock.listening .micbtn:not(.muted)::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--accent);opacity:.5;animation:ring 1.4s ease-out infinite}
+.dock .micbtn svg{width:26px;height:26px}
+.dock .micbtn.listening{animation:breathe 1.2s ease-in-out infinite}
+.dock .field.kb{display:none;margin:0 14px 14px}
+.dock.typing .field.kb{display:flex}
+.dock.noio .field.kb,.dock.noio #kbd{display:none}
+.dock.typing .micbtn{display:none}
+.dock .cap.line1 .hear{margin:0;padding:6px}
+/* the dock: his line and your reply in one card; the next step appears below only when it is ready */
+.dock{background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;box-shadow:0 10px 30px rgba(11,11,11,.10);overflow:hidden}
+.dock .cap.line1{background:transparent;border-left:0;border-radius:0;padding:14px 14px 10px}
+.dock .cap.line1.rows2{padding:14px 14px 10px}
+.dock .cap .dot.avatar{width:40px;height:40px}
+.dock .cap .dot.avatar svg{width:40px;height:40px}
+.dock .cap.line1 .cap-text{font-size:17px;line-height:23px;color:var(--fg)}
+.dock .cap.line1.rows2 .cap-text{font-size:17px;line-height:23px}
+.dock .row.io{padding:0 10px 10px;gap:8px;align-items:center}
+.dock .field{height:46px;border-radius:999px;border:1px solid var(--line);background:var(--surface-2)}
+.dock .field input{padding:0 16px;font-size:16px}
+.dock .field button{font-size:12px;padding:0 14px}
+.dock .micbtn{width:46px;height:46px;border-radius:50%;flex:none;box-shadow:0 4px 12px rgba(255,110,1,.35)}
+.dock .cap.line1 .hear{margin-left:auto}
+#bar-actions:empty{display:none}
+#bar-actions.icons{justify-content:center;gap:28px;padding:2px 0}
+.ibtn{display:flex;flex-direction:column;align-items:center;gap:7px;background:none;border:0;padding:0;color:var(--fg-2);font:600 11px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;animation:rise .35s var(--ease) both}
+.ibtn svg{width:44px;height:44px;padding:11px;border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);color:var(--fg);transition:border-color .2s,background .2s}
+.ibtn:hover svg{border-color:var(--fg)}
+.ibtn.wide{flex-direction:row;gap:12px;text-align:left;border:1px solid var(--line-strong);border-radius:999px;background:var(--surface)}
+.ibtn.wide svg{border:0;background:transparent;color:var(--accent);padding:6px;width:36px;height:36px}
+.ibtn.wide span{display:flex;flex-direction:column;gap:3px}
+.ibtn.wide small{font:500 11px/1 var(--body);letter-spacing:0;text-transform:none;color:var(--fg-3)}
+#bar-actions.icons{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;justify-items:center;align-items:start}
+.ibtn.wide{grid-column:1/-1;justify-self:stretch;justify-content:flex-start;padding:10px 16px 10px 10px}
+.ibtn span{white-space:nowrap}
+.ibtn:active svg{transform:scale(.96)}
+#bar-actions .btn:disabled{display:none}
+#bar-actions .btn{animation:rise .35s var(--ease) both}
+.bar .hint{display:none}
+.bar{gap:10px}
+@media (min-width:700px){.bar{margin-left:-28px;margin-right:-28px;padding-left:28px;padding-right:28px}}
+.bar .row{display:flex;gap:8px;align-items:stretch}
+.micbtn{flex:none;width:56px;height:52px;border-radius:4px;border:0;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:box-shadow .3s,transform .15s}
+.micbtn svg{width:24px;height:24px}
+.micbtn.listening{animation:breathe 1.2s ease-in-out infinite}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 0 var(--accent-soft)}50%{box-shadow:0 0 0 12px rgba(255,110,1,.08)}}
+.micbtn:disabled{opacity:.4;cursor:default}
+.field{flex:1 1 auto;display:flex;background:var(--surface);border:1px solid var(--line-strong);border-radius:5px;overflow:hidden}
+.field input{flex:1 1 auto;min-width:0;background:transparent;border:0;color:var(--fg);font:500 16px/1 var(--body);padding:0 12px;outline:0}
+.field input::placeholder{color:var(--fg-4)}
+.field button{border:0;background:transparent;color:var(--accent);font:700 13px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:0 12px;cursor:pointer}
+.btn{flex:1 1 0;height:48px;border-radius:5px;border:1px solid var(--fg);background:transparent;color:var(--fg);font:700 19px/1 var(--display);text-transform:uppercase;cursor:pointer;letter-spacing:.01em}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.ghost{border-color:transparent;color:var(--fg-3);font:500 13px/1 var(--body);letter-spacing:.04em;height:36px;flex:none;padding:0 10px}
+.btn:disabled{opacity:.35;cursor:default}
+.bar .hint{font-size:13px;color:var(--fg-3);text-align:center}
+/* the fitter's line, grouped with the mic: one row, follows the word being said, tap to open */
+.cap.line1{flex-direction:row;align-items:center;gap:10px;min-height:0;padding:10px 12px 10px 12px;border-left:3px solid var(--accent);background:#ECECEC;color:var(--fg);border-radius:4px;cursor:pointer}
+.cap.line1 .cap-text .w.todo{color:#9A9A9A}
+.cap.line1 .hear{color:var(--fg-2)}
+.cap.line1 .cap-label{flex:none}
+/* he stays in the row the whole way: breathing when idle, nodding and waving when he talks */
+.cap .dot.avatar{--fig:#1C1C1C;--fig-cap:#0B0B0B;--fig-brim:#0B0B0B;--fig-glove:#FFFFFF;width:36px;height:36px;border-radius:0;background:none;animation:none;opacity:1;display:block;transition:transform var(--t-fast) var(--ease)}
+.cap .dot.avatar svg{width:36px;height:36px;overflow:visible;transform-box:fill-box;transform-origin:50% 100%;animation:breathe2 3s ease-in-out infinite}
+@keyframes breathe2{0%,100%{transform:translateY(0)}50%{transform:translateY(-1px)}}
+.cap:not(.done) .dot.avatar .head{transform-box:fill-box;transform-origin:50% 90%;animation:nod .55s ease-in-out infinite}
+@keyframes nod{0%,100%{transform:rotate(0)}50%{transform:rotate(6deg)}}
+.cap .dot.avatar .arm{transform-box:view-box;transform-origin:46px 56px;opacity:0;transition:opacity var(--t-fast)}
+.cap.hi .dot.avatar .arm{opacity:1}
+.cap.hi .dot.avatar .arm{animation:wave .9s ease-in-out 2}
+.cap.done .dot.avatar{opacity:1}
+.cap.done .dot.avatar svg{animation:breathe2 3s ease-in-out infinite}
+.cap.line1 .cap-text{flex:1 1 auto;min-width:0;min-height:0;font-size:16px;line-height:22px;white-space:nowrap;overflow:hidden;scroll-behavior:smooth;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14px,#000 calc(100% - 14px),transparent);mask-image:linear-gradient(90deg,transparent,#000 14px,#000 calc(100% - 14px),transparent)}
+.cap.line1 .cap-text::-webkit-scrollbar{display:none}
+.cap.line1 .hear{margin:0;padding:6px;border:0;color:var(--fg-3)}
+.cap.line1 .hear svg{width:18px;height:18px}
+/* Your game: two readable rows instead of the ticker */
+.cap.line1.rows2 .cap-text{white-space:normal;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:17px;line-height:23px;-webkit-mask-image:none;mask-image:none}
+.cap.line1.rows2{padding:12px 14px;align-items:flex-start}
+.cap.line1.rows2 .cap-label{margin-top:7px}
+.cap.line1.open .cap-text{white-space:normal;overflow:visible;-webkit-mask-image:none;mask-image:none;max-height:40vh;overflow-y:auto}
+.cap.line1.open{align-items:flex-start}
+.cap.line1.open .cap-label{margin-top:6px}
+
+/* sheets */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s;z-index:8}
+.scrim.show{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:9;background:var(--surface);border-top:1px solid var(--line-strong);border-radius:16px 16px 0 0;padding:18px 20px calc(22px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .32s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;gap:12px}
+.sheet.show{transform:none}
+@media (min-width:700px){.sheet{left:50%;right:auto;width:480px;transform:translate(-50%,105%)}.sheet.show{transform:translate(-50%,0)}}
+.sheet .h{font-family:var(--display);font-size:26px;line-height:26px;font-weight:700;text-transform:uppercase}
+.sheet p{margin:0;font-size:15px;line-height:21px;color:var(--fg-2)}
+.sheet .row{display:flex;gap:8px;margin-top:4px}
+.picts{list-style:none;margin:4px 0 2px;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.picts li{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;font:600 11px/13px var(--body);letter-spacing:.05em;text-transform:uppercase;color:var(--fg-2)}
+.picts li svg{width:48px;height:48px;padding:10px;border-radius:50%;background:var(--surface);border:2px solid var(--line-strong);color:var(--fg)}
+.reqs{display:flex;flex-direction:column;gap:6px}
+.req{display:flex;gap:8px;align-items:center;font-size:14px;line-height:18px;color:var(--fg-2)}
+.req svg{flex:none;width:16px;height:16px;color:var(--accent)}
+.gate{display:flex;flex-direction:column;gap:6px}
+.gate .g{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line-strong);border-radius:4px;background:var(--bg);font-size:14px;color:var(--fg-2)}
+.gate .g b{font:600 11px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-4)}
+.gate .g.wait b{color:var(--fg-3)}
+.gate .g.ok b{color:var(--accent)}
+.gate .g.bad{border-color:#E5322D}
+.gate .g.bad b{color:#E5322D}
+.simfield{height:52px;background:var(--bg)}
+.simfield input{font:700 24px/1 var(--display)}
+.simfield button{white-space:nowrap}
+.simfield .unit{align-self:center;font:600 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);padding-right:8px}
+.simfield.bad{border-color:#E5322D}
+#simline-swing,#simline-fit{padding:0 4px;margin:0}
+.perms{display:flex;flex-direction:column;gap:8px}
+.perm{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line-strong);border-radius:4px;background:var(--bg)}
+.perm svg{flex:none;width:22px;height:22px;color:var(--accent);margin-top:1px}
+.perm span{font-size:15px;line-height:21px;color:var(--fg-2)}
+.perm b{display:block;font-family:var(--display);font-size:17px;line-height:18px;text-transform:uppercase;color:var(--fg);font-weight:700;margin-bottom:2px}
+.perm[hidden]{display:none}
+
+.tag{display:inline-block;align-self:flex-start;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:2px;padding:3px 7px}
+.spec{font-family:var(--display);font-size:18px;line-height:22px;text-transform:uppercase;color:var(--fg);font-weight:600}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:72px;transform:translate(-50%,10px);background:var(--fg);color:var(--bg);font:600 13px/1 var(--body);padding:10px 14px;border-radius:3px;opacity:0;transition:opacity .25s,transform .25s;z-index:20;pointer-events:none;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* demo bar, outside the phone */
+.demo{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));background:#111;border-top:1px solid #2A2A2A;font-size:12px;color:#8E8E8E}
+.demo b{color:#C8C8C8}
+.demo button{border-color:#3A3A3A;color:#C8C8C8}
+.demo b{color:var(--fg-2);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:11px;margin-right:4px}
+.demo button{font:600 11px/1 var(--body);padding:7px 9px;border-radius:3px;border:1px solid #3A3A3A;background:transparent;color:#C8C8C8;cursor:pointer}
+.demo button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.demo .sep{width:1px;height:18px;background:var(--line-strong);margin:0 4px}
+@media (min-width:700px){.demo{left:auto;right:12px;top:12px;bottom:auto;flex-direction:column;align-items:stretch;width:132px;padding:10px;border-radius:8px;border:1px solid var(--line)} .demo .sep{display:none} .demo b{margin:0 0 2px} .bar{bottom:0}}
+@media (prefers-reduced-motion:reduce){.rise,.dot,.micbtn,.rec,.arm,.flash{animation:none!important}.sheet,.scrim{transition:none}}
+</style>
+</head>
+<body>
+<div class="stage">
+<div class="phone" id="phone">
+
+  <!-- 1 · Hello -->
+  <section class="screen" id="s-hello">
+    <div class="top rise">
+      <span class="wordmark">TAKOMO</span>
+      <div class="units" role="group" aria-label="Units">
+          <span class="ul">Units</span>
+          <button type="button" data-units="imp" aria-pressed="true" title="Yards, mph, feet and inches">Yards</button>
+          <button type="button" data-units="met" aria-pressed="false" title="Metres, km/h, centimetres">Metres</button>
+        </div>
+    </div>
+    <div class="rule rise"></div>
+    <div class="doors land">
+      <div class="scene rise d1">
+        <svg class="guy landing" id="guy-land" viewBox="0 0 120 170" aria-hidden="true">
+        <g fill="none" stroke="var(--fig)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="60" cy="30" r="12"/>
+          <path d="M60 42v48M60 90l-17 66M60 90l17 66"/>
+          <path d="M60 58L44 100"/>
+          <g class="wave"><path d="M60 58L84 32"/><path d="M84 32l-5-11M84 32l11-5" stroke-width="3"/></g>
+        </g>
+        <!-- cap: crown and brim -->
+        <path d="M47 26a13 13 0 0 1 26 0" fill="var(--fig-cap)" stroke="var(--fig-brim)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M46 26h36" stroke="var(--fig-brim)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M47 26h-8" stroke="#FF6E01" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- glove on the lead hand, orange cuff -->
+        <circle cx="43" cy="103" r="5" fill="var(--fig-glove)"/>
+        <path d="M40 97l6 2" stroke="#FF6E01" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+        <div class="ground"></div>
+      </div>
+      <h1 class="rise d2" id="h1">We will find<br>your fit.</h1>
+      <ol class="journey rise d3" aria-label="How it goes">
+        <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h20v13H14l-6 5v-5H6z"/><path d="M11 14h10M11 18h6"/></svg><span>Your game</span></li>
+        <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="7" r="3"/><path d="M16 10v9M16 19l-5 9M16 19l5 9M16 13l-5 5M16 13l5 5"/><path d="M26 6v22" stroke-dasharray="2 3"/></svg><span>Your body</span></li>
+        <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="8" r="3"/><path d="M13 11v9M13 20l-4 8M13 20l4 8M13 14l6-4"/><path d="M6 24c2-12 14-18 22-14" stroke-dasharray="2 3"/></svg><span>Your swing</span></li>
+        <li><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M28 3l-6 14"/><path d="M22 17l-1.5 4.5"/><path d="M20.5 21.5C17 18.5 11 18 7.5 21.5 5 24 5 28 8.5 29h10c2 0 2.6-1.5 2.4-3.5z"/><path d="M9 23.5h7.5M9 25.5h8M9 27.5h8" stroke-width="1.3"/></svg><span>Your fit</span></li>
+      </ol>
+      <button type="button" class="door primary big rise d3" id="d-talk">
+        <span class="body"><span class="t" id="d-talk-t">Meet the AI fitter</span><span class="s needsrow" id="d-talk-s"></span></span>
+        <span class="arrow">→</span>
+      </button>
+      <p class="camline links rise d4" id="camline"><span id="camline-t"></span><button type="button" class="linkbtn" id="d-quiz">Quick quiz instead</button><span class="sep">·</span><button type="button" class="linkbtn" id="d-clip">Attach a swing clip</button><span id="camline-e"></span></p>
+    </div>
+  </section>
+
+  <!-- 1b · Meet: full screen, the fitter introduces himself, then gets pulled into the bar -->
+  <section class="screen meet" id="s-meet" hidden>
+    <div class="top"><span class="wordmark">TAKOMO</span><span class="steplabel">Your fitter</span></div>
+    <div class="meetstage" id="meetstage" role="button" tabindex="0" aria-label="Continue">
+      <div class="cap thought" id="cap-hello">
+        <div class="cap-label" hidden><span class="dot"></span><span>Fitter</span></div>
+        <div class="cap-text" aria-live="polite"></div>
+        <button type="button" class="hear" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10H4zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+          Tap to hear me
+        </button>
+        <span class="t1"></span><span class="t2"></span>
+      </div>
+      <svg class="guy" id="guy" viewBox="0 0 120 170" aria-hidden="true">
+        <g fill="none" stroke="var(--fig)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="60" cy="30" r="12"/>
+          <path d="M60 42v48M60 90l-17 66M60 90l17 66"/>
+          <path d="M60 58L44 100"/>
+          <g class="wave"><path d="M60 58L84 32"/><path d="M84 32l-5-11M84 32l11-5" stroke-width="3"/></g>
+        </g>
+        <!-- cap: crown and brim -->
+        <path d="M47 26a13 13 0 0 1 26 0" fill="var(--fig-cap)" stroke="var(--fig-brim)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M46 26h36" stroke="var(--fig-brim)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M47 26h-8" stroke="#FF6E01" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- glove on the lead hand, orange cuff -->
+        <circle cx="43" cy="103" r="5" fill="var(--fig-glove)"/>
+        <path d="M40 97l6 2" stroke="#FF6E01" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span class="meethint" id="meethint">Tap to continue</span>
+    </div>
+    <div class="meetperms" id="meetperms" hidden>
+      <div class="perms">
+        <div class="perm" data-mp="mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span><b>Microphone</b>So you can talk instead of type. Nothing is recorded.</span></div>
+        <div class="perm" data-mp="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>Camera</b>To map you and watch your swing. Clips stay on your phone.</span></div>
+      </div>
+      <div class="row"><button type="button" class="btn" id="mp-no">Not now</button><button type="button" class="btn primary" id="mp-yes">Allow both</button></div>
+      <p class="note" id="mp-note">Say no and you type instead. You can change your mind later.</p>
+    </div>
+  </section>
+
+  <!-- 2–6 · the fitter frame: shared spine, caption, stage, action bar -->
+  <section class="screen" id="s-fit" hidden>
+    <div class="top">
+      <span class="wordmark">TAKOMO</span>
+      <div style="display:flex;gap:10px;align-items:center">
+        <span class="steplabel" id="steplabel">AI fitter · irons</span>
+        <div class="units" role="group" aria-label="Units">
+          <span class="ul">Units</span>
+          <button type="button" data-units="imp" aria-pressed="true" title="Yards, mph, feet and inches">Yards</button>
+          <button type="button" data-units="met" aria-pressed="false" title="Metres, km/h, centimetres">Metres</button>
+        </div>
+      </div>
+    </div>
+    <div class="spine" id="spine">
+      <span data-s="chat">Your game</span><span data-s="measure">Your body</span><span data-s="swing">Your swing</span><span data-s="fit">Your fit</span>
+    </div>
+
+    <div class="stagearea" id="stagearea">
+
+      <!-- chat stage: profile grid filling in live -->
+      <div class="st" id="st-chat">
+        <span class="eyebrow">Your game · tap a tile to fix it</span>
+        <div class="grid" id="chatgrid"></div>
+        <div class="said" id="said-chat"><b>You said</b><i>nothing yet</i></div>
+      </div>
+
+      <!-- measure stage -->
+      <div class="st" id="st-measure" hidden>
+        <details class="fold" id="setup">
+          <summary><span>Setup guide</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Garden, range bay or a net, with room for a full 7-iron swing. Phone about 3 metres (10 feet) away, hip height, facing you. You stay in the same spot for the measuring and the swings. Not there right now? Save it and come back, your answers keep.</p>
+        </details>
+        <div class="cam mcam" id="mcam" hidden role="button" tabindex="0" aria-label="Camera">
+          <svg class="framesvg" viewBox="0 0 100 133" preserveAspectRatio="none" aria-hidden="true"><path d="M22 42Q22 12 50 12Q78 12 78 42V126H22Z"/></svg>
+          <svg class="golfer" viewBox="0 0 100 150" aria-hidden="true">
+            <g fill="none" stroke="var(--fig)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="50" cy="18" r="9"/><path d="M50 27v44M50 71l-14 62M50 71l14 62M50 46L38 92M50 46l12 46"/>
+            </g>
+            <circle class="d" cx="62" cy="92" r="3"/>
+            <path class="mline" id="mcam-line" d="M70 92V134"/>
+            <path d="M28 134h44" stroke="var(--line-strong)" stroke-width="2"/>
+          </svg>
+          <div class="pill"><span class="rec"></span><span id="mcam-pill">Looking</span></div>
+          <div class="vals" id="mcam-vals" aria-hidden="true"></div>
+          <div class="line" id="mcam-line-t">Head to floor in frame, arms hanging. Hold still.</div>
+        </div>
+        <p class="camline" id="m-tapeline">Rather measure yourself? <button type="button" class="linkbtn" id="m-tape">Use a tape and click here</button></p>
+        <div class="measure" id="measwrap">
+          <div class="grid" id="measgrid" style="grid-template-columns:1fr 1fr"></div>
+          <div class="figure" aria-hidden="true">
+            <svg id="fig" class="t" viewBox="0 0 80 150" fill="none" stroke="var(--fig-club)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 140h64" stroke="var(--line-strong)"/>
+              <g id="fig-body">
+                <circle cx="40" cy="16" r="10"/>
+                <path d="M40 26v48M40 74l-12 60M40 74l12 60M28 134h-6M52 134h6"/>
+                <path id="arm-l" class="arm" d="M40 34L26 76"/>
+                <path id="arm-r" class="arm" d="M40 34L54 76"/>
+                <g id="fig-hand"><circle cx="54" cy="79" r="3.5" stroke="var(--fig)"/></g>
+                <circle id="fig-wrist" class="marker" cx="54" cy="76" r="2.4" fill="var(--accent)" stroke="none"/>
+              </g>
+              <path id="line-h" class="mline" d="M8 140V6"/>
+              <path id="line-w" class="mline" d="M66 76V140"/>
+              <text id="lab-h" class="mlab" x="12" y="12"></text>
+              <text id="lab-w" class="mlab" x="70" y="108" transform="rotate(-90 70 108)"></text>
+            </svg>
+          </div>
+        </div>
+        <div class="readback" id="readback" hidden>
+          <div class="big" id="rb-big">33″</div>
+          <div class="heard" id="rb-heard">I heard “thirty-three”</div>
+          <div class="say">Say <b>yes</b>, or <b>again</b></div>
+          <div class="row">
+            <button type="button" class="btn" id="rb-again">Say again</button>
+            <button type="button" class="btn primary" id="rb-yes">That’s right</button>
+          </div>
+        </div>
+        <div class="said" id="said-measure"><b>You said</b><i>nothing yet</i></div>
+      </div>
+
+      <!-- swing stage -->
+      <div class="st" id="st-swing" hidden>
+        <div class="clipstate" id="clipstate" hidden></div>
+        <div class="cam" id="cam" role="button" tabindex="0" aria-label="Camera. Tap to simulate a swing.">
+          <svg class="framesvg" viewBox="0 0 100 133" preserveAspectRatio="none" aria-hidden="true"><path id="framepath" d="M22 42Q22 12 50 12Q78 12 78 42V126H22Z"/></svg>
+          <svg class="golfer" viewBox="0 0 100 150" aria-hidden="true">
+            <g class="ghosts" id="ghosts"></g>
+            <path class="trail" id="trail" d="M46 86C8 72 16 14 70 22C92 30 72 62 46 86"/>
+            <g fill="none" stroke="var(--fig)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="50" cy="18" r="9"/>
+              <path d="M50 27v44M50 71l-14 62M50 71l14 62"/>
+              <g class="arm"><path d="M50 46l-6 40M50 46l-4 40" /><path d="M46 86l-26 48" stroke="var(--fig-club)" stroke-width="2"/></g>
+            </g>
+            <circle class="d" cx="50" cy="18" r="3"/>
+            <circle class="d" cx="50" cy="71" r="3"/>
+            <circle class="d handdot" id="handdot" cx="46" cy="86" r="3"/>
+            <path class="bracket" id="bracket" d="M58 80v12M58 86h5"/>
+          </svg>
+          <div class="pill"><span class="rec"></span><span id="cam-pill">Rec · swing 1 of 5</span></div>
+          <div class="tempo"><div class="l">Tempo</div><div class="v todo" id="cam-tempo">? : 1</div></div>
+          <div class="line" id="cam-line">7-iron, facing me. Framing’s good. Swing when you’re ready.</div>
+          <div class="flash"></div>
+        </div>
+        <p class="camline" id="simline-swing">Been on a simulator? <button type="button" class="linkbtn simlink">Enter your 7-iron clubhead speed</button></p>
+        <div class="seecard">
+          <div><span class="h">What I can see</span><ul><li>Tempo ratio</li><li>Hands at address</li><li>Swing length</li><li>Speed, roughly</li></ul></div>
+          <div class="cant"><span class="h">What I can’t</span><ul><li>Ball speed</li><li>Launch &amp; spin</li><li>Strike</li><li>Face angle</li></ul></div>
+        </div>
+      </div>
+
+      <!-- your fit stage -->
+      <div class="st" id="st-verdict" hidden>
+        <div class="verdict" id="verdict">
+          <div class="head">
+            <div><span class="eyebrow">Your fit</span><div class="big" id="vd-head">Iron 201 MKII</div></div>
+            <div class="ru"><span>runner-up</span><b id="vd-ru">201T MKII</b></div>
+          </div>
+          <div id="vrows"></div>
+        </div>
+        <div class="closecall" id="closecall">
+          <span class="h">One close call</span>
+          <span class="t" id="cc-t">201 vs 201T</span>
+          <p id="cc-p"></p>
+        </div>
+        <div class="yourswing" id="yourswing"></div>
+        <p class="camline" id="simline-fit">Camera speed is rough. Got a simulator number? <button type="button" class="linkbtn simlink">Enter it</button></p>
+        <form class="mailbox" id="mailbox" novalidate>
+          <span class="eyebrow">Keep this fit</span>
+          <div class="field"><input type="email" id="mail" autocomplete="email" inputmode="email" placeholder="you@example.com" aria-label="Email address"><button type="submit">Send it</button></div>
+          <div class="note" id="mail-note">Optional. Your fit, the whys and the close call land in your inbox. Nothing else, no newsletter.</div>
+        </form>
+      </div>
+
+      <!-- ask stage -->
+      <div class="st" id="st-ask" hidden>
+        <div class="summary" id="asksummary"></div>
+        <span class="eyebrow">Ask me anything</span>
+        <div class="chips" id="chips"></div>
+        <div class="said" id="said-ask"><b>You asked</b><i>nothing yet</i></div>
+        <span class="eyebrow" style="margin-top:4px">Or settle it in person</span>
+        <div class="exits">
+          <button type="button" class="door" id="x-demo"><span><span class="t">Hit both at a demo bay</span><span class="s">60+ locations · 201 and 201T side by side</span></span><span class="arrow">→</span></button>
+          <button type="button" class="door" id="x-human"><span><span class="t">15 min with a human fitter</span><span class="s">they get this summary first</span></span><span class="arrow">→</span></button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- action bar -->
+    <div class="bar" id="bar">
+      <div class="dock" id="dock">
+      <div class="cap line1" id="cap-fit" role="button" tabindex="0" aria-label="What the fitter is saying. Tap to expand.">
+        <div class="cap-label"><span class="dot avatar" id="miniguy"><svg viewBox="0 0 60 60" aria-hidden="true">
+          <g class="head">
+            <circle cx="30" cy="33" r="11" fill="none" stroke="var(--fig)" stroke-width="3.5"/>
+            <path d="M18 29a12 12 0 0 1 24 0" fill="var(--fig-cap)" stroke="var(--fig-brim)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M16 29h28" stroke="var(--fig-brim)" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M16 29h-7" stroke="#FF6E01" stroke-width="3.5" stroke-linecap="round"/>
+          </g>
+          <path class="shoulders" d="M10 60q20-18 40 0" fill="none" stroke="var(--fig)" stroke-width="3.5" stroke-linecap="round"/>
+          <g class="arm"><path d="M46 56L54 42" fill="none" stroke="var(--fig)" stroke-width="3.5" stroke-linecap="round"/><circle cx="55" cy="40" r="3.6" fill="var(--fig-glove)"/><path d="M52 44l5-2" stroke="#FF6E01" stroke-width="2.4" stroke-linecap="round"/></g>
+        </svg></span><span class="who"><span class="lbl">Takomo fitter</span><span class="status" id="dock-status">On the line</span></span><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <button type="button" class="hear" hidden aria-label="Tap to hear me">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10H4zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+        </button></div>
+        <div class="cap-text" aria-live="polite"></div>
+      </div>
+      <div class="row io" id="bar-io">
+        <button type="button" class="rbtn" id="kbd" aria-label="Type instead" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M11 10h.01M15 10h.01M8 14h8"/></svg>
+        </button>
+        <button type="button" class="micbtn" id="mic" aria-label="Mute microphone" aria-pressed="false">
+          <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+          <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M15 9.5V6a3 3 0 0 0-6 0v1M9 11a3 3 0 0 0 5.2 2M5 11a7 7 0 0 0 11.4 5.4M19 11a7 7 0 0 1-.6 2.8M12 18v3M4 4l16 16"/></svg>
+        </button>
+        <button type="button" class="rbtn" id="spk" aria-label="Voice on or off" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10H4zM16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>
+        </button>
+        <button type="button" class="rbtn endbtn" id="end" aria-label="Pause call" aria-pressed="false">
+          <svg class="hang" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13.5c5-5 13-5 18 0l-2.6 2.6-3-1.5v-2.4a9.5 9.5 0 0 0-6.8 0v2.4l-3 1.5z"/></svg>
+          <svg class="pick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+        </button>
+      </div>
+      <form class="field kb" id="form"><input id="inp" autocomplete="off" placeholder="Type your answer…"><button type="submit">Send</button></form>
+      </div>
+      <div class="row" id="bar-actions"></div>
+      <div class="hint" id="hint" hidden></div>
+    </div>
+  </section>
+
+  <!-- sheets -->
+  <div class="scrim" id="scrim"></div>
+  <div class="sheet" id="sheet-mic" role="dialog" aria-modal="true" aria-labelledby="sheet-mic-h">
+    <span class="tag" id="sheet-mic-tag">Before we start</span>
+    <div class="h" id="sheet-mic-h">We will need two things.</div>
+    <div class="eyebrow" id="perms-h" hidden>We will need</div>
+    <div class="perms" id="perms">
+      <div class="perm" data-perm="mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span><b>Microphone</b>So you can talk instead of type. Nothing is recorded.</span></div>
+      <div class="perm" data-perm="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span><b>Camera</b>To watch your swing near the end. Clips stay on your phone.</span></div>
+    </div>
+    <p id="sheet-mic-p">Your phone will ask once for each. You can switch to typing any time, and skip the camera if you must.</p>
+    <div class="row"><button type="button" class="btn" id="mic-no">Not now</button><button type="button" class="btn primary" id="mic-yes">Allow both</button></div>
+  </div>
+  <div class="sheet" id="sheet-order" role="dialog" aria-modal="true" aria-labelledby="sheet-order-h">
+    <span class="tag">Read back before anything happens</span>
+    <div class="h" id="sheet-order-h">Here’s what I’d order.</div>
+    <div class="spec" id="order-spec"></div>
+    <p id="order-p">Stock set plus the lie and grip changes. I only say “ordered” once the shop confirms it. Shall I?</p>
+    <div class="row" id="order-row"><button type="button" class="btn" id="order-no">Not yet</button><button type="button" class="btn primary" id="order-yes">Yes, order</button></div>
+  </div>
+  <div class="sheet" id="sheet-clip" role="dialog" aria-modal="true" aria-labelledby="sheet-clip-h">
+    <span class="tag">Your clip</span>
+    <div class="h" id="sheet-clip-h">Show me a clip of your swing.</div>
+    <div id="clip-ask">
+      <ul class="picts" aria-label="What the clip needs">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/><path d="M6 15h7" stroke-dasharray="1.5 1.5"/></svg><span>Slow-mo<br>120 fps+</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="8" r="2"/><path d="M12 10v5M9 12.5h6M12 15l-2 5M12 15l2 5"/></svg><span>Face-on<br>whole body</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="5" r="2"/><path d="M11 7v6l-3 8M11 13l3 8"/><path d="M11 9l8-5" /><path d="M4 7a10 10 0 0 1 16-2" stroke-dasharray="2 2"/></svg><span>One full<br>7-iron swing</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span>Good<br>light</span></li>
+      </ul>
+      <p class="note" id="clip-warn">One clip is a bit less accurate than five live swings. More clips, tighter fit.</p>
+      <input type="file" id="clip-file" accept="video/*" hidden>
+      <div class="row"><button type="button" class="btn" id="clip-no">Not now</button><button type="button" class="btn primary" id="clip-pick">Pick a clip</button></div>
+    </div>
+    <div id="clip-busy" hidden>
+      <div class="gate" id="gate"></div>
+    </div>
+    <div id="clip-result" hidden>
+      <div class="gate" id="gate-done"></div>
+      <p id="clip-p"></p>
+      <div class="row" id="clip-row"></div>
+    </div>
+  </div>
+  <div class="sheet" id="sheet-sim" role="dialog" aria-modal="true" aria-labelledby="sheet-sim-h">
+    <span class="tag">From a simulator</span>
+    <div class="h" id="sheet-sim-h">Your 7-iron clubhead speed.</div>
+    <p>A launch monitor number beats anything the camera can see. Use a normal swing, not your best one.</p>
+    <form class="field simfield" id="simform" novalidate><input id="siminp" inputmode="decimal" placeholder="e.g. 78" aria-label="Clubhead speed"><span class="unit" id="simunit">mph</span><button type="submit">Use it</button></form>
+    <p class="note" id="sim-note"></p>
+    <div class="row"><button type="button" class="btn" id="sim-no">Not now</button></div>
+  </div>
+  <div class="sheet" id="sheet-exit" role="dialog" aria-modal="true" aria-labelledby="sheet-exit-h">
+    <span class="tag" id="exit-tag">Hand-off</span>
+    <div class="h" id="sheet-exit-h"></div>
+    <p id="exit-p"></p>
+    <div class="row"><button type="button" class="btn primary" id="exit-ok">Got it</button></div>
+  </div>
+  <div class="toast" id="toast"></div>
+</div>
+
+<div class="demo" id="demo">
+  <b>Demo</b>
+  <button type="button" id="dm-reset">Replay</button>
+  <button type="button" id="dm-return" aria-pressed="false">Returning</button>
+  <button type="button" id="dm-mute" aria-pressed="false">Mute voice</button>
+  <button type="button" id="dm-badclip" aria-pressed="false">Bad clip</button>
+  <span class="sep"></span>
+  <button type="button" data-jump="chat">Chat</button>
+  <button type="button" data-jump="measure">Measure</button>
+  <button type="button" data-jump="swing">Swing</button>
+  <button type="button" data-jump="fit">Fit</button>
+  <button type="button" data-jump="ask">Ask</button>
+  <span id="dm-note" style="flex-basis:100%;text-align:center;color:#8E8E8E;font-size:11px"></span>
+</div>
+</div>
+
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ---------------------------------------------------------------- state
+const S = {
+  units:'imp', mode:'talk', returning:false, muted:false, audioOK:false,
+  screen:'hello', profile:{}, measMode:null, micOpen:true, ended:false, listenT:null, swings:[], swingPlan:5, swingSkipped:false, clips:[], badClip:false, fixing:null, busy:false
+};
+
+// ---------------------------------------------------------------- caption component (types out, or highlights words in sync with the voice)
+function makeCap(root){
+  const text = root.querySelector('.cap-text'), hear = root.querySelector('.hear'), lbl = root.querySelector('.status');
+  const c = { typer:null, utter:null, speaking:false, last:'', lastDone:null };
+  function words(t){ text.innerHTML=''; text.scrollLeft=0; root.classList.remove('open'); root.classList.remove('hi'); void root.offsetWidth; root.classList.add('hi'); setTimeout(()=>root.classList.remove('hi'), 1900); t.split(' ').forEach(w=>{ const s=document.createElement('span'); s.className='w todo'; s.textContent=w+' '; text.appendChild(s); }); return text.querySelectorAll('.w'); }
+  function finish(ws){ ws.forEach(w=>w.classList.remove('on','todo')); root.classList.add('done'); if(lbl) lbl.textContent = S.ended ? 'Call paused' : (typeof turn!=='undefined' && turn) ? 'Your turn' : 'On the line'; follow(ws[ws.length-1]); if(lbl && typeof startListening==='function' && typeof turn!=='undefined' && turn){ if(S.micOpen && S.mode==='talk') startListening(); else micStatus(); } }
+  // one-row mode: keep the word being said in view
+  function follow(w){ if(!w || !root.classList.contains('line1') || root.classList.contains('open') || root.classList.contains('rows2')) return; const left = Math.max(0, w.offsetLeft - text.clientWidth*0.3); text.scrollTo({left, behavior: reduce?'auto':'smooth'}); }
+  root.addEventListener('click', e=>{ if(e.target.closest('.hear')) return; if(root.classList.contains('line1')) root.classList.toggle('open'); });
+  root.addEventListener('keydown', e=>{ if((e.key==='Enter'||e.key===' ') && e.target===root){ e.preventDefault(); root.click(); } });
+  c.stop = function(){
+    if(c.typer){ clearInterval(c.typer); c.typer=null; }
+    if(window.speechSynthesis && c.speaking){ speechSynthesis.cancel(); }
+    c.speaking=false; c.utter=null;
+    finish(text.querySelectorAll('.w'));
+  };
+  function typeLine(t, done){
+    const ws = words(t); let i=0; root.classList.remove('done'); if(lbl) lbl.textContent='Speaking';
+    const step = reduce ? 0 : 140;
+    if(!step){ finish(ws); done&&done(); return; }
+    c.typer = setInterval(()=>{
+      if(i>0) ws[i-1].classList.remove('on');
+      if(i<ws.length){ ws[i].classList.remove('todo'); ws[i].classList.add('on'); follow(ws[i]); i++; }
+      else { clearInterval(c.typer); c.typer=null; finish(ws); done&&done(); }
+    }, step);
+  }
+  function pickVoice(){
+    const vs = speechSynthesis.getVoices();
+    for(const p of ['Daniel','Google UK English Male','Microsoft Ryan','Alex','Google US English','Samantha']){ const v=vs.find(v=>v.name.includes(p)); if(v) return v; }
+    return vs.find(v=>/^en/i.test(v.lang)) || vs[0] || null;
+  }
+  function speakLine(t, done){
+    speechSynthesis.cancel();
+    const ws = words(t); root.classList.remove('done'); if(lbl) lbl.textContent='Speaking';
+    const u = new SpeechSynthesisUtterance(t); const v=pickVoice(); if(v) u.voice=v; u.rate=1.02; u.pitch=0.92;
+    let idx=0; const starts=[]; let pos=0; t.split(' ').forEach(w=>{ starts.push(pos); pos+=w.length+1; });
+    u.onboundary = e => { if(e.name && e.name!=='word') return; while(idx<starts.length && starts[idx]<=e.charIndex) idx++; ws.forEach((w,i)=>{ w.classList.toggle('on', i===idx-1); if(i<idx) w.classList.remove('todo'); }); follow(ws[idx-1]); };
+    u.onend = () => { if(c.utter!==u) return; c.speaking=false; c.utter=null; finish(ws); done&&done(); };
+    u.onerror = () => { if(c.utter!==u) return; c.speaking=false; c.utter=null; typeLine(t, done); };
+    c.utter=u; c.speaking=true; speechSynthesis.speak(u);
+    // Safari sometimes never fires boundary events: timed reveal as fallback
+    setTimeout(()=>{ if(c.speaking && c.utter===u && ws[0].classList.contains('todo')){ let i=0; c.typer=setInterval(()=>{ if(i<ws.length){ ws[i].classList.remove('todo'); follow(ws[i]); i++; } else { clearInterval(c.typer); c.typer=null; } },140); } }, 700);
+  }
+  c.say = function(t, done){
+    c.stop(); c.last=t; c.lastDone=done;
+    if(S.audioOK && !S.muted && !S.ended && window.speechSynthesis){ hear.hidden=true; speakLine(t, done); }
+    else { hear.hidden = S.muted || S.ended || !window.speechSynthesis; typeLine(t, done); }
+  };
+  hear.addEventListener('click', ()=>{ S.audioOK=true; c.say(c.last, c.lastDone); });
+  return c;
+}
+const capHello = makeCap($('cap-hello'));
+const capFit = makeCap($('cap-fit'));
+function stopAll(){ capHello.stop(); capFit.stop(); }
+
+// ---------------------------------------------------------------- units (internal: yd, mph, inches)
+const UNIT = {
+  carry: v => S.units==='imp' ? `${v} yd` : `${Math.round(v*0.9144)} m`,
+  speed: v => S.units==='imp' ? `${v} mph` : `${Math.round(v*1.609)} km/h`,
+  height: v => S.units==='imp' ? `${Math.floor(v/12)}′${v%12}″` : `${Math.round(v*2.54)} cm`,
+  inches: v => S.units==='imp' ? `${v}″` : `${Math.round(v*2.54)} cm`,
+  speedRange: (a,b) => S.units==='imp' ? `${a}–${b} mph` : `${Math.round(a*1.609)}–${Math.round(b*1.609)} km/h`
+};
+function setUnits(u){
+  S.units=u; document.querySelectorAll('[data-units]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.units===u));
+  try{ localStorage.setItem('fitter.units',u); }catch(e){}
+  renderTiles(); renderMeasure(); renderVerdict(); renderYourSwing();
+}
+document.querySelectorAll('[data-units]').forEach(b=>b.addEventListener('click', ()=>setUnits(b.dataset.units)));
+
+// ---------------------------------------------------------------- profile tiles
+const CHAT_FIELDS = [
+  {k:'age',    l:'Age',           f:p=>p.age ? `${p.age.v}` : ''},
+  {k:'sex',    l:'Fit as',        f:p=>p.sex ? p.sex.v : ''},
+  {k:'rounds', l:'Rounds a year', f:p=>p.rounds ? p.rounds.v : ''},
+  {k:'score',  l:'Usually shoot', f:p=>p.score ? `${p.score.v}` : ''},
+  {k:'carry',  l:'7-iron carry',  f:p=>p.speed_mph ? `${UNIT.speed(p.speed_mph.v)}${p.speed_mph.src==='sim'?' · sim':''}` : (p.carry ? UNIT.carry(p.carry.v) : '')},
+  {k:'flight', l:'Ball flight',   f:p=>p.flight ? p.flight.v : '', small:true}
+];
+const MEAS_FIELDS = [
+  {k:'height', l:'Height',        f:p=>p.height ? UNIT.height(p.height.v) : ''},
+  {k:'wtf',    l:'Wrist→floor', f:p=>p.wtf ? (p.wtf.skipped ? 'skipped' : UNIT.inches(p.wtf.v)) : ''},
+  {k:'glove',  l:'Glove',         f:p=>p.glove ? p.glove.v : ''},
+  {k:'hand',   l:'Hand',          f:p=>p.hand ? p.hand.v : ''}
+];
+let asking = null;
+function tileHTML(fs, p){
+  return fs.map(d=>{
+    const val = d.f(p); const e = p[d.k];
+    const cls = ['tile', val?'filled':'', [].concat(asking).includes(d.k)?'asking':'', S.fixing===d.k?'fixing':'', e&&e.skipped?'skipped':'', S.justFilled===d.k?'just':''].join(' ');
+    const src = e ? (e.skipped ? 'skipped' : (e.src==='said' ? '' : e.src)) : '';   // 'said' is the default, so it gets no tag
+    return `<button type="button" class="${cls}" data-k="${d.k}"><span class="l">${d.l}</span>${src?`<span class="src ${src}">${src}</span>`:''}<span class="v ${d.small?'small':''}">${val || ([].concat(asking).includes(d.k)?'…':'·')}</span></button>`;
+  }).join('');
+}
+function renderTiles(){ $('chatgrid').innerHTML = tileHTML(CHAT_FIELDS, S.profile); }
+function renderMeasure(){
+  $('measgrid').innerHTML = tileHTML(MEAS_FIELDS, S.profile);
+  $('mcam-vals').innerHTML = MEAS_FIELDS.filter(d=>d.k!=='hand').map(d=>{ const val=d.f(S.profile); const e=S.profile[d.k];
+    return `<div class="val ${val?'filled':''} ${asking===d.k?'asking':''} ${S.justFilled===d.k?'just':''}"><span class="l">${d.l}</span><span class="v">${val || (asking===d.k?'…':'·')}</span>${e&&(e.src==='measured'||e.src==='seen')?'<span class="tag">seen</span>':''}</div>`; }).join('');
+}
+function said(id, t){ const el=$(id); el.innerHTML = `<b>You said</b>${t?`<span>“${t}”</span>`:'<i>nothing yet</i>'}`; }
+
+// ---------------------------------------------------------------- scripts (a scripted demo golfer; the engine is out of scope here)
+const CHAT = [
+  {focus:['age','sex'], ask:"Your game first. Six quick ones, and I don’t care what your mates shoot. Two boring ones so the shaft maths works. How old are you, and do I fit you men’s or women’s?",
+   golfer:"Forty-five. Men’s.", apply:p=>{ p.age={v:45,src:'said'}; p.sex={v:'Men’s',src:'said'}; }},
+  {focus:'rounds', ask:"Forty-five, men’s. How many rounds a year, roughly?",
+   golfer:"Twenty-ish.", apply:p=>{ p.rounds={v:'10–30',src:'said'}; }},
+  {focus:'score',  ask:"Twenty-odd, a regular. What do you shoot on a normal day. Not your best day.",
+   golfer:"Around 88. Ninety on a bad day.", apply:p=>{ p.score={v:88,src:'said',range:4}; }},
+  {focus:'carry',  ask:"Eighty-eight. Know your 7-iron swing speed from a sim? If not, how far does a normal 7-iron carry in the air?",
+   golfer:"No sim. A normal 7-iron carries about 150.", apply:p=>{ p.carry={v:150,src:'said',range:10}; }},
+  {focus:'flight', ask:"A hundred and fifty in the air. What does your ball flight look like with your irons. Low, mid or high?",
+   golfer:"Mid, I’d say.", apply:p=>{ p.flight={v:'Mid',src:'said'}; }},
+  {focus:'flight', ask:"Mid. And what would you like it to be. Same, lower or higher?",
+   golfer:"Higher.", apply:p=>{ p.flight={v:'Mid → higher',src:'said'}; }},
+  {end:true, ask:"Got your game. Now let me see you. Stand up, phone at hip height."}
+];
+const MEASURE = [
+  {focus:'height', ask:"How tall are you?", camAskAlt:"Stand where I can see you head to floor, phone at hip height, about three metres back. While you get there: how tall are you?", golfer:"Five eleven.", heard:"five eleven", value:71, src:'measured', big:p=>UNIT.height(71)},
+  {focus:'wtf',    ask:"Five eleven. Standard length territory, with room to spare. Now, tape at the crease of your wrist, arms hanging like you’ve given up on the round. What does it say at the floor?",
+   camAsk:"Good. Arms hanging like you’ve given up on the round. Hold still and I’ll map you.",
+   golfer:"Thirty-three.", heard:"thirty-three", value:33, src:'measured', big:p=>UNIT.inches(33), skippable:true},
+  {focus:'glove',  ask:"Thirty-three. Glove size?", askAlt:"No tape, no problem. Lie becomes a guess and I’ll say so. Glove size?", camAskAlt:"Mapped. Hands hang a touch low, I’ll remember that. While you’re there, glove size?", golfer:"Large.", heard:"large", value:'L', src:'said', big:p=>'L'},
+  {focus:'hand',   ask:"Large. Midsize grip, most likely. Right- or left-handed?", golfer:"Right.", heard:"right", value:'Right', src:'said', big:p=>'Right'},
+  {end:true, ask:"Right-handed. That’s you measured. Now show me your swing, so the shaft comes from how you actually move.", camAskAlt:"That’s you mapped. Stay right there and grab your 7-iron. Phone stays where it is."}
+];
+const RATIOS = ['2.4','2.3','2.4','2.5','2.3'];
+const SPEED_BY_PLAN = {1:[70,86], 2:[72,84], 3:[74,82], 4:[75,81], 5:[76,80]};
+const WORDS = {1:'one',2:'two',3:'three',4:'four',5:'five'};
+function swingLine(i, n){
+  const r = RATIOS[i]; const [a,b] = SPEED_BY_PLAN[n]; const last = i===n-1;
+  if(i===0 && last) return `Quick transition, about ${r} to 1, and your hands hang low at address. One swing gives me tempo, not much speed. Let’s see your fit.`;
+  if(i===0) return `Quick transition, about ${r} to 1. Compact swing, too. Noted.`;
+  if(i===1 && !last) return `Same again, ${r} to 1, and your hands hang low at address.${n===3?' One more and I’ll stop staring.':''}`;
+  if(last) return `Those ${WORDS[n]} were very alike. You said 150 carry, and the video says ${a} to ${b}, so that checks out. Let’s see your fit.`;
+  return `${r} to 1 that time. ${n-i-1} more.`;
+}
+const SWINGS = RATIOS.map((ratio,i)=>({ratio, line:swingLine(i,3)}));
+const ANSWERS = [
+  {q:"Why this flex?", a:()=> (S.profile.speed_mph&&S.profile.speed_mph.src==='sim') ? simShaft().why : "78 is right on the line; your quick tempo tips it to stiff. Under 75 on a sim and I switch you back.", row:'shaft'},
+  {q:"+1° lie does what?", a:"Starts the ball a touch left for a right-hander and squares the sole for where your hands hang. Too much and you’d pull it.", row:'lie'},
+  {q:"201 vs 201T?", a:"201T gives up one point of forgiveness for one of workability, two degrees weaker loft, less offset. Strike it clean most days? Fair trade. Slice most rounds? Stay with the 201.", row:'head'},
+  {q:"Steel or graphite?", a:"Graphite is about 40 grams lighter: easier on the hands, a touch more speed. At your speed steel is the stock choice.", row:'shaft'},
+  {q:"Why midsize?", a:"Large glove, midsize grip. Too small and your hands get overactive; too big and it’s hard to release. Grips are cheap to swap.", row:'grip'},
+  {q:"How sure are you?", a:"Sure on length, lie and grip. Head is solid. Flex is the one I’d want a sim number for."},
+  {q:"Fix my slice?", a:"Nope. Clubs don’t fix swings, and I won’t tell you they do. Offset and a degree of lie make it less punishing. That’s all."},
+  {q:"Can I try first?", a:"Thirty days to send them back, and demo bays where you can hit both first."},
+  {q:"Do you just push what sells?", a:"Same rules as the quiz. I just explain them. If your current set already matched, I’d say so. It doesn’t; it’s ten years old and regular."}
+];
+
+// ---------------------------------------------------------------- verdict (fixed for the scripted golfer; variants for skipped steps)
+function flexFor(mph){ return mph<60?'Senior':mph<=70?'Senior':mph<=80?'Regular':mph<=90?'Stiff':'X-stiff'; }
+function simShaft(){
+  const v=S.profile.speed_mph.v, f=flexFor(v); const edges=[70,80,90]; const d=Math.min(...edges.map(e=>Math.abs(v-e)));
+  const close = d<=3;
+  return {v:`KBS Tour · ${f}`, conf: close?'hmm':'sure',
+    why: close ? `Sim says ${UNIT.speed(v)}, right on the line between flexes. Your quick tempo tips it to ${f.toLowerCase()}, but a demo bay settles it.` : `Sim says ${UNIT.speed(v)}. That's ${f.toLowerCase()} territory with room either side. Tempo agrees.`};
+}
+function verdict(){
+  const p=S.profile; const noTape = p.wtf && p.wtf.skipped; const noVideo = S.swingSkipped; const sim = p.speed_mph && p.speed_mph.src==='sim';
+  return {
+    head:{v:'Iron 201 MKII', ru:'201T MKII', why:'88 sits square in its bracket, and 150 carry is middle speed. No stated priorities, so score and speed decide.', conf:'hmm'},
+    shaft: sim ? simShaft() : noVideo
+      ? {v:'KBS Tour · Regular', why:'150 carry says regular, but I never saw your tempo. Two minutes on camera turns this into a call.', conf:'guess'}
+      : S.swingPlan===1
+      ? {v:'KBS Tour · Stiff', why:'Quick tempo says stiff, but one swing gives me a speed of 70 to 86. Two more swings or a sim number and this firms up.', conf:'hmm'}
+      : S.swingPlan===5
+      ? {v:'KBS Tour · Stiff', why:'Five swings agreed: quick tempo, 76 to 80. That sits in stiff with room either side.', conf:'sure'}
+      : {v:'KBS Tour · Stiff', why:'78 is right on the line; your quick tempo tips it to stiff. Under 75 on a sim and I switch you back.', conf:'hmm'},
+    length:{v:'Standard', why:`${UNIT.height(71)} is mid-bracket. Length comes from height, not arm length.`, conf:'sure'},
+    lie: noTape
+      ? {v:'Standard', why:'No wrist-to-floor, so standard is the safe guess. A tape fixes this in a minute.', conf:'guess'}
+      : {v:'+1° upright', why:`Hands hang low at address with a ${UNIT.inches(33)} wrist-to-floor. A degree upright squares the sole.`, conf:'sure'},
+    grip:{v:'Midsize', why:'Large glove → midsize. Grips are cheap to swap.', conf:'sure'},
+    cc:{t:'201 vs 201T', p:'Your score says 201. Strike it clean most days and the 201T is a fair trade: one point of forgiveness for one of workability. A demo bay settles it in ten balls.'}
+  };
+}
+const PILL = {sure:'Sure', hmm:'Hmm', guess:'Guess'};
+function renderVerdict(){
+  const v = verdict();
+  $('vd-head').textContent = v.head.v; $('vd-ru').textContent = v.head.ru;
+  $('vrows').innerHTML = ['head','shaft','length','lie','grip'].map(k=>`<div class="vrow" data-row="${k}"><span class="k">${k}</span><div><div class="v">${v[k].v}</div><div class="why">${v[k].why}</div></div><span class="pill ${v[k].conf}">${PILL[v[k].conf]}</span></div>`).join('');
+  $('cc-t').textContent = v.cc.t; $('cc-p').textContent = v.cc.p;
+  $('order-spec').textContent = `${v.head.v} · ${v.shaft.v} · ${v.length.v} length · ${v.lie.v} lie · ${v.grip.v} grip`;
+  $('asksummary').innerHTML = `<b>${v.head.v}</b>${v.shaft.v} · ${v.length.v} length · ${v.lie.v} · ${v.grip.v} grip<br><span style="color:var(--accent)">Open: ${v.cc.t}</span>`;
+}
+function renderYourSwing(){
+  const el=$('yourswing');
+  if(S.swingSkipped){ el.innerHTML = `<div style="grid-column:1/-1">Your swing<b style="color:var(--fg-3)">Not seen, so tempo is a guess</b></div>`; return; }
+  const [a,b] = SPEED_BY_PLAN[S.swingPlan] || SPEED_BY_PLAN[3]; const sim = S.profile.speed_mph && S.profile.speed_mph.src==='sim';
+  el.innerHTML = `<div class="mini">${MINI_FIG}</div><div>Tempo · ${S.swingPlan} swing${S.swingPlan>1?'s':''}<b>2.4 : 1</b></div><div>Hands<b>Low</b></div><div>Speed${sim?' · sim':''}<b>${sim?UNIT.speed(S.profile.speed_mph.v):UNIT.speedRange(a,b)}</b></div>`;
+  const l=$('simline-fit'); if(l) l.hidden = !!sim;
+}
+function lightRow(k){ document.querySelectorAll('.vrow').forEach(r=>{ r.classList.toggle('on', r.dataset.row===k); if(r.dataset.row===k || k===null) r.classList.remove('pre'); }); }
+
+// ---------------------------------------------------------------- screens
+const SPINE = ['chat','measure','swing','fit'];
+function setSpine(s){ const i=SPINE.indexOf(s); document.querySelectorAll('#spine span').forEach((el,j)=>{ const was=el.className; el.className = j<i?'done':(j===i?'on':''); if(j===i && was!=='on' && !reduce) el.animate([{transform:'translateY(3px)',opacity:.4},{transform:'none',opacity:1}],{duration:420,easing:'cubic-bezier(.2,.7,.2,1)'}); }); }
+const AICON = {"clip": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"13\" height=\"14\" rx=\"2\"/><path d=\"M16 10l5-3v10l-5-3z\"/></svg>", "save": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M6 3h12v18l-6-4-6 4z\"/></svg>", "skip": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 5l9 7-9 7zM17 5v14\"/></svg>"};
+function actions(list){
+  $('bar-actions').innerHTML = list.map(b=> b.icon
+    ? `<button type="button" class="ibtn ${b.cls||''}" id="${b.id}" ${b.disabled?'disabled':''}>${AICON[b.icon]}<span>${b.t}</span></button>`
+    : `<button type="button" class="btn ${b.cls||''}" id="${b.id}" ${b.disabled?'disabled':''}>${b.t}</button>`).join('');
+  $('bar-actions').classList.toggle('icons', list.some(b=>b.icon));
+  list.forEach(b=>{ const el=$(b.id); if(el && b.on) el.addEventListener('click', b.on); });
+}
+function hint(t){ $('dm-note').textContent = t||''; }
+// the call controls (mute, voice, pause) stay on every screen; only typing goes away while the fitter is watching or reading
+function ioVisible(on){ $('dock').classList.toggle('noio', !on); }
+// camera first: on the swing step and the camera path of the body step, the camera takes the screen and the dock shrinks to one row
+function setFocus(){ $('s-fit').classList.toggle('focus', S.screen==='swing' || (S.screen==='measure' && S.measMode==='cam')); }
+function show(name){
+  const prev = S.screen, stageOf = n => ({fit:'verdict'}[n]||n);
+  stopAll(); hideSheets(); S.screen=name;
+  // moving between fitter stages: the old one slides off as a ghost while the new one slides in
+  const area=$('stagearea'), from=$('st-'+stageOf(prev)), to=$('st-'+stageOf(name));
+  const swap = !reduce && from && to && from!==to && !$('s-fit').hidden && !from.hidden;
+  if(swap){
+    const g=from.cloneNode(true); g.removeAttribute('id'); g.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id')); g.classList.add('ghoststage');
+    area.classList.add('swapping'); area.appendChild(g);
+    g.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateX(-28px)'}],{duration:240,easing:'ease-in',fill:'forwards'}).onfinish=()=>{ g.remove(); area.classList.remove('swapping'); };
+  }
+  $('s-hello').hidden = name!=='hello'; $('s-meet').hidden = name!=='meet'; $('s-fit').hidden = (name==='hello'||name==='meet');
+  ['chat','measure','swing','verdict','ask'].forEach(s=>{ $('st-'+s).hidden = s!==stageOf(name); });
+  if(swap) to.animate([{opacity:0,transform:'translateX(36px)'},{opacity:1,transform:'none'}],{duration:420,easing:'cubic-bezier(.2,.7,.2,1)'});
+  $('cap-fit').classList.toggle('rows2', name==='chat');
+  setFocus();
+  const lbl = {chat:'1 · Your game',measure:'2 · Your body',swing:'3 · Your swing',fit:'4 · Your fit',ask:'Ask, then go'}[name] || 'AI fitter · irons';
+  if($('steplabel').textContent!==lbl){ $('steplabel').textContent = lbl; if(!reduce) $('steplabel').animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:360,easing:'cubic-bezier(.2,.7,.2,1)'}); }
+  setSpine(name==='ask'?'fit':name);
+  window.scrollTo(0,0);
+}
+
+// ---- 1 Hello
+function renderHello(){
+  const r=S.returning; const c=S.clips.length;
+  $('camline').classList.toggle('ok', c>0);
+  $('camline-t').textContent = c ? `${c===1?'Clip':WORDS[c]+' clips'} read, no filming later · ` : '';
+  $('d-clip').textContent = c ? 'Add another clip' : 'Attach a swing clip';
+  $('camline-e').textContent = '';
+  $('h1').innerHTML = r?'Welcome<br>back.':'We will find<br>your fit.';
+  $('d-talk-t').textContent = r?'Continue where we left off':'Meet the AI fitter';
+  const I={clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+           cam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',
+           clip:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></svg>',
+           iron:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 3l-5 10"/><path d="M15 13c-3-2-7-2-9 1-1.5 2-1 4.5 1.5 5h7c1.5 0 2-1 1.8-2.5z"/></svg>',
+           room:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9V3h6M15 3h6v6M21 15v6h-6M9 21H3v-6"/><path d="M3 3l5 5M21 3l-5 5M21 21l-5-5M3 21l5-5"/></svg>'};
+  $('d-talk-s').innerHTML = r ? '201 vs 201T still open · 2 min to settle it' : `<span>${I.clock}10–15 min</span><span>${c?I.clip+'Clip read':I.cam+'Camera'}</span><span>${I.iron}7-iron</span><span>${I.room}Swing room</span>`;
+}
+function startHello(){
+  show('hello'); renderHello();
+  $('s-hello').querySelectorAll('.rise').forEach(el=>{ el.style.animation='none'; void el.offsetWidth; el.style.animation=''; });
+}
+// ---- clip check (quality gate runs before anything else, so a bad clip costs seconds, not minutes)
+const GATE = [
+  {k:'Frame rate', ok:'240 fps', bad:'30 fps. Hands blur between frames, I can’t time the swing.'},
+  {k:'Framing',    ok:'Face-on, whole body', bad:null},
+  {k:'Hands',      ok:'Seen in 96% of frames', bad:null},
+  {k:'Swing',      ok:'One full swing, 7-iron likely', bad:null},
+  {k:'Light',      ok:'Fine', bad:null}
+];
+function openClipSheet(){
+  stopAll();
+  $('clip-ask').hidden=false; $('clip-busy').hidden=true; $('clip-result').hidden=true;
+  $('sheet-clip-h').textContent = S.clips.length ? 'Another clip? Same checks.' : 'Show me a clip of your swing.';
+  $('clip-warn').hidden = S.clips.length>0;
+  showSheet('sheet-clip');
+}
+$('clip-no').addEventListener('click', hideSheets);
+$('clip-pick').addEventListener('click', ()=>$('clip-file').click());
+$('clip-file').addEventListener('change', ()=>{ if($('clip-file').files.length) runGate($('clip-file').files[0]); $('clip-file').value=''; });
+function runGate(file){
+  // Real build: decode on-device (requestVideoFrameCallback for fps, pose landmarks for framing/hands). Simulated here; the demo bar can force a failure.
+  $('clip-ask').hidden=true; $('clip-busy').hidden=false; $('clip-result').hidden=true; $('clip-warn').hidden=true;
+  $('sheet-clip-h').textContent = 'Reading it.';
+  const bad = S.badClip; const g=$('gate'); g.innerHTML = GATE.map(x=>`<div class="g wait"><span>${x.k}</span><b>…</b></div>`).join('');
+  let i=0; const rows=g.querySelectorAll('.g');
+  (function step(){
+    if(i>=GATE.length || (bad && i>0)){ finishGate(bad, file); return; }
+    const x=GATE[i], r=rows[i]; const fail = bad && i===0;
+    r.className = 'g '+(fail?'bad':'ok'); r.querySelector('b').textContent = fail ? x.bad.split('.')[0] : x.ok;
+    i++; setTimeout(step, reduce?0:(fail?700:450));
+  })();
+}
+function finishGate(bad, file){
+  $('clip-busy').hidden=true; $('clip-result').hidden=false; $('gate-done').innerHTML=$('gate').innerHTML;
+  if(bad){
+    $('sheet-clip-h').textContent = 'That one won’t work. Here’s why.';
+    $('clip-p').textContent = GATE[0].bad + ' Film it again in slow motion, or film with me at the swing step. Either way, no time lost.';
+    $('clip-row').innerHTML = '<button type="button" class="btn" id="clip-later">Film it later</button><button type="button" class="btn primary" id="clip-again">Try another clip</button>';
+    $('clip-later').onclick = hideSheets; $('clip-again').onclick = openClipSheet;
+    capFit.say('No good, and I’d rather tell you now. Thirty frames a second blurs your hands. Slow motion, or film with me later.');
+  } else {
+    S.clips.push({name:(file&&file.name)||'clip', ratio: RATIOS[S.clips.length%RATIOS.length]});
+    const n=S.clips.length;
+    $('sheet-clip-h').textContent = n===1 ? 'Good clip. Swing read.' : `That’s ${WORDS[n]} clips read.`;
+    $('clip-p').textContent = `Tempo ${S.clips[n-1].ratio} to 1, hands low at address. ${n===1 ? 'One clip is a rougher read than five swings on camera, so the shaft stays a hmm. Add more clips and it tightens up.' : n<5 ? 'More clips tighten the speed range.' : 'That’s plenty.'} The clip stays on your phone.`;
+    $('clip-row').innerHTML = `<button type="button" class="btn" id="clip-more" ${n>=5?'disabled':''}>Add another</button><button type="button" class="btn primary" id="clip-done">Done</button>`;
+    $('clip-more').onclick = openClipSheet; $('clip-done').onclick = ()=>{ hideSheets(); if(S.screen==='swing') startSwing(); };
+    renderHello();
+    const h = S.screen==='hello' ? capHello : capFit;
+    h.say(n===1 ? `Good clip. Quick transition, about ${S.clips[0].ratio} to 1. That’s the filming done, so the rest is just talking and a tape measure.` : `Read it. ${WORDS[n]} clips now, and they agree.`);
+  }
+}
+$('d-clip').addEventListener('click', openClipSheet);
+
+// Permission sheet. Simulated here; later this is where getUserMedia({audio, video}) is requested, after the tap and never on load.
+function askPerms(){
+  const hasClip = S.clips.length>0;
+  S.mode = 'talk';
+  $('perms').querySelector('[data-perm="cam"]').hidden = hasClip;
+  $('sheet-mic-h').textContent = hasClip ? 'We will need one thing.' : 'We will need two things.';
+  $('sheet-mic-p').textContent = hasClip ? 'Your clip covers the camera. Say no and you type instead.' : 'Say no and you type instead. You can change your mind later.';
+  $('mic-yes').textContent = hasClip ? 'Allow microphone' : 'Allow both';
+  $('mic-yes').onclick = ()=>{ hideSheets(); suckIn(startChat); };
+  $('mic-no').onclick  = ()=>{ S.mode='type'; hideSheets(); suckIn(startChat); };   // denied → typing, no second ask; camera is asked again only at the swing step
+  showSheet('sheet-mic');
+}
+function showMeet(){
+  const small=$('guy-land'); const from = small ? small.getBoundingClientRect() : null;
+  const big=$('guy'), bigWave=big.querySelector('.wave'), bubble=$('cap-hello');
+  // hold the big figure and the bubble still until the small one has arrived
+  big.style.animation='none'; bigWave.style.animation='none'; bubble.style.animation='none'; bubble.style.opacity='0';
+  show('meet');
+  S.metDone=false; $('meetperms').hidden=true; $('meetstage').classList.remove('asking');
+  const arrive = ()=>{
+    // one frame later so the reveal and the animation restarts land together
+    requestAnimationFrame(()=>{
+      big.style.visibility=''; big.style.animation=''; bigWave.style.animation='';
+    });
+    setTimeout(()=>{ bubble.style.opacity=''; bubble.style.animation=''; }, reduce?0:300);   // the bubble rises in just before he speaks
+    setTimeout(()=>capHello.say("Hey. I’m Takomo’s trained AI fitter. Show me your swing and let’s get to work!", ()=>{ setTimeout(()=>{ if(S.screen==='meet') meetAsk(); }, reduce?0:600); }), reduce?0:350);
+  };
+  if(!from || reduce){ arrive(); return; }
+  // the small figure glides and grows into the big one's exact spot; both are the same drawing, so the swap is invisible
+  const to=big.getBoundingClientRect(); big.style.visibility='hidden';
+  const ghost=small.cloneNode(true); ghost.id='';
+  ghost.style.cssText=`position:fixed;left:${from.left}px;top:${from.top}px;width:${from.width}px;height:${from.height}px;z-index:30;pointer-events:none;animation:none;transform-origin:0 0;will-change:transform`;
+  ghost.querySelector('.wave').style.animation='none'; document.body.appendChild(ghost);
+  ghost.animate([
+    {transform:'translate(0,0) scale(1)'},
+    {transform:`translate(${to.left-from.left}px,${to.top-from.top}px) scale(${to.width/from.width})`}
+  ], {duration:650, easing:'cubic-bezier(.4,0,.2,1)', fill:'forwards'}).onfinish=()=>{ arrive(); requestAnimationFrame(()=>requestAnimationFrame(()=>ghost.remove())); };
+}
+function meetAsk(){
+  if(S.metDone) return; S.metDone=true;
+  const hasClip=S.clips.length>0; S.mode='talk';
+  $('meetperms').querySelector('[data-mp="cam"]').hidden = hasClip;
+  $('mp-yes').textContent = hasClip ? 'Allow microphone' : 'Allow both';
+  $('mp-note').textContent = hasClip ? 'Your clip covers the camera. Say no and you type instead.' : 'Say no and you type instead. You can change your mind later.';
+  $('meetstage').classList.add('asking'); $('meetperms').hidden=false;
+  capHello.say(hasClip ? "One thing first: your mic, so we can talk. Your clip covers the camera." : "Two things first: your mic, so we can talk, and your camera, so I can see you.");
+}
+$('mp-yes').addEventListener('click', ()=>{ stopAll(); suckIn(startChat); });
+$('mp-no').addEventListener('click',  ()=>{ stopAll(); S.mode='type'; suckIn(startChat); });   // denied → typing, no second ask
+$('meetstage').addEventListener('click', e=>{ if(e.target.closest('.hear')) return; stopAll(); meetAsk(); });
+$('meetstage').addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('meetstage').click(); } });
+$('d-talk').addEventListener('click', ()=>{ stopAll(); if(S.returning){ S.mode='talk'; startAsk(true); return; } showMeet(); });
+$('d-quiz').addEventListener('click', ()=>{ stopAll(); toast('The quick quiz isn’t in this prototype. It shares the fitter’s verdict card.'); });
+
+// ---- generic turn-taking (mic tap or Send → scripted golfer answer → apply → next ask)
+let turn = null; // {onAnswer(text)}
+function stopListening(){ clearTimeout(S.listenT); S.listenT=null; $('dock').classList.remove('listening'); }
+function startListening(){
+  // open mic: he has finished, it is your turn, so we listen. The scripted golfer answers after a natural pause.
+  if(!turn || S.busy || S.mode!=='talk' || !S.micOpen || S.ended) return;
+  $('dock').classList.add('listening'); $('dock-status').textContent='Listening';
+  clearTimeout(S.listenT); S.listenT=setTimeout(()=>{ S.listenT=null; submit(''); }, reduce?0:2200);
+}
+function micStatus(){ if(S.ended){ $('dock-status').textContent='Call paused'; return; } if(!turn) return; $('dock-status').textContent = S.micOpen ? 'Listening' : 'Mic muted'; }
+function setTurn(fn, placeholder){
+  stopListening();
+  turn = fn ? {onAnswer:fn} : null;
+  $('inp').value=''; $('inp').placeholder = placeholder || 'Type instead…';
+  $('form').querySelector('button').disabled = !fn;
+  $('dock').classList.toggle('typing', S.mode==='type'); $('kbd').setAttribute('aria-pressed', S.mode==='type');
+  if(fn && $('cap-fit').classList.contains('done')){ if(S.micOpen && S.mode==='talk') startListening(); else micStatus(); }
+}
+function submit(text){
+  if(!turn || S.busy) return;
+  const t = turn; turn=null; stopAll();
+  const typed = (text||'').trim();
+  clearTimeout(S.listenT); S.listenT=null;
+  if(S.mode==='talk' && !typed){
+    S.busy=true; $('dock').classList.add('listening'); $('dock-status').textContent='Listening'; hint('Listening…');
+    setTimeout(()=>{ $('dock').classList.remove('listening'); S.busy=false; hint(''); t.onAnswer(''); }, reduce?0:900);
+  } else { t.onAnswer(typed); }
+}
+$('mic').addEventListener('click', ()=>{
+  S.micOpen = !S.micOpen; $('mic').classList.toggle('muted', !S.micOpen); $('mic').setAttribute('aria-pressed', !S.micOpen); $('mic').setAttribute('aria-label', S.micOpen?'Mute microphone':'Unmute microphone');
+  if(!S.micOpen){ stopListening(); micStatus(); } else if(turn && $('cap-fit').classList.contains('done')) startListening();
+});
+// the call: pause it, or pick it back up. A live assistant (if one is connected) hangs up and reconnects through window.FitterCall.
+window.FitterCall = window.FitterCall || { onEnd: null };
+$('end').addEventListener('click', ()=>{
+  S.ended = !S.ended; $('dock').classList.toggle('ended', S.ended); $('end').setAttribute('aria-pressed', S.ended); $('end').setAttribute('aria-label', S.ended?'Resume call':'Pause call');
+  if(S.ended){ stopAll(); stopListening(); $('dock-status').textContent='Call paused'; if(window.FitterCall.onEnd) window.FitterCall.onEnd(); return; }
+  $('dock-status').textContent='On the line'; S.audioOK = S.audioOK || (!S.muted && !!window.speechSynthesis);
+  if(window.FitterAgent && window.FitterAgent.used && window.FitterAgent.used()){ window.FitterAgent.start(S.mode, {reconnect:true}); return; }
+  if(capFit.last) capFit.say(capFit.last, capFit.lastDone); else micStatus();
+});
+$('kbd').addEventListener('click', ()=>{ S.mode = S.mode==='type' ? 'talk' : 'type'; $('dock').classList.toggle('typing', S.mode==='type'); $('kbd').setAttribute('aria-pressed', S.mode==='type'); if(S.mode==='type'){ stopListening(); if(turn) $('dock-status').textContent='Your turn'; $('inp').focus(); } else if(turn && $('cap-fit').classList.contains('done')) startListening(); });
+$('spk').addEventListener('click', ()=>$('dm-mute').click());
+$('form').addEventListener('submit', e=>{ e.preventDefault(); submit($('inp').value); });
+
+// ---- 2 Chat
+let chatI = 0;
+// the figure spins down into the fitter's row at the bottom; that row is him from here on
+function suckIn(then){
+  const guy=$('guy'); if(!guy || reduce){ then(); return; }
+  const from=guy.getBoundingClientRect();
+  // 1. he lifts off the meet scene while the rest of it fades
+  const ghost=guy.cloneNode(true); ghost.id=''; ghost.style.cssText=`position:fixed;left:${from.left}px;top:${from.top}px;width:${from.width}px;height:${from.height}px;z-index:30;pointer-events:none;animation:none;transform-origin:50% 50%;will-change:transform`;
+  ghost.querySelector('.wave').style.animation='none'; document.body.appendChild(ghost);
+  guy.style.visibility='hidden';
+  $('s-meet').style.transition='opacity .3s ease'; $('s-meet').style.opacity='0';
+  setTimeout(()=>{
+    // 2. the next screen fades in underneath, so the row he lands in is already there
+    $('s-meet').style.opacity=''; $('s-meet').style.transition=''; guy.style.visibility='';
+    then();
+    const mini=$('miniguy'); const to=mini.getBoundingClientRect(); mini.style.opacity='0';
+    const dx=(to.left+to.width/2)-(from.left+from.width/2), dy=(to.top+to.height/2)-(from.top+from.height/2);
+    const k=to.width/from.width;
+    // 3. one smooth arc down into the row, easing out, shrinking to his small self; no spin
+    ghost.animate([
+      {transform:'translate(0,0) scale(1) rotate(0deg)'},
+      {transform:`translate(${dx*.35}px,${dy*.15}px) scale(.8) rotate(-8deg)`, offset:.3},
+      {transform:`translate(${dx*.85}px,${dy*.8}px) scale(${k*1.3}) rotate(4deg)`, offset:.8},
+      {transform:`translate(${dx}px,${dy}px) scale(${k}) rotate(0deg)`}
+    ], {duration:800, easing:'cubic-bezier(.4,0,.2,1)', fill:'forwards'}).onfinish = ()=>{
+      // 4. hand over to the small avatar with a settle
+      mini.style.opacity=''; ghost.remove();
+      mini.animate([{transform:'scale(1.25)'},{transform:'scale(.95)',offset:.6},{transform:'scale(1)'}],{duration:350,easing:'cubic-bezier(.2,.7,.2,1)'});
+    };
+  }, reduce?0:260);
+}
+function startChat(){
+  show('chat'); chatI=0; asking=null; S.fixing=null; renderTiles(); said('said-chat','');
+  actions([{id:'a-next',t:'Measure me →',cls:'primary',disabled:true,on:startMeasure}]);
+  ioVisible(true); hint(S.mode==='talk'?'Mic is open: a scripted golfer answers after a pause. Tap the mic to mute.':'Send to answer (empty = the scripted golfer answers)');
+  chatStep();
+}
+function chatStep(){
+  const st = CHAT[chatI];
+  if(st.end){ asking=null; renderTiles(); setTurn(null); $('a-next').disabled=false; hint('Tap any tile to fix it');
+    const token = S.chatToken = {};
+    capFit.say(st.ask, ()=>setTimeout(()=>{ if(S.chatToken===token && S.screen==='chat' && !S.ended && !S.fixing) startMeasure(); }, reduce?0:900));
+    return; }
+  asking = st.focus; renderTiles();
+  capFit.say(st.ask);
+  setTurn(text=>{
+    const shown = text || st.golfer; said('said-chat', shown);
+    st.apply(S.profile); S.justFilled = [].concat(st.focus)[0];
+    if(text) [].concat(st.focus).forEach(k=>{ S.profile[k] = {v:text, src:'said'}; });   // typed → stored verbatim, tagged said
+    chatI++; chatStep();
+  }, `e.g. “${st.golfer}”`);
+}
+// tap a tile to fix it (either stage)
+document.addEventListener('click', e=>{
+  const tile = e.target.closest('.tile'); if(!tile) return;
+  const k = tile.dataset.k; if(!S.profile[k]) return;
+  const fields = CHAT_FIELDS.concat(MEAS_FIELDS); const d = fields.find(f=>f.k===k);
+  const pending = turn, ph = $('inp').placeholder; S.fixing=k; renderTiles(); renderMeasure();
+  capFit.say(`Say it again. What should “${d.l.toLowerCase()}” be?`);
+  setTurn(text=>{
+    const old = S.profile[k]; const val = text || (old.skipped ? 'skipped' : (d.f(S.profile)));
+    S.profile[k] = text ? {v:text, src:'said'} : old; S.fixing=null; renderTiles(); renderMeasure();
+    said(S.screen==='chat'?'said-chat':'said-measure', text || val);
+    setTurn(null);
+    capFit.say(`Got it. ${d.l.toLowerCase()}: ${text || val}.`, ()=>{ if(pending) setTurn(pending.onAnswer, ph); });
+  }, `e.g. a new ${d.l.toLowerCase()}`);
+});
+
+// ---- 3 Measure (every number read back; That's right / Say again)
+let measI = 0;
+const MINI_FIG = `<svg viewBox="0 0 100 150" fill="none" stroke="var(--fig)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="50" cy="18" r="9"/><path d="M50 27v44M50 71l-14 62M50 71l14 62M50 46l-6 40M50 46l-4 40"/><path d="M46 86l-26 48" stroke="var(--fig-club)" stroke-width="3"/><circle cx="46" cy="90" r="4" fill="var(--accent)" stroke="none"/><path class="mb" d="M58 84v12M58 90h5" stroke="#FF6E01" stroke-width="3"/></svg>`;
+function figReset(){
+  const f=$('fig'); f.classList.add('t'); $('fig-body').classList.remove('left'); $('fig-hand').style.transform='';
+  ['line-h','line-w'].forEach(id=>$(id).classList.remove('drawn','grey')); ['lab-h','lab-w'].forEach(id=>{ $(id).textContent=''; $(id).classList.remove('in','grey'); }); $('fig-wrist').classList.remove('pulse');
+}
+function figAsk(focus){
+  if(focus==='height'){ $('line-h').classList.add('drawn'); }
+  if(focus==='wtf'){ $('fig').classList.remove('t'); $('fig-wrist').classList.add('pulse'); setTimeout(()=>$('line-w').classList.add('drawn'), reduce?0:600); }
+}
+function figConfirm(focus, val){
+  if(focus==='height'){ $('lab-h').textContent=val; $('lab-h').classList.add('in'); }
+  if(focus==='wtf'){ $('lab-w').textContent=val; $('lab-w').classList.add('in'); $('fig-wrist').classList.remove('pulse'); }
+  if(focus==='glove'){ const sc={XS:.7,S:.85,M:1,'M/L':1.15,L:1.3,XL:1.5}[String(val).toUpperCase()]||1; $('fig-hand').style.transform=`scale(${sc})`; }
+  if(focus==='hand'){ $('fig-body').classList.toggle('left', /left/i.test(String(val))); }
+}
+function startMeasure(){
+  S.measMode='cam'; show('measure'); measI=0; asking=null; figReset(); renderMeasure(); said('said-measure',''); $('readback').hidden=true;
+  $('measwrap').classList.add('nofig'); $('m-tapeline').hidden=false; $('setup').hidden=false; $('setup').open=false;
+  const m=$('mcam'); m.hidden=false; m.classList.remove('reading'); $('mcam-pill').textContent='Looking'; $('mcam-line-t').textContent='Head to floor in frame. Three metres back, hip height.';
+  actions([{id:'a-notape',t:'No tape',on:noTape},{id:'a-swing',t:'Grab my 7-iron →',cls:'primary',disabled:true,on:()=>startSwing(true)}]);
+  $('a-notape').style.display='none';
+  ioVisible(true); hint('');
+  measStep();
+}
+$('m-tape').addEventListener('click', ()=>{
+  // the tape path: the drawn figure, read back number by number, then the swing camera opens on its own
+  stopAll(); S.measMode='tape'; setFocus(); measI=0; figReset(); $('mcam').hidden=true; $('m-tapeline').hidden=true; $('setup').hidden=true; $('measwrap').classList.remove('nofig');
+  actions([{id:'a-notape',t:'No tape',on:noTape},{id:'a-swing',t:'Watch me swing →',cls:'primary',disabled:true,on:()=>startSwing(false)}]);
+  renderMeasure(); measStep();
+});
+function confirmBy(onYes, onAgain){
+  $('rb-yes').onclick = onYes; $('rb-again').onclick = onAgain;
+  $('readback').classList.toggle('voice', S.measMode==='cam');
+  setTurn(text=>{ if(text && /again|\bno\b|nope|wrong|not /i.test(text)) onAgain(); else onYes(); }, '“yes” or “again”');
+}
+function measStep(alt){
+  let st = MEASURE[measI];
+  if(S.measMode==='cam' && st.focus==='hand'){ measI++; st = MEASURE[measI]; }   // handedness is read off the swing instead
+  $('readback').hidden=true; $('a-notape').style.display = (st.skippable && S.measMode!=='cam')?'':'none';
+  $('mcam').hidden = S.measMode!=='cam';
+  if(st.focus==='wtf' && S.measMode==='cam'){
+    asking='wtf'; renderMeasure(); figAsk('wtf'); setTurn(null); ioVisible(false);
+    const m=$('mcam'); m.classList.remove('reading'); $('mcam-pill').textContent='Looking'; $('mcam-line-t').textContent='Arms hanging. Hold still.';
+    const token = S.measToken = {};
+    const read = ()=>{
+      if(S.screen!=='measure' || S.ended || S.measToken!==token || m.classList.contains('reading')) return;
+      m.classList.add('reading'); $('mcam-pill').textContent='Reading'; $('mcam-line-t').textContent='Hold it. Wrist crease to floor, scaled from your height.';
+      setTimeout(()=>{
+        if(S.measToken!==token) return;
+        $('rb-big').textContent = UNIT.inches(33); $('rb-heard').textContent = 'I see about thirty-three, give or take an inch';
+        $('readback').hidden=false; said('said-measure','');
+        $('mcam-pill').textContent='Mapped'; $('mcam-line-t').textContent='Mapped. Yes, or again?';
+        capFit.say('About thirty-three, give or take an inch. That right?');
+        confirmBy(()=>{
+          S.profile.wtf = {v:33, src:'seen', range:2}; S.justFilled='wtf'; figConfirm('wtf', UNIT.inches(33));
+          $('readback').classList.add('away'); setTimeout(()=>{ $('readback').classList.remove('away'); ioVisible(true); measI++; measStep(); }, reduce?0:300);
+        }, ()=>{
+          $('readback').hidden=true; setTurn(null); m.classList.remove('reading'); $('mcam-pill').textContent='Looking'; $('mcam-line-t').textContent='Step back a touch and hold still.';
+          capFit.say('Step back a touch. Arms hanging, hold still.', ()=>setTimeout(read, reduce?0:1200));
+        });
+      }, reduce?0:1300);
+    };
+    capFit.say(st.camAsk, ()=>setTimeout(read, reduce?0:1200));
+    return;
+  }
+  if(st.end){ asking=null; renderMeasure(); setTurn(null); ioVisible(false); if(S.measMode==='cam'){ $('mcam-pill').textContent='Mapped'; $('mcam-line-t').textContent='Stay there. Same spot, same phone, 7-iron in hand.'; } $('a-swing').disabled=false;
+    // camera path: the golfer is already in frame, so the swing step opens on its own once the line is said (the button goes sooner)
+    const token = S.measToken = {};
+    capFit.say(S.measMode==='cam' ? st.camAskAlt : st.ask, ()=>{ if(S.measMode==='cam' && !S.ended && S.screen==='measure' && S.measToken===token) setTimeout(()=>{ if(S.screen==='measure' && !S.ended && S.measToken===token) startSwing(true); }, reduce?0:900); });
+    return; }
+  asking = st.focus; renderMeasure(); figAsk(st.focus); ioVisible(true);
+  capFit.say(alt && st.askAlt ? st.askAlt : (S.measMode==='cam' && st.camAskAlt ? st.camAskAlt : st.ask));
+  setTurn(text=>{
+    const shown = text || st.golfer; said('said-measure', shown);
+    // read back before it counts
+    $('rb-big').textContent = text || st.big(S.profile);
+    $('rb-heard').textContent = `I heard “${text || st.heard}”`;
+    $('readback').hidden=false; setTurn(null);
+    const h = text || st.heard; capFit.say(`${h.charAt(0).toUpperCase()}${h.slice(1)}. That right?`);
+    confirmBy(()=>{
+      S.profile[st.focus] = text ? {v:text, src:st.src} : {v:st.value, src:st.src, range: st.src==='measured'?1:0};
+      S.justFilled = st.focus; figConfirm(st.focus, text || (st.focus==='height'||st.focus==='wtf' ? st.big(S.profile) : st.value));
+      $('readback').classList.add('away');
+      setTimeout(()=>{ $('readback').classList.remove('away'); measI++; measStep(); }, reduce?0:300);
+    }, ()=>{ $('readback').hidden=true; measStep(); });
+  }, `e.g. “${st.golfer}”`);
+}
+function noTape(){
+  const st = MEASURE[measI]; if(!st.skippable) return;
+  stopAll(); S.profile.wtf = {v:null, src:'estimated', skipped:true}; S.justFilled='wtf';
+  $('fig').classList.remove('t'); $('line-w').classList.add('drawn','grey'); $('lab-w').textContent='?'; $('lab-w').classList.add('in','grey');
+  measI++; measStep(true);
+}
+
+// ---- 4 Swing (pick how many, then tap the camera to simulate each one)
+function startSwing(cont){
+  cont = cont===true;
+  show('swing'); S.swingSkipped=false; S.busy=false; ioVisible(false);
+  const c=S.clips.length;
+  if(c){
+    // clips were read at the start: nothing to film
+    S.swingPlan=c; S.swings=S.clips.map((k,i)=>({ratio:k.ratio, line:''}));
+    $('cam').hidden=true;
+    $('clipstate').hidden=false; $('clipstate').innerHTML=`<span class="h">Already read</span><span class="t">${c===1?'Your clip':WORDS[c]+' clips'} · tempo ${S.clips[c-1].ratio} : 1</span><p>Checked when you attached ${c===1?'it':'them'}: slow motion, face-on, hands seen. Nothing to film now. Add another clip or film here if you want a tighter speed range.</p>`;
+    actions([{id:'a-clip',t:'Add a clip',on:openClipSheet},{id:'a-fit',t:'See your fit →',cls:'primary',on:startFit}]); hint('');
+    capFit.say(c===1 ? "Your clip’s already read, so no filming today. Tempo’s quick. If you want a tighter speed number, add a clip, otherwise let’s see your fit." : `${WORDS[c]} clips read and they agree. Let’s see your fit.`);
+    return;
+  }
+  S.swings=[]; S.swingPlan=5; $('clipstate').hidden=true; $('cam').hidden=false; swingUI();
+  // the frame draws itself around the figure, drifts grey, then snaps orange once the pose fits
+  const cam=$('cam'); cam.classList.remove('ok','lowhands','swinging'); $('ghosts').innerHTML=''; $('ghosts').classList.remove('merge');
+  if(cont){ cam.classList.remove('enter'); cam.classList.add('ok'); }   // same camera, same spot: the overlay just changes
+  else { cam.classList.remove('enter'); void cam.offsetWidth; cam.classList.add('enter'); setTimeout(()=>cam.classList.add('ok'), reduce?0:1600); }
+  actions([{id:'a-clip',t:'Use a slow-mo clip<small>120 fps or more, face-on</small>',icon:'clip',cls:'wide',on:openClipSheet},{id:'a-save',t:'Save for later',icon:'save',on:()=>exitSheet('Saved','Come back when you can swing.','Everything so far is kept on this phone. Open the fitter again and we pick up at the swing step. No filming, no fit, no pressure. (Saving is simulated in this prototype.)')},{id:'a-skip',t:'Skip, I guess',icon:'skip',on:skipSwing}]);
+  hint('Demo: tap the camera to fake a swing');
+  capFit.say(cont ? "Same spot, I’ve got you framed. Five swings, normal effort. Swing when you’re ready. I just watch, no tips."
+                  : "Five swings with your 7-iron, facing me, phone at hip height. Normal effort. I just watch, no tips.");
+}
+function swingUI(){
+  const n = S.swings.length, N = S.swingPlan;
+  $('cam-pill').textContent = n<N ? `Rec · swing ${n+1} of ${N}` : `Done · ${N} swing${N>1?'s':''}`;
+  $('cam-tempo').textContent = n ? `${S.swings[n-1].ratio} : 1` : '? : 1'; $('cam-tempo').classList.toggle('todo', !n);
+  $('cam-line').textContent = n<N ? (n ? 'Framing’s still good. Next one when you’re ready.' : '7-iron, facing me. Framing’s good. Swing when you’re ready.') : `Got ${n===1?'it':'all '+WORDS[N]}. Tempo 2.4 : 1 · hands low · compact.`;
+}
+function doSwing(){
+  if(S.busy || S.swings.length>=S.swingPlan) return;
+  S.busy=true;
+  const cam=$('cam'); cam.classList.remove('swinging'); void cam.offsetWidth; cam.classList.add('swinging');
+  setTimeout(()=>{
+    // the read: pose landmarks in a worker, ~10 s on a phone; shortened here
+    const i = S.swings.length;
+    // keep this swing's hand path as a ghost, slightly off so the set can merge later if they agree
+    const g=document.createElementNS('http://www.w3.org/2000/svg','path'); g.setAttribute('d', $('trail').getAttribute('d'));
+    const dx=((i*7)%5)-2, dy=((i*5)%5)-2; g.style.transform=`translate(${dx}px,${dy}px)`; $('ghosts').appendChild(g);
+    cam.classList.remove('swinging');
+    $('cam-line').textContent = `Reading swing ${i+1}. About 10 seconds on a real phone.`; $('cam-pill').textContent = `Reading · swing ${i+1} of ${S.swingPlan}`;
+    countTempo(parseFloat(RATIOS[i]), reduce?0:1200);
+    setTimeout(()=>{
+      let line = swingLine(i, S.swingPlan);
+      if(i===0 && !S.profile.hand){ S.profile.hand={v:'Right', src:'seen'}; line = 'Right-handed, noted. ' + line; }
+      S.busy=false; S.swings.push({ratio:RATIOS[i], line}); swingUI();
+      const pill=cam.querySelector('.pill'); pill.classList.remove('bump'); void pill.offsetWidth; pill.classList.add('bump');
+      if(i===1 || (i===0 && S.swingPlan===1)) cam.classList.add('lowhands');
+      capFit.say(S.swings[i].line);
+      if(S.swings.length===S.swingPlan){ $('ghosts').classList.add('merge'); actions([{id:'a-fit',t:'See your fit →',cls:'primary',on:startFit}]); hint(''); }
+    }, reduce?0:1200);
+  }, reduce?0:1500);
+}
+function countTempo(to, ms){
+  const el=$('cam-tempo'); el.classList.remove('todo');
+  if(!ms){ el.textContent=`${to.toFixed(1)} : 1`; return; }
+  const t0=performance.now();
+  (function f(t){ const k=Math.min(1,(t-t0)/ms); el.textContent=`${(1+(to-1)*k).toFixed(1)} : 1`; if(k<1) requestAnimationFrame(f); })(t0);
+}
+$('mcam').addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('mcam').click(); } });
+$('cam').addEventListener('click', doSwing);
+$('cam').addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); doSwing(); } });
+function skipSwing(){ stopAll(); S.swingSkipped=true; capFit.say("Fine, I’ll guess your tempo from your answers. The shaft becomes a guess, and I’ll say so on the card."); actions([{id:'a-fit',t:'See your fit →',cls:'primary',on:startFit}]); hint(''); }
+
+// ---- 5 Your fit (the fitter reads the line it is on; that row lights up)
+function startFit(){
+  show('fit'); renderVerdict(); renderYourSwing(); ioVisible(false); hint('');
+  actions([{id:'a-ask',t:'Ask me anything',on:()=>startAsk(false)},{id:'a-order',t:'Review & order',cls:'primary',on:openOrder}]);
+  const v = verdict();
+  document.querySelectorAll('.vrow').forEach(r=>r.classList.add('pre'));   // rows rise in as the fitter reads them
+  const lines = [
+    ['head',  `Here’s your fit. Head first: the 201 MKII. ${v.head.why}`],
+    ['shaft', `Shaft: ${v.shaft.v.replace('·','')}. ${v.shaft.why}${v.shaft.conf==='hmm'?' That one’s a hmm.':''}`],
+    ['length',`Length: standard. ${v.length.why}`],
+    ['lie',   `Lie: ${v.lie.v.toLowerCase()}. ${v.lie.why}`],
+    ['grip',  `Grip: midsize, from the large glove. Sure on that.`],
+    [null,    `One close call: 201 versus 201T. Ask me anything, or we read the order back.`]
+  ];
+  let i=0; (function next(){ if(i>=lines.length){ lightRow(null); return; } const [row,t]=lines[i++]; lightRow(row); capFit.say(t, ()=>setTimeout(next, reduce?0:350)); })();
+}
+
+// ---- email the fit (optional, never a gate; sending is simulated)
+$('mailbox').addEventListener('submit', e=>{
+  e.preventDefault();
+  const v = $('mail').value.trim(), f = $('mailbox').querySelector('.field');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){ f.classList.add('bad'); $('mail-note').innerHTML = 'That doesn’t look like an email. Check it and try again.'; $('mail').focus(); return; }
+  f.classList.remove('bad'); $('mailbox').classList.add('sent');
+  $('mail-note').innerHTML = `<b>Sent to ${v.replace(/</g,'&lt;')}.</b> Your fit, the whys and the close call. (Simulated in this prototype.)`;
+  stopAll(); capFit.say('Sent. It’s on this phone too, so you can come back any time.');
+});
+function resetMail(){ $('mailbox').classList.remove('sent'); $('mailbox').querySelector('.field').classList.remove('bad'); $('mail').value=''; $('mail-note').textContent='Optional. Your fit, the whys and the close call land in your inbox. Nothing else, no newsletter.'; }
+
+// ---- 6 Ask, then go
+function startAsk(returning){
+  show('ask'); renderVerdict(); ioVisible(false); hint('');
+  $('chips').innerHTML = ANSWERS.map((a,i)=>`<button type="button" class="chip" data-i="${i}">${a.q}</button>`).join('');
+  actions([{id:'a-back',t:'← Your fit',on:startFit},{id:'a-order2',t:'Review & order',cls:'primary',on:openOrder}]);
+  $('said-ask').innerHTML = '<b>You asked</b><i>nothing yet</i>';
+  capFit.say(returning
+    ? "Good. Where we left you: 201 versus 201T. Did you hit both at a demo bay, or want to go through it again?"
+    : "Go on, ask me anything. Shafts, lie, the close call, or what you’d rather settle in person.");
+}
+$('chips').addEventListener('click', e=>{
+  const c = e.target.closest('.chip'); if(!c) return;
+  const a = ANSWERS[+c.dataset.i]; document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on', x===c));
+  $('said-ask').innerHTML = `<b>You asked</b><span>“${a.q}”</span>`;
+  capFit.say(typeof a.a==='function' ? a.a() : a.a);
+});
+$('x-demo').addEventListener('click', ()=>exitSheet('Demo bay', 'Hit both before you decide.', 'Your fit summary (201 vs 201T, KBS Tour stiff, +1° lie) goes to the nearest demo location with you. Ten balls each and you’ll know. (Location finder isn’t wired in this prototype.)'));
+$('x-human').addEventListener('click', ()=>exitSheet('Human fitter', '15 minutes, and they already know.', 'A Takomo fitter gets everything from this session first: your profile, the three swings, the verdict and the close call. You won’t repeat yourself. (Booking isn’t wired in this prototype.)'));
+
+// ---- order: payment-class. Read back, explicit yes, "ordered" only after the shop confirms
+function openOrder(){
+  stopAll(); renderVerdict();
+  $('sheet-order-h').textContent='Here’s what I’d order.'; $('order-p').textContent='Stock set plus the lie and grip changes. I only say “ordered” once the shop confirms it. Shall I?';
+  $('order-row').innerHTML = '<button type="button" class="btn" id="order-no">Not yet</button><button type="button" class="btn primary" id="order-yes">Yes, order</button>';
+  $('order-no').onclick=hideSheets;
+  $('order-yes').onclick=()=>{
+    $('sheet-order-h').textContent='Handing you to checkout.'; $('order-p').textContent='Shopify takes it from here. Not wired in this prototype. Nothing is ordered until it confirms, and I won’t say otherwise.';
+    $('order-row').innerHTML='<button type="button" class="btn primary" id="order-ok">Got it</button>'; $('order-ok').onclick=hideSheets;
+  };
+  showSheet('sheet-order');
+}
+function exitSheet(tag,h,p){ stopAll(); $('exit-tag').textContent=tag; $('sheet-exit-h').textContent=h; $('exit-p').textContent=p; showSheet('sheet-exit'); }
+$('exit-ok').addEventListener('click', hideSheets);
+// ---- simulator clubhead speed: the one number that beats the camera
+function openSim(){
+  stopAll(); $('simunit').textContent = S.units==='imp'?'mph':'km/h'; $('siminp').value = S.profile.speed_mph ? (S.units==='imp'?S.profile.speed_mph.v:Math.round(S.profile.speed_mph.v*1.609)) : '';
+  $('sim-note').textContent=''; $('simform').classList.remove('bad'); showSheet('sheet-sim'); setTimeout(()=>$('siminp').focus(), 350);
+}
+document.querySelectorAll('.simlink').forEach(b=>b.addEventListener('click', openSim));
+$('sim-no').addEventListener('click', hideSheets);
+$('simform').addEventListener('submit', e=>{
+  e.preventDefault();
+  let v = parseFloat($('siminp').value.replace(',','.')); if(S.units==='met' && !isNaN(v)) v = v/1.609;
+  if(isNaN(v) || v<40 || v>130){ $('simform').classList.add('bad'); $('sim-note').textContent='That doesn’t look like a 7-iron clubhead speed. Most golfers sit between 60 and 100 mph.'; return; }
+  v = Math.round(v); S.profile.speed_mph = {v, src:'sim', range:3};
+  hideSheets(); renderVerdict(); renderYourSwing(); renderTiles();
+  const sh = simShaft();
+  capFit.say(`${UNIT.speed(v)} on a sim. That beats my camera guess. ${sh.conf==='sure' ? `${sh.v.split('· ')[1]} it is, and I’m sure of it now.` : `Right on the line, so it stays a close call.`}`);
+  if(S.screen==='swing') $('simline-swing').innerHTML = `<span>Sim speed in: <b style="color:var(--fg)">${UNIT.speed(v)}</b>. </span><button type="button" class="linkbtn simlink">Change</button>`;
+  document.querySelectorAll('.simlink').forEach(b=>b.addEventListener('click', openSim));
+});
+function showSheet(id){ $('scrim').classList.add('show'); $(id).classList.add('show'); const b=$(id).querySelector('.btn.primary'); b&&b.focus(); }
+function hideSheets(){ $('scrim').classList.remove('show'); document.querySelectorAll('.sheet').forEach(s=>s.classList.remove('show')); }
+$('scrim').addEventListener('click', hideSheets);
+
+// ---- toast
+let toastT; function toast(t){ const el=$('toast'); el.textContent=t; el.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'), 2600); }
+
+// ---- demo bar
+function fillTo(stage){
+  const p = S.profile = {};
+  if(['measure','swing','fit','ask'].includes(stage)) CHAT.forEach(s=>s.apply&&s.apply(p));
+  if(['swing','fit','ask'].includes(stage)) MEASURE.forEach(s=>{ if(s.focus) p[s.focus]={v:s.value,src:s.src,range:s.src==='measured'?1:0}; });
+  if(['fit','ask'].includes(stage)){ if(S.clips.length){ S.swingPlan=S.clips.length; S.swings=S.clips.map(k=>({ratio:k.ratio,line:''})); } else { S.swingPlan=5; S.swings = SWINGS.slice(0,5); } S.swingSkipped=false; }
+}
+document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click', ()=>{
+  if(!S.audioOK && !S.muted && window.speechSynthesis) S.audioOK=true;
+  const j=b.dataset.jump; fillTo(j); if(S.mode!=='type') S.mode='talk';
+  ({chat:startChat, measure:startMeasure, swing:startSwing, fit:startFit, ask:()=>startAsk(false)})[j]();
+}));
+$('dm-reset').addEventListener('click', ()=>{ S.profile={}; $('simline-swing').innerHTML='Been on a simulator? <button type="button" class="linkbtn simlink">Enter your 7-iron clubhead speed</button>'; document.querySelectorAll('.simlink').forEach(b=>b.addEventListener('click', openSim)); S.swings=[]; S.clips=[]; S.swingSkipped=false; resetMail(); startHello(); });
+$('dm-badclip').addEventListener('click', e=>{ S.badClip=!S.badClip; e.currentTarget.setAttribute('aria-pressed', S.badClip); });
+$('dm-return').addEventListener('click', e=>{ S.returning=!S.returning; e.currentTarget.setAttribute('aria-pressed', S.returning); S.profile={}; startHello(); });
+$('dm-mute').addEventListener('click', e=>{ S.muted=!S.muted; e.currentTarget.setAttribute('aria-pressed', S.muted); $('spk').setAttribute('aria-pressed', S.muted); if(S.muted) stopAll(); });
+
+// keep the action bar above the demo bar on phones
+(function(){ const d=$('demo'); const set=()=>document.documentElement.style.setProperty('--demo-h', (innerWidth<700 ? d.offsetHeight : 0)+'px'); set(); if(window.ResizeObserver) new ResizeObserver(set).observe(d); addEventListener('resize', set); })();
+
+// first tap anywhere unlocks audio for the rest of the session (browsers need a gesture)
+document.addEventListener('pointerdown', ()=>{ if(!S.audioOK && !S.muted && window.speechSynthesis) S.audioOK=true; }, {capture:true});
+if(window.speechSynthesis){ speechSynthesis.onvoiceschanged=()=>{}; speechSynthesis.getVoices(); }
+try{ const u=localStorage.getItem('fitter.units'); if(u) setUnits(u); }catch(e){}
+
+renderTiles(); renderMeasure(); renderVerdict(); renderYourSwing();
+startHello();
+})();
+</script>
+</body>
+</html>

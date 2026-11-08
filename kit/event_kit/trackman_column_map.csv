@@ -1,0 +1,21 @@
+pack_column,trackman_metric,note
+club_speed_mph,Club Speed,set TrackMan units to mph / yards / degrees
+attack_angle_deg,Attack Angle,
+dynamic_loft_deg,Dynamic Loft,
+club_path_deg,Club Path,
+face_angle_deg,Face Angle,
+face_to_path_deg,Face To Path,
+ball_speed_mph,Ball Speed,
+smash_factor,Smash Factor,
+launch_angle_deg,Launch Angle,
+launch_direction_deg,Launch Direction,
+spin_rate_rpm,Spin Rate,
+spin_axis_deg,Spin Axis,
+carry_yd,Carry,
+total_yd,Total,
+side_yd,Side,check the sign convention in the export: pack uses + = right
+apex_yd,Height,
+landing_angle_deg,Landing Angle,
+impact_offset_mm,Impact Offset,only if the TrackMan model reports it; pack uses + = toe
+impact_height_mm,Impact Height,only if reported
+impact_toe_up_deg,Dynamic Lie,only if reported; TrackMan's own sign convention may differ from + = toe up: check with a known shot
